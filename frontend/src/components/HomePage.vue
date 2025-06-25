@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useWindowScroll } from '@vueuse/core';
 import apolloClient, { isLocal } from '../utilities/apolloClient';
 import { gql } from "@apollo/client/core";
@@ -67,9 +67,27 @@ apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then(
   imgDim.value = isLocal ? homeBanner.value.imageFeatured.featuredImage.mediaDetails : homeBanner.value.featuredImage.node.mediaDetails;
 });
 
+// Define the scroll thresholds
+const startMaskY = 329; // Y position where masking starts
+const endMaskY = 379;   // Y position where image is fully masked
+
+// Reactive variable for clip-path percentage
+const maskPercentage = computed(() => {
+  // Calculate how far the user has scrolled within the mask range
+  const progress = Math.min(Math.max((y.value - startMaskY) / (endMaskY - startMaskY), 0), 1);
+  // Convert progress to a percentage for clip-path (100% = fully visible, 0% = fully masked)
+  return 100 - progress * 100;
+});
+
+// Dynamic style for the ImageLoader
+const imageStyle = computed(() => ({
+  clipPath: `inset(0 ${100 - maskPercentage.value}% 0 0)`,
+}));
+
 </script>
 
 <template>
+
   <div class="relative z-10 placeholder-cyan-100 h-screen -mt-16 w-screen overflow-hidden">
       <main class="main">
           <div class="w-screen overflow-hidden h-screen">
@@ -127,39 +145,42 @@ apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then(
 
               <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-50 pt-[72px] relative">
                 
-                <div class="banner-content w-full flex flex-col justify-end z-40 absolute right-0 bottom-6">
+                <div class="banner-content w-full flex flex-col justify-end z-40 lg:absolute lg:right-0 lg:bottom-6">
 
                   <div class="mx-6 max-w-[952px] lg:mx-auto py-6 pr-6 rounded-xl backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2  border-slate-200/10">
                     
                     <CircuitSvgs />
 
-                    <div
-                      class="text-gray-200 relative pl-[27vw] md:pl-[35vw] min-h-44 lg:max-w-full"
-                      v-html="content"
-                    ></div>
+                    <div class="bg-[#111729] ml-6 rounded-md p-6">
+                      <div
+                        class="text-gray-200 relative lg:min-h-44 lg:max-w-full"
+                        v-html="content"
+                      ></div>
 
-                    <div class="justify-end flex items-center sm:gap-x-2 md:gap-x-4 mt-6 relative flex-wrap">
-                      
-                      <a
-                        href="/#case-studies"
-                        class="secondary-btn "
-                        ><span class="px-1">Learn more</span><ChevronRightIcon class="w-2 h-2 md:h-4 md:w-4 hidden md:block" aria-hidden="true" />
-                      </a>
+                      <div class="justify-end flex items-center sm:gap-x-2 md:gap-x-4 mt-6 relative flex-wrap">
+                        
+                        <a
+                          href="/#case-studies"
+                          class="secondary-btn "
+                          ><span class="px-1">Learn more</span><ChevronRightIcon class="w-2 h-2 md:h-4 md:w-4 hidden md:block" aria-hidden="true" />
+                        </a>
 
-                      <a
-                        href="/#connect"
-                        class="primary-btn sm:mr-2 md:mr-4 lg:mr-6 md:px-6"
-                        >
-                          <BriefcaseIcon class="w-2 h-2 md:h-4 md:w-4 hidden md:block" aria-hidden="true" />
-                          <span class="md:pl-2">Hire me</span>
-                      </a>
+                        <a
+                          href="/#connect"
+                          class="primary-btn sm:mr-2 md:mr-4 lg:mr-6 md:px-6"
+                          >
+                            <BriefcaseIcon class="w-2 h-2 md:h-4 md:w-4 hidden md:block" aria-hidden="true" />
+                            <span class="md:pl-2">Hire me</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="profile-img z-50 w-[100%] max-w-[64vw] min-h-80 h-auto bottom-0 fixed -translate-x-[25vw] md:-translate-x-1/3 lg:-translate-x-0"
+                    class="profile-img z-50 w-[100%] max-w-[64vw] min-h-full h-auto bottom-0 fixed -translate-x-[25vw] md:-translate-x-1/3 lg:-translate-x-0 transition-all"
                     :imageUrl="imgSrc"
+                    :style="imageStyle"
                 />
 
               </div> <!--banner-wrap-->
@@ -228,8 +249,8 @@ apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then(
   width: 100%;
   height: 45%;
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
+  top: -2.5rem;
+  left: -10.5rem;
 }
 
 .circuit-svgs #cont-1 .circuit-svg {
