@@ -56,7 +56,7 @@ const cache = new InMemoryCache();
 
 <template>
   <Popover
-    class="sticky top-0 z-50"
+    class="fixed top-0 z-50 w-full backdrop-blur backdrop-brightness-200 bg-slate-950/70"
   >
     <div class="mx-auto max-w-7xl px-6 py-2 drop-shadow-2xl">
       <div class="flex items-center justify-between md:space-x-10">

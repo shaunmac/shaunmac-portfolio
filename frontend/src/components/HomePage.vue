@@ -88,7 +88,7 @@ const imageStyle = computed(() => ({
 
 <template>
 
-  <div class="relative z-10 placeholder-cyan-100 h-screen -mt-16 w-screen overflow-hidden">
+  <div class="relative z-10 placeholder-cyan-100 h-screen mt-16 w-screen overflow-hidden">
       <main class="main">
           <div class="w-screen overflow-hidden h-screen">
 
@@ -143,15 +143,15 @@ const imageStyle = computed(() => ({
                 </div>
               </div> <!--rail -->
 
-              <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-50 pt-[72px] relative">
+              <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-50 relative">
                 
-                <div class="banner-content w-full flex flex-col justify-end z-40 lg:absolute lg:right-0 lg:bottom-6">
+                <div class="banner-content w-full flex flex-col justify-end z-40 sm:absolute md:right-0 sm:bottom-12">
 
-                  <div class="mx-6 max-w-[952px] lg:mx-auto py-6 pr-6 rounded-xl backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2  border-slate-200/10">
+                  <div class="mx-6 mt-5 sm:mt-0 max-w-[952px] lg:mx-auto p-6 rounded-xl backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
                     
                     <CircuitSvgs />
 
-                    <div class="bg-[#111729] ml-6 rounded-md p-6">
+                    <div class="bg-[#111729] sm:ml-[15vw] md:ml-[20vw] rounded-md p-6">
                       <div
                         class="text-gray-200 relative lg:min-h-44 lg:max-w-full"
                         v-html="content"
@@ -161,8 +161,9 @@ const imageStyle = computed(() => ({
                         
                         <a
                           href="/#case-studies"
-                          class="secondary-btn "
-                          ><span class="px-1">Learn more</span><ChevronRightIcon class="w-2 h-2 md:h-4 md:w-4 hidden md:block" aria-hidden="true" />
+                          class="secondary-btn"
+                          >
+                            <span class="px-1">Learn more</span><ChevronRightIcon class="w-2 h-2 md:h-4 md:w-4 hidden md:block" aria-hidden="true" />
                         </a>
 
                         <a
@@ -178,7 +179,7 @@ const imageStyle = computed(() => ({
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="profile-img z-50 w-[100%] max-w-[64vw] min-h-full h-auto bottom-0 fixed -translate-x-[25vw] md:-translate-x-1/3 lg:-translate-x-0 transition-all"
+                    class="profile-img z-50 w-[100%] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] lg:ml-[8vw] xl:ml-[8vw] min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 fixed transition-all"
                     :imageUrl="imgSrc"
                     :style="imageStyle"
                 />
@@ -257,6 +258,14 @@ const imageStyle = computed(() => ({
   fill: #0f172a;
   width: 100%;
   height: 144px;
+}
+
+.banner-content h1.title {
+  @apply text-3xl md:text-4xl;
+}
+
+.banner-content h1.title + h2 {
+  @apply text-sm mt-4 md:text-base;
 }
 
 .image-container-image {
