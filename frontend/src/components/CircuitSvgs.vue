@@ -6,7 +6,7 @@ import CircuitFour from '../assets/circuit/001-04.svg';
 </script>
 
 <template>
-  <div class="circuit-svgs absolute left-0 top-0 w-full h-44 overflow-hidden">
+  <div class="circuit-svgs absolute left-0 top-0 w-full h-full overflow-hidden">
     <div id="cont-1">
       <circuitOne class="circuit-svg circuit-svg-1" />
     </div>
@@ -30,8 +30,6 @@ import CircuitFour from '../assets/circuit/001-04.svg';
 
 .circuit-svgs #cont-2 {
   display: block;
-  display: relative;
-  top: 3em;
 }
 
 
@@ -44,11 +42,5 @@ import CircuitFour from '../assets/circuit/001-04.svg';
 }
 
 
-
-,
-.circuit-svgs #cont-3,
-.circuit-svgs #cont-4 {
-  display: none;
-}
 
 </style>

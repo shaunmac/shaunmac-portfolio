@@ -37,7 +37,7 @@ html {
   background-repeat: repeat;
   background-size: 230px;
   background-color: #181d2e;
-  width: 100vw;
+  width: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
 }

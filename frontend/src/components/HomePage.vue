@@ -88,9 +88,9 @@ const imageStyle = computed(() => ({
 
 <template>
 
-  <div class="relative z-10 placeholder-cyan-100 h-screen mt-16 w-screen overflow-hidden">
+  <div class="relative z-10 placeholder-cyan-100 h-screen mt-16 overflow-hidden">
       <main class="main">
-          <div class="w-screen overflow-hidden h-screen">
+          <div class="w-full overflow-hidden h-screen">
 
               <ShadowEl class="shadow-el-2 z-20 fixed top-0 right-0" :color="'#4d4e58'" />
 
@@ -151,7 +151,7 @@ const imageStyle = computed(() => ({
                     
                     <CircuitSvgs />
 
-                    <div class="bg-[#111729] sm:ml-[15vw] md:ml-[20vw] xl:ml-0 rounded-md p-6">
+                    <div class="bg-[#111729] sm:ml-[15vw] md:ml-[20vw] xl:ml-28 rounded-md p-6">
                       <div
                         class="text-gray-200 relative lg:min-h-44 lg:max-w-full"
                         v-html="content"
@@ -179,7 +179,7 @@ const imageStyle = computed(() => ({
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="profile-img z-50 w-[38vw] min-w-[240px] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-[700px] lg:ml-[8vw] xl:ml-[8vw] min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 xl:left-0 fixed transition-all"
+                    class="profile-img z-50 w-[38vw] min-w-[240px] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-[700px] lg:ml-[8vw] xl:ml-0 min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 xl:left-0 fixed transition-all"
                     :imageUrl="imgSrc"
                     :style="imageStyle"
                 />
@@ -254,18 +254,44 @@ const imageStyle = computed(() => ({
   left: -10.5rem;
 }
 
-.circuit-svgs #cont-1 .circuit-svg {
+.circuit-svgs #cont-2 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 211px;
+  right: -147px;
+  transform: scale(2);
+}
+
+.circuit-svgs #cont-3 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -153px;
+  left: -200px;
+  transform: scale(2) rotateZ(45deg);
+}
+
+.circuit-svgs #cont-4 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: -153px;
+  left: -200px;
+  transform: scale(2) rotateZ(45deg);
+}
+
+.circuit-svgs .circuit-svg {
   fill: #0f172a;
   width: 100%;
-  height: 144px;
 }
 
 .banner-content h1.title {
-  @apply text-3xl md:text-4xl;
+  @apply text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
 }
 
 .banner-content h1.title + h2 {
-  @apply text-sm mt-4 md:text-base;
+  @apply text-sm mt-4 md:text-base lg:text-lg xl:text-xl;
 }
 
 .image-container-image {
