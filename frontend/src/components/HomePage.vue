@@ -276,9 +276,9 @@ const imageStyle = computed(() => ({
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: -153px;
-  left: -200px;
-  transform: scale(2) rotateZ(45deg);
+  bottom: -23px;
+  left: -330px;
+  transform: scale(1.25) rotateZ(45deg);
 }
 
 .circuit-svgs .circuit-svg {
