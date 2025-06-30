@@ -151,7 +151,7 @@ const imageStyle = computed(() => ({
                     
                     <CircuitSvgs />
 
-                    <div class="bg-[#111729] sm:ml-[15vw] md:ml-[20vw] rounded-md p-6">
+                    <div class="bg-[#111729] sm:ml-[15vw] md:ml-[20vw] xl:ml-0 rounded-md p-6">
                       <div
                         class="text-gray-200 relative lg:min-h-44 lg:max-w-full"
                         v-html="content"
@@ -179,7 +179,7 @@ const imageStyle = computed(() => ({
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="profile-img z-50 w-[100%] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] lg:ml-[8vw] xl:ml-[8vw] min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 fixed transition-all"
+                    class="profile-img z-50 w-[38vw] min-w-[240px] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-[700px] lg:ml-[8vw] xl:ml-[8vw] min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 xl:left-0 fixed transition-all"
                     :imageUrl="imgSrc"
                     :style="imageStyle"
                 />

@@ -28,6 +28,12 @@ import CircuitFour from '../assets/circuit/001-04.svg';
   display: block;
 }
 
+.circuit-svgs #cont-2 {
+  display: block;
+  display: relative;
+  top: 3em;
+}
+
 
 @media (min-width: 1024px) {
 
@@ -39,7 +45,7 @@ import CircuitFour from '../assets/circuit/001-04.svg';
 
 
 
-.circuit-svgs #cont-2,
+,
 .circuit-svgs #cont-3,
 .circuit-svgs #cont-4 {
   display: none;
