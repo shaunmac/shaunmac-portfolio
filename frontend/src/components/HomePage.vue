@@ -11,7 +11,6 @@ import CircuitSvgs from "./CircuitSvgs.vue";
 const { y } = useWindowScroll();
 const homeBanner = ref({});
 const content = ref("");
-const imgDim = ref({});
 const imgSrc = ref("");
 
 const liveBannerQuery = gql`
@@ -44,9 +43,9 @@ const testBannerQuery = gql`
         title(format: RENDERED)
         id
         content(format: RENDERED)
-        imageFeatured {
-          featuredImage {
-            sourceUrl
+        featuredImage {
+          node {
+            sourceUrl(size: LARGE)
             mediaDetails {
               width
               height
@@ -63,8 +62,7 @@ const testBannerQuery = gql`
 apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then((result) => {
   homeBanner.value = result.data.pages.nodes[0];
   content.value = homeBanner.value.content;
-  imgSrc.value = isLocal ? homeBanner.value.imageFeatured.featuredImage.sourceUrl : homeBanner.value.featuredImage.node.sourceUrl;
-  imgDim.value = isLocal ? homeBanner.value.imageFeatured.featuredImage.mediaDetails : homeBanner.value.featuredImage.node.mediaDetails;
+  imgSrc.value = isLocal ? homeBanner.value.featuredImage.node.sourceUrl : homeBanner.value.featuredImage.node.sourceUrl;
 });
 
 // Define the scroll thresholds

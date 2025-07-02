@@ -9,6 +9,10 @@ import {
 
 import BtnPrime from "./BtnPrime.vue";
 import QuoteCalculator from "./QuoteCalculator.vue";
+import { isLocal } from '../utilities/apolloClient';
+
+
+const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
 
 // HTTP connection to the API
 const httpLink = createHttpLink({

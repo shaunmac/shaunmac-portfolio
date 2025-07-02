@@ -7,6 +7,8 @@ import {
   gql
 } from "@apollo/client/core";
 
+const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
+
 const liveCaseStudiesQuery = gql`
   query liveCaseStudiesQuery {
     caseStudies {
@@ -54,21 +56,21 @@ const testCaseStudiesQuery = gql`
         featuredImage {
           node {
             sourceUrl
-            mediaDetails {
-              sizes {
-                sourceUrl
-                name
-              }
-            }
           }
         }
         caseStudyImages {
           externalUrl
           mobileImage {
-            sourceUrl
+            node {
+              sourceUrl
+              title(format: RAW)
+            }
           }
           tabletImage {
-            sourceUrl
+            node {
+              title
+              sourceUrl(size: MEDIUM)
+            }
           }
         }
         content
@@ -103,8 +105,6 @@ const fetchCaseStudies = async () => {
     isLoading.value = false;
   }
 };
-
-
 
 const toggleVisibility = (index) => {
   isVisible.value[index] = !isVisible.value[index];
@@ -207,9 +207,9 @@ watch(viewport, (newViewport) => {
   <!-- ====== Blog Section Start -->
   <section id="case-studies" class="pt-20 pb-10 mt-[150vh] lg:pt-[120px] lg:pb-20 relative z-10 title-bg w-full">
     
-    <img src="https://shaunmacdougall.com/wp-content/uploads/2024/07/circuit-2.png" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
+    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
 
-    <img src="https://shaunmacdougall.com/wp-content/uploads/2024/07/circuit-2.png" class="w-[130vw] -bottom-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw] lg:hidden" alt="">
+    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw] lg:hidden" alt="">
 
     <div class="w-full">
       
@@ -269,7 +269,7 @@ watch(viewport, (newViewport) => {
                 <img
                   class="overflow-hidden"
                   v-if="caseStudy.caseStudyImages.tabletImage"
-                  :src="isLocal ? caseStudy.caseStudyImages.tabletImage.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
+                  :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
                   :alt="`${caseStudy.title} Tablet Image`"
                 />
               </div>
@@ -278,7 +278,7 @@ watch(viewport, (newViewport) => {
                 <img
                   class="overflow-hidden rounded"
                   v-if="caseStudy.caseStudyImages.mobileImage"
-                  :src="isLocal ? caseStudy.caseStudyImages.mobileImage.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
+                  :src="isLocal ? caseStudy.caseStudyImages.mobileImage.node.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
                   :alt="`${caseStudy.title} Mobile Image`"
                 />
               </div>
