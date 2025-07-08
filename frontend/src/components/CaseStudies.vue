@@ -137,7 +137,7 @@ const goToNextSlide = () => {
 
 // Tailwind breakpoints
 const breakpoints = {
-  xs: 0,
+  xs: 360,
   sm: 640,
   md: 768,
   lg: 1024,
@@ -165,7 +165,7 @@ const cardCount = ref(getCardSlideCount());
 function getCardSlideCount() {
   switch (viewport.value) {
     case 'xs':
-      return [1,2];
+      return [1];
     case 'sm':
       return [1,2];
     case 'md':
@@ -205,138 +205,144 @@ watch(viewport, (newViewport) => {
 
 <template>
   <!-- ====== Blog Section Start -->
-  <section id="case-studies" class="rounded-xl px-6 pt-6 pb-6 mt-[150vh] mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10 overflow-hidden">
-    
-    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
+  <section id="case-studies" class="">
 
-    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw] lg:hidden" alt="">
-
-    <div class="w-full ">
+    <div class="rounded-xl px-6 md:px-12 pt-6 pb-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
       
-      <div class="flex flex-wrap justify-center">
+      <div class="overflow-hidden w-full h-full absolute top-0 left-0">
+        <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
 
-        <div class="w-full relative">
-          
-          <div class="case-studies__title-container mx-auto mb-6 max-w-[510px] text-center z-10 relative">
-            <span class="block text-lg font-normal text-slate-200">
-              Work
-            </span>
-            <h2
-              class="text-3xl font-bold sm:text-4xl md:text-[40px] bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
-            >
-              CASE STUDIES
-            </h2>
-            <p class="font-normal text-slate-300">
-              Built with care and pixel perfection
-            </p>
-          </div>
-
-        </div>
+        <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw] lg:hidden" alt="">
       </div>
 
-      <div class="bg-slate-800 p-6 relative z-10">
-        <div class="carousel space-x-6 relative scroll-pl-6 snap-x">
-                <!-- // v-if="isLoading" -->
-          <div v-if="isLoading" v-for="(caseStudy, index) in caseStudies" class="py-3 w-2/3 md:w-2/5 lg:w-1/5 carousel-item relative box-border max-w-[338px]flex justify-center items-center h-80 ml-6">
-            <div class="mx-auto rounded-md bg-slate-800 p-6 relative w-full block flex justify-center">
-              <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-                  role="status">
-                  <span
-                    class="absolute -m-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
-                    >Loading...</span
-                  >
-              </div>
-            </div>
+      <div class="w-full">
+            
+        <div class="case-studies__title-container mx-auto -mb-[80px] max-w-[360px] sm:max-w-[410px] text-center z-10 relative pt-6">
+          <span class="block text-lg font-normal text-slate-200">
+            Work
+          </span>
+          <h2
+            class="text-3xl font-bold sm:text-4xl md:text-[40px] bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
+          >
+            CASE STUDIES
+          </h2>
+          <p class="font-normal text-slate-300">
+            Built with care and pixel perfection
+          </p>
+        </div>
 
+        <div class="case-studies__carousel-bg p-6 relative z-0">
+
+          <div class="w-10 h-10 rounded-l-full absolute top-1/2 z-40 -left-10 bg-slate-800">
+            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToPrevSlide">«<span class=" hidden">Prev</span></a>
           </div>
 
-          <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start py-3 w-2/3 md:w-2/5 lg:w-1/5 carousel-item relative box-border max-w-[338px] " :id="'caseStudySlide'+(index+1)" >
-
-            <div class="mx-auto rounded-md bg-slate-800 relative">
-              
-              <div v-if="!isVisible[index]" 
-                class="case-study__images overflow-hidden relative bg-slate-200"
-              >
-                <div class="case-study__desktop rounded overflow-hidden relative z-0 border-4 border-white w-full">
-                  <img
-                    class="case-study__image case-study__image--lg"
-                    v-if="caseStudy.featuredImage"
-                    :src="caseStudy.featuredImage.node.sourceUrl"
-                    :alt="caseStudy.title"
-                  />
-                </div>
-
-                <div class="case-study__tablet rounded overflow-hidden absolute bottom-0 right-0 z-10 w-4/5 shadow-2xl shadow-black border-4 border-white">
-                  <img
-                    class="overflow-hidden"
-                    v-if="caseStudy.caseStudyImages.tabletImage"
-                    :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
-                    :alt="`${caseStudy.title} Tablet Image`"
-                  />
-                </div>
-
-                <div class="case-study__mobile rounded absolute overflow-hidden bottom-0 right-0 w-2/5 z-20 shadow-2xl shadow-black border-4 border-white"> 
-                  <img
-                    class="overflow-hidden rounded"
-                    v-if="caseStudy.caseStudyImages.mobileImage"
-                    :src="isLocal ? caseStudy.caseStudyImages.mobileImage.node.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
-                    :alt="`${caseStudy.title} Mobile Image`"
-                  />
-                </div>
-
-              </div>
-
-              <div class="case-study__content">
-
-                <div v-if="!isVisible[index]" class="pt-6">
-
-                  <h3 class="text-3xl min-h-[4.5rem] text-white">{{ caseStudy.title }}</h3>
-
-                </div>
-                <div v-else class="">
-                  <h3 class="text-xl text-white pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
-                  <div class="font-normal text-slate-300 mt-4 mb-4 pb-4 border-b border-slate-700"  v-html="caseStudy.content"></div>
-                  <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center align-middle justify-start pt-2 -mt-1 -mx-1 pb-4">
-                    <div v-for="tag in caseStudy.tags.edges" class="text-sm leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.node.name }}</div>
-                  </div>
-                </div>
-
-                <div class="mt-6 flex space-x-6">
-                  <button 
-                    class="primary-btn w-1/2"
-                    @click="toggleVisibility(index)"
+          <div class="w-10 h-10 rounded-r-full absolute top-1/2 z-40 -right-10 bg-slate-800">
+            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToNextSlide"><span class="hidden">Next</span>»</a>
+          </div>
+          
+          <div class="carousel space-x-0 md:space-x-6 relative scroll-pl-6 snap-x mt-6 pt-6">
+                  <!-- // v-if="isLoading" -->
+            <div v-if="isLoading" v-for="(caseStudy, index) in caseStudies" class="py-3 w-2/3 md:w-2/5 lg:w-1/5 carousel-item relative box-border max-w-[338px]flex justify-center items-center h-80 ml-6">
+              <div class="mx-auto rounded-md bg-slate-800 p-6 relative w-full block flex justify-center">
+                <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                    role="status">
+                    <span
+                      class="absolute -m-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]"
+                      >Loading...</span
                     >
-                    Read {{ isVisible[index] ? "Less" : "More" }}
-                  </button>
+                </div>
+              </div>
 
-                  <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 ">View Site</a>
+            </div>
+
+            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full md:w-2/5 lg:w-1/5 carousel-item relative box-border  " :id="'caseStudySlide'+(index+1)" >
+
+              <div class="mx-auto rounded-md bg-slate-800 relative">
+                
+                <div v-if="!isVisible[index]" 
+                  class="case-study__images overflow-hidden relative bg-slate-200"
+                >
+                  <div class="case-study__desktop rounded overflow-hidden relative z-0 border-4 border-white w-full">
+                    <img
+                      class="case-study__image case-study__image--lg"
+                      v-if="caseStudy.featuredImage"
+                      :src="caseStudy.featuredImage.node.sourceUrl"
+                      :alt="caseStudy.title"
+                    />
+                  </div>
+
+                  <div class="case-study__tablet rounded overflow-hidden absolute bottom-0 right-0 z-10 w-4/5 shadow-2xl shadow-black border-4 border-white">
+                    <img
+                      class="overflow-hidden"
+                      v-if="caseStudy.caseStudyImages.tabletImage"
+                      :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
+                      :alt="`${caseStudy.title} Tablet Image`"
+                    />
+                  </div>
+
+                  <div class="case-study__mobile rounded absolute overflow-hidden bottom-0 right-0 w-2/5 z-20 shadow-2xl shadow-black border-4 border-white"> 
+                    <img
+                      class="overflow-hidden rounded"
+                      v-if="caseStudy.caseStudyImages.mobileImage"
+                      :src="isLocal ? caseStudy.caseStudyImages.mobileImage.node.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
+                      :alt="`${caseStudy.title} Mobile Image`"
+                    />
+                  </div>
+
                 </div>
 
+                <div class="case-study__content">
+
+                  <div v-if="!isVisible[index]" class="pt-6">
+
+                    <h3 class="text-3xl min-h-[4.5rem] text-white">{{ caseStudy.title }}</h3>
+
+                  </div>
+                  <div v-else class="">
+                    <h3 class="text-xl text-white pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
+                    <div class="font-normal text-slate-300 mt-4 mb-4 pb-4 border-b border-slate-700"  v-html="caseStudy.content"></div>
+                    <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center align-middle justify-start pt-2 -mt-1 -mx-1 pb-4">
+                      <div v-for="tag in caseStudy.tags.edges" class="text-sm leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.node.name }}</div>
+                    </div>
+                  </div>
+
+                  <div class="mt-6 flex space-x-6">
+                    <button 
+                      class="primary-btn w-1/2"
+                      @click="toggleVisibility(index)"
+                      >
+                      Read {{ isVisible[index] ? "Less" : "More" }}
+                    </button>
+
+                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 ">View Site</a>
+                  </div>
+
+                </div>
+                <!-- Content -->
+
               </div>
-              <!-- Content -->
 
             </div>
 
           </div>
+      
+          <div class="carousel-navigation relative w-full h-16 flex justify-around align-middle items-center bg-slate-800 pt-6 pb-2" aria-label="Carousel Pagination">
+            
+            <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join">
+
+              <a v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" @click="setActiveSlide(index + 1)" :href="'#caseStudySlide'+(index + 1)" class=" rounded-full bg-slate-900 hover:bg-cyan-500 join-item flex block lg:w-2 lg:h-2 md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"><span class="hidden">{{index+1}}</span></a>
+              
+              
+            </div>
+            
+          </div>
 
         </div>
-      </div>
-    
-      <div class="carousel-navigation relative w-full h-16 flex justify-around align-middle items-center bg-slate-800 pb-12" aria-label="Carousel Pagination">
-        
-        <div class="flex justify-center align-middle space-x-1 md:space-x-2 lg:space-x-3 join">
-          <a class="btn join-item font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToPrevSlide">«<span class=" hidden">Prev</span></a>
 
-          <a v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" @click="setActiveSlide(index + 1)" :href="'#caseStudySlide'+(index + 1)" class="btn join-item hidden md:flex">{{index+1}}</a>
-
-          <a class="btn join-item font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToNextSlide"><span class="hidden">Next</span> »</a>
-          
-        </div>
-        
       </div>
-    
+
     </div>
-
     
 
   </section>
@@ -356,20 +362,28 @@ watch(viewport, (newViewport) => {
 }
 
 #case-studies {
-  width: calc(100% - 3em);
+  @apply w-screen;
+}
+
+.case-studies__carousel-bg::before {
+  content: "";
+  top: 124px;
+  height: calc(100% - 124px);
+
+  @apply bg-slate-800 absolute w-full left-0 rounded-md;
 }
 
 .case-studies__title-container:before {
-  --p: 100px; /* control the shape (can be percentage) */
+  --p: 20%; /* control the shape (can be percentage) */
   width: 100%;
-  height: 255px;
+  height: calc(100% + 3em);
   aspect-ratio: 3/2;
   clip-path: polygon(var(--p) 0,calc(100% - var(--p)) 0,100% 100%,0 100%);
   content: "";
   display: block;
   position: absolute;
   z-index: -1;
-  top: -80px;
+  top: 0px;
 
   @apply bg-slate-800;
 }
