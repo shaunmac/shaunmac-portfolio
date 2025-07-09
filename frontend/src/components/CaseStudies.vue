@@ -217,7 +217,7 @@ watch(viewport, (newViewport) => {
 
       <div class="w-full">
             
-        <div class="case-studies__title-container mx-auto -mb-[80px] max-w-[360px] sm:max-w-[410px] text-center z-10 relative pt-6">
+        <div class="case-studies__title-container mx-auto -mb-[6.4em] max-w-[360px] sm:max-w-[410px] text-center z-10 relative pt-6">
           <span class="block text-lg font-normal text-slate-200">
             Work
           </span>
@@ -241,7 +241,7 @@ watch(viewport, (newViewport) => {
             <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToNextSlide"><span class="hidden">Next</span>»</a>
           </div>
           
-          <div class="carousel space-x-0 md:space-x-6 relative scroll-pl-6 snap-x mt-6 pt-6">
+          <div class="carousel md:space-x-6  relative md:scroll-pl-6 snap-x mt-6 pt-6">
                   <!-- // v-if="isLoading" -->
             <div v-if="isLoading" v-for="(caseStudy, index) in caseStudies" class="py-3 w-2/3 md:w-2/5 lg:w-1/5 carousel-item relative box-border max-w-[338px]flex justify-center items-center h-80 ml-6">
               <div class="mx-auto rounded-md bg-slate-800 p-6 relative w-full block flex justify-center">
@@ -331,7 +331,7 @@ watch(viewport, (newViewport) => {
             
             <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join">
 
-              <a v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" @click="setActiveSlide(index + 1)" :href="'#caseStudySlide'+(index + 1)" class=" rounded-full bg-slate-900 hover:bg-cyan-500 join-item flex block lg:w-2 lg:h-2 md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"><span class="hidden">{{index+1}}</span></a>
+              <a v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" @click="setActiveSlide(index + 1)" :href="'#caseStudySlide'+(index + 1)" class=" rounded-full  bg-gray-900 hover:bg-cyan-500 join-item lg:w-2 lg:h-2 md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"><span class="hidden">{{index+1}}</span></a>
               
               
             </div>

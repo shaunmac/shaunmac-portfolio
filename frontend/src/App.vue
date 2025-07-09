@@ -5,19 +5,21 @@
 import HeaderNav from "./components/HeaderNav.vue";
 import HomePage from "./components/HomePage.vue";
 import CaseStudies from "./components/CaseStudies.vue";
-import Services from "./components/Services.vue";
-import Connect from "./components/Connect.vue";
-import Footer from "./components/Footer.vue";
+// import Services from "./components/Services.vue";
+// import Connect from "./components/Connect.vue";
+// import Footer from "./components/Footer.vue";
 
 </script>
 
 <template>
   <HeaderNav />
   <HomePage />
+  <div class="full-page-height-gap"></div>
   <CaseStudies />
-  <Services />
+  <div class="full-page-height-gap"></div>
+  <!-- <Services />
   <Connect />
-  <Footer />
+  <Footer /> -->
 </template>
 
 <style>
@@ -57,5 +59,9 @@ html {
 
 .title-bg {
   background-color: transparent;
+}
+
+.full-page-height-gap {
+  @apply mt-[150vh];
 }
 </style>
