@@ -143,7 +143,7 @@ const imageStyle = computed(() => ({
 
               <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-50 relative">
                 
-                <div class="banner-content w-full flex flex-col justify-end z-40 sm:absolute md:right-0 sm:bottom-12">
+                <div class="banner-content w-full flex flex-col justify-end z-40 sm:absolute md:right-0 sm:bottom-12 mt-24">
 
                   <div class="mx-6 mt-5 sm:mt-0 max-w-[952px] lg:mx-auto p-6 rounded-xl backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
                     
@@ -318,8 +318,11 @@ const imageStyle = computed(() => ({
    }
 }
 
-@media (min-width: 768px) {
-
+@media (min-height: 700px) and (max-width: 640px ) {
+  .image-container.profile-img {
+    max-width: 609px;
+    width: 100vw;
+  }
 }
 
 @media (min-width: 1024px) {
