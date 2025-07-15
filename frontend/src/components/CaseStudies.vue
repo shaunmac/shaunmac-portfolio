@@ -106,35 +106,6 @@ const fetchCaseStudies = async () => {
   }
 };
 
-const toggleVisibility = (index) => {
-  isVisible.value[index] = !isVisible.value[index];
-};
-
-// Define a ref for the active slide index
-const activeSlideIndex = ref(1);
-
-// Define a computed property for the active slide ID
-const activeSlideId = computed( () => `caseStudySlide+${activeSlideIndex.value + 1}` );
-
-
-// Define a function to set the active slide index
-const setActiveSlide = (index) => {
-  activeSlideIndex.value = index + 1;
-};
-
-// Define functions to go to the previous and next slides
-const goToPrevSlide = () => {
-  if (activeSlideIndex.value > 0) {
-    activeSlideIndex.value = activeSlideIndex.value - 1;
-  }
-};
-
-const goToNextSlide = () => {
-  if (activeSlideIndex.value < caseStudies.value.length - 1 ) {
-    activeSlideIndex.value = activeSlideIndex.value + 1;
-  }
-};
-
 // Tailwind breakpoints
 const breakpoints = {
   xs: 360,
@@ -150,6 +121,7 @@ const viewport = ref(getViewportSize());
 
 // Function to get current viewport size
 function getViewportSize() {
+
   const width = window.innerWidth;
   if (width < breakpoints.sm) return 'xs';
   else if (width < breakpoints.md) return 'sm';
@@ -158,6 +130,42 @@ function getViewportSize() {
   else if (width < breakpoints.xxl) return 'xl';
   else return 'xxl';
 }
+
+const toggleVisibility = (index) => {
+  isVisible.value[index] = !isVisible.value[index];
+};
+
+// Define a ref for the active slide index
+const activeSlideIndex = ref(1);
+
+// Define a computed property for the active slide ID
+const activeSlideId = computed( () => `caseStudySlide+${activeSlideIndex.value}` );
+
+// Define a function to set the active slide index
+const setActiveSlide = (index) => {
+  activeSlideIndex.value = index ;
+};
+
+// Define functions to go to the previous and next slides
+const goToPrevSlide = () => {
+  
+  if(activeSlideIndex.value <= 1) {
+    activeSlideIndex.value = caseStudies.value.length ;
+  }else {
+    activeSlideIndex.value = activeSlideIndex.value - cardCount.value.length ;
+  }
+
+};
+
+const goToNextSlide = () => {
+
+  if (activeSlideIndex.value >= caseStudies.value.length) {
+    activeSlideIndex.value = 1;
+  }else {
+    activeSlideIndex.value = activeSlideIndex.value + cardCount.value.length;
+  }
+
+};
 
 // Define card count based on viewport
 const cardCount = ref(getCardSlideCount());
@@ -177,7 +185,7 @@ function getCardSlideCount() {
     case 'xxl':
       return [1,2,3,4,5];
     default:
-      return [1,2,3,4,5];// default to medium size
+      return [1];// default to medium size
   }
 }
 
@@ -204,7 +212,7 @@ watch(viewport, (newViewport) => {
 </script>
 
 <template>
-  <!-- ====== Blog Section Start -->
+  
   <section id="case-studies" class="">
 
     <div class="rounded-xl px-6 md:px-12 pt-6 pb-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
@@ -234,14 +242,14 @@ watch(viewport, (newViewport) => {
         <div class="case-studies__carousel-bg p-6 relative z-0">
 
           <div class="w-10 h-10 rounded-l-full absolute top-1/2 z-40 -left-10 bg-slate-800">
-            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToPrevSlide">«<span class=" hidden">Prev</span></a>
+            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + activeSlideIndex" @click="goToPrevSlide">«<span class=" hidden">Prev</span></a>
           </div>
 
           <div class="w-10 h-10 rounded-r-full absolute top-1/2 z-40 -right-10 bg-slate-800">
-            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + (activeSlideIndex + 1)" @click="goToNextSlide"><span class="hidden">Next</span>»</a>
+            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + activeSlideIndex" @click="goToNextSlide"><span class="hidden">Next</span>»</a>
           </div>
           
-          <div class="carousel md:space-x-6  relative md:scroll-pl-6 snap-x mt-6 pt-6">
+          <div class="carousel sm:space-x-6 relative md:scroll-pl-6 snap-x mt-6 pt-6">
                   <!-- // v-if="isLoading" -->
             <div v-if="isLoading" v-for="(caseStudy, index) in caseStudies" class="py-3 w-2/3 md:w-2/5 lg:w-1/5 carousel-item relative box-border max-w-[338px]flex justify-center items-center h-80 ml-6">
               <div class="mx-auto rounded-md bg-slate-800 p-6 relative w-full block flex justify-center">
@@ -256,7 +264,7 @@ watch(viewport, (newViewport) => {
 
             </div>
 
-            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full md:w-2/5 lg:w-1/5 carousel-item relative box-border  " :id="'caseStudySlide'+(index+1)" >
+            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/5 carousel-item relative box-border" :id="'caseStudySlide'+(index+1)" >
 
               <div class="mx-auto rounded-md bg-slate-800 relative">
                 
@@ -296,14 +304,14 @@ watch(viewport, (newViewport) => {
 
                   <div v-if="!isVisible[index]" class="pt-6">
 
-                    <h3 class="text-3xl min-h-[4.5rem] text-white">{{ caseStudy.title }}</h3>
+                    <h3 class="text-xl text-white">{{ caseStudy.title }}</h3>
 
                   </div>
                   <div v-else class="">
                     <h3 class="text-xl text-white pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     <div class="font-normal text-slate-300 mt-4 mb-4 pb-4 border-b border-slate-700"  v-html="caseStudy.content"></div>
                     <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center align-middle justify-start pt-2 -mt-1 -mx-1 pb-4">
-                      <div v-for="tag in caseStudy.tags.edges" class="text-sm leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.node.name }}</div>
+                      <div v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.node.name }}</div>
                     </div>
                   </div>
 
@@ -331,8 +339,16 @@ watch(viewport, (newViewport) => {
             
             <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join">
 
-              <a v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" @click="setActiveSlide(index + 1)" :href="'#caseStudySlide'+(index + 1)" class=" rounded-full  bg-gray-900 hover:bg-cyan-500 join-item lg:w-2 lg:h-2 md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"><span class="hidden">{{index+1}}</span></a>
-              
+              <a 
+                v-for="(caseStudy, index) in caseStudies" 
+                :key="caseStudy.caseId" 
+                @click="setActiveSlide(index + 1)" 
+                :href="'#caseStudySlide'+(index + 1)" 
+                class="rounded-full border border-gray-900 hover:border-cyan-500 join-item md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"
+                :class="[ activeSlideIndex == ( index + 1 ) ? 'bg-cyan-500' : 'bg-gray-900' ]"
+              >  
+                <span class="hidden">{{index+1}}</span>
+              </a>
               
             </div>
             
@@ -387,5 +403,7 @@ watch(viewport, (newViewport) => {
 
   @apply bg-slate-800;
 }
+
+
 
 </style>
