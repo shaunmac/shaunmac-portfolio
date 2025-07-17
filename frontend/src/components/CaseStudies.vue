@@ -162,7 +162,7 @@ const goToNextSlide = () => {
   if (activeSlideIndex.value >= caseStudies.value.length) {
     activeSlideIndex.value = 1;
   }else {
-    activeSlideIndex.value = activeSlideIndex.value + cardCount.value.length;
+    activeSlideIndex.value = (activeSlideIndex.value + cardCount.value.length) > caseStudies.value.length ? activeSlideIndex.value + cardCount.value.length : caseStudies.value.length ;
   }
 
 };
@@ -179,7 +179,7 @@ function getCardSlideCount() {
     case 'md':
       return [1,2,3];
     case 'lg':
-      return [1,2,3,4,5];
+      return [1,2,3,4];
     case 'xl':
       return [1,2,3,4,5];
     case 'xxl':
@@ -264,7 +264,7 @@ watch(viewport, (newViewport) => {
 
             </div>
 
-            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/5 carousel-item relative box-border" :id="'caseStudySlide'+(index+1)" >
+            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 carousel-item relative box-border" :id="'caseStudySlide'+(index+1)" >
 
               <div class="mx-auto rounded-md bg-slate-800 relative">
                 
@@ -337,7 +337,7 @@ watch(viewport, (newViewport) => {
       
           <div class="carousel-navigation relative w-full h-16 flex justify-around align-middle items-center bg-slate-800 pt-6 pb-2" aria-label="Carousel Pagination">
             
-            <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join">
+            <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 joi bg-slate-950 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
 
               <a 
                 v-for="(caseStudy, index) in caseStudies" 
@@ -345,7 +345,7 @@ watch(viewport, (newViewport) => {
                 @click="setActiveSlide(index + 1)" 
                 :href="'#caseStudySlide'+(index + 1)" 
                 class="rounded-full border border-gray-900 hover:border-cyan-500 join-item md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"
-                :class="[ activeSlideIndex == ( index + 1 ) ? 'bg-cyan-500' : 'bg-gray-900' ]"
+                :class="[ activeSlideIndex == (index + 1) ? 'bg-cyan-500' : 'bg-gray-800' ]"
               >  
                 <span class="hidden">{{index+1}}</span>
               </a>
@@ -404,6 +404,28 @@ watch(viewport, (newViewport) => {
   @apply bg-slate-800;
 }
 
+.carousel-navigation > .flex.align-middle a:last-child {
+  display: block !important;
+}
+
+@media screen and (min-width: 640px) and (max-width: 1023px){
+  .carousel-navigation > .flex a:nth-child(2n) {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .carousel-navigation > .flex a:nth-child(2),
+  .carousel-navigation > .flex a:nth-child(3),
+  .carousel-navigation > .flex a:nth-child(4),
+  .carousel-navigation > .flex a:nth-child(5),
+  .carousel-navigation > .flex a:nth-child(7),
+  .carousel-navigation > .flex a:nth-child(8),
+  .carousel-navigation > .flex a:nth-child(10),
+  .carousel-navigation > .flex a:nth-child(11){
+    display: none;
+  }
+}
 
 
 </style>
