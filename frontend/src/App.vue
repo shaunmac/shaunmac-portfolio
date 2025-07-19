@@ -5,9 +5,9 @@
 import HeaderNav from "./components/HeaderNav.vue";
 import HomePage from "./components/HomePage.vue";
 import CaseStudies from "./components/CaseStudies.vue";
-// import Services from "./components/Services.vue";
-// import Connect from "./components/Connect.vue";
-// import Footer from "./components/Footer.vue";
+import Services from "./components/Services.vue";
+import Connect from "./components/Connect.vue";
+import Footer from "./components/Footer.vue";
 
 </script>
 
@@ -17,9 +17,9 @@ import CaseStudies from "./components/CaseStudies.vue";
   <div class="full-page-height-gap"></div>
   <CaseStudies />
   <div class="full-page-height-gap"></div>
-  <!-- <Services />
+  <Services />
   <Connect />
-  <Footer /> -->
+  <Footer />
 </template>
 
 <style>
