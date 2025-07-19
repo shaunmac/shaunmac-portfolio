@@ -14,7 +14,9 @@ import Footer from "./components/Footer.vue";
 <template>
   <HeaderNav />
   <HomePage />
+  <div class="full-page-height-gap"></div>
   <CaseStudies />
+  <div class="full-page-height-gap"></div>
   <Services />
   <Connect />
   <Footer />
@@ -57,5 +59,9 @@ html {
 
 .title-bg {
   background-color: transparent;
+}
+
+.full-page-height-gap {
+  @apply mt-[150vh];
 }
 </style>
