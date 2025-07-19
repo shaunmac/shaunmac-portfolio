@@ -141,32 +141,6 @@ const activeSlideIndex = ref(1);
 // Define a computed property for the active slide ID
 const activeSlideId = computed( () => `caseStudySlide+${activeSlideIndex.value}` );
 
-// Define a function to set the active slide index
-const setActiveSlide = (index) => {
-  activeSlideIndex.value = index ;
-};
-
-// Define functions to go to the previous and next slides
-const goToPrevSlide = () => {
-  
-  if(activeSlideIndex.value <= 1) {
-    activeSlideIndex.value = caseStudies.value.length ;
-  }else {
-    activeSlideIndex.value = activeSlideIndex.value - cardCount.value.length ;
-  }
-
-};
-
-const goToNextSlide = () => {
-
-  if (activeSlideIndex.value >= caseStudies.value.length) {
-    activeSlideIndex.value = 1;
-  }else {
-    activeSlideIndex.value = (activeSlideIndex.value + cardCount.value.length) > caseStudies.value.length ? activeSlideIndex.value + cardCount.value.length : caseStudies.value.length ;
-  }
-
-};
-
 // Define card count based on viewport
 const cardCount = ref(getCardSlideCount());
 
@@ -188,6 +162,40 @@ function getCardSlideCount() {
       return [1];// default to medium size
   }
 }
+
+// Define a function to set the active slide index
+const setActiveSlide = (index) => {
+  activeSlideIndex.value = index ;
+};
+
+// Define functions to go to the previous and next slides
+const goToPrevSlide = () => {
+  
+  if(activeSlideIndex.value <= 1) {
+    activeSlideIndex.value = caseStudies.value.length ;
+  }else {
+    activeSlideIndex.value = (activeSlideIndex.value - cardCount.value.length) <= 1 ? 1 : activeSlideIndex.value - cardCount.value.length ;
+  }
+
+  console.log('card count: ' + cardCount.value.length);
+
+};
+
+const goToNextSlide = () => {
+
+  const caseStudiesCounter = caseStudies.value.length,
+        cardCounter = cardCount.value.length;
+
+
+  if (activeSlideIndex.value >= caseStudiesCounter) {
+    activeSlideIndex.value = 1;
+  }else {
+    activeSlideIndex.value = (activeSlideIndex.value + cardCounter) >= caseStudiesCounter ? caseStudiesCounter : activeSlideIndex.value + cardCounter;
+  }
+
+  console.log('card count: ' + cardCounter);
+
+};
 
 onMounted(() => {
   fetchCaseStudies();
@@ -215,37 +223,36 @@ watch(viewport, (newViewport) => {
   
   <section id="case-studies" class="">
 
-    <div class="rounded-xl px-6 md:px-12 pt-6 pb-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
+    <div class="rounded-xl px-6 md:px-12 pt-[1px] pb-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
       
       <div class="overflow-hidden w-full h-full absolute top-0 left-0">
         <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
-
         <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw] lg:hidden" alt="">
       </div>
 
       <div class="w-full">
             
         <div class="case-studies__title-container mx-auto -mb-[6.4em] max-w-[360px] sm:max-w-[410px] text-center z-10 relative pt-6">
-          <span class="block text-lg font-normal text-slate-200">
+          <span class="block text-lg sm:text-xl font-normal text-slate-200 leading-[0.8em] sm:leading-[0.8em]">
             Work
           </span>
           <h2
-            class="text-3xl font-bold sm:text-4xl md:text-[40px] bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
+            class="font-bold text-xl sm:text-2xl bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
           >
             CASE STUDIES
           </h2>
-          <p class="font-normal text-slate-300">
+          <!-- <p class="font-normal text-sm sm:text-lg text-slate-300">
             Built with care and pixel perfection
-          </p>
+          </p> -->
         </div>
 
         <div class="case-studies__carousel-bg p-6 relative z-0">
 
-          <div class="w-10 h-10 rounded-l-full absolute top-1/2 z-40 -left-10 bg-slate-800">
-            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + activeSlideIndex" @click="goToPrevSlide">«<span class=" hidden">Prev</span></a>
+          <div class="w-10 h-10 rounded-l-full absolute top-1/2 z-40 -left-10 bg-slate-800 border-2 border-slate-800">
+            <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + activeSlideIndex" @click="goToPrevSlide">«<span class="hidden">Prev</span></a>
           </div>
 
-          <div class="w-10 h-10 rounded-r-full absolute top-1/2 z-40 -right-10 bg-slate-800">
+          <div class="w-10 h-10 rounded-r-full absolute top-1/2 z-40 -right-10 bg-slate-800 border-2 border-slate-800">
             <a class="w-[calc(100%-6px)] h-[calc(100%-6px)] ml-[3px] mt-[3px] rounded-full border-cyan-400 border-2 text-cyan-400 flex align-middle justify-center items-center font-normal" :href="'#caseStudySlide' + activeSlideIndex" @click="goToNextSlide"><span class="hidden">Next</span>»</a>
           </div>
           
@@ -264,9 +271,9 @@ watch(viewport, (newViewport) => {
 
             </div>
 
-            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 carousel-item relative box-border" :id="'caseStudySlide'+(index+1)" >
+            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-20 pb-3 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 carousel-item box-border" :id="'caseStudySlide'+(index+1)" >
 
-              <div class="mx-auto rounded-md bg-slate-800 relative">
+              <div class="mx-auto rounded-md bg-slate-800 pb-0">
                 
                 <div v-if="!isVisible[index]" 
                   class="case-study__images overflow-hidden relative bg-slate-200"
@@ -315,9 +322,9 @@ watch(viewport, (newViewport) => {
                     </div>
                   </div>
 
-                  <div class="mt-6 flex space-x-6">
+                  <div class="mt-6 flex space-x-6 md:space-x-4 lg:space-x-6 md:text-xs md:tracking-tighter">
                     <button 
-                      class="primary-btn w-1/2"
+                      class="primary-btn w-1/2 lg:text-base"
                       @click="toggleVisibility(index)"
                       >
                       Read {{ isVisible[index] ? "Less" : "More" }}
@@ -335,17 +342,17 @@ watch(viewport, (newViewport) => {
 
           </div>
       
-          <div class="carousel-navigation relative w-full h-16 flex justify-around align-middle items-center bg-slate-800 pt-6 pb-2" aria-label="Carousel Pagination">
+          <div class="carousel-navigation relative w-full flex justify-around align-middle items-center bg-slate-800 pt-2 pb-0" aria-label="Carousel Pagination">
             
-            <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 joi bg-slate-950 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
+            <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 joi bg-slate-900 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
 
               <a 
                 v-for="(caseStudy, index) in caseStudies" 
                 :key="caseStudy.caseId" 
                 @click="setActiveSlide(index + 1)" 
                 :href="'#caseStudySlide'+(index + 1)" 
-                class="rounded-full border border-gray-900 hover:border-cyan-500 join-item md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"
-                :class="[ activeSlideIndex == (index + 1) ? 'bg-cyan-500' : 'bg-gray-800' ]"
+                class="rounded-full border hover:border-cyan-500 join-item md:w-3 md:h-3 sm:w-4 sm:h-4 w-5 h-5 block"
+                :class="[ activeSlideIndex == (index + 1) ? 'bg-cyan-500 border-cyan-200 active-item' : 'bg-gray-800 border-l-gray-900 border-r-gray-900 border-b-black border-t-gray-600' ]"
               >  
                 <span class="hidden">{{index+1}}</span>
               </a>
@@ -390,7 +397,7 @@ watch(viewport, (newViewport) => {
 }
 
 .case-studies__title-container:before {
-  --p: 20%; /* control the shape (can be percentage) */
+  --p: 10%; /* control the shape (can be percentage) */
   width: 100%;
   height: calc(100% + 3em);
   aspect-ratio: 3/2;
@@ -408,22 +415,61 @@ watch(viewport, (newViewport) => {
   display: block !important;
 }
 
-@media screen and (min-width: 640px) and (max-width: 1023px){
+@media screen and (min-width: 640px) and (max-width: 767px){
   .carousel-navigation > .flex a:nth-child(2n) {
     display: none;
   }
 }
 
-@media screen and (min-width: 1024px) {
+/* VIEW PORT = md */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .carousel-navigation > .flex a:nth-child(2),
+  .carousel-navigation > .flex a:nth-child(3),
+  .carousel-navigation > .flex a:nth-child(5),
+  .carousel-navigation > .flex a:nth-child(6),
+  .carousel-navigation > .flex a:nth-child(8),
+  .carousel-navigation > .flex a:nth-child(10),
+  .carousel-navigation > .flex a:nth-child(11){
+    display: none;
+  }
+}
+
+/* VIEW PORT = lg */
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
   .carousel-navigation > .flex a:nth-child(2),
   .carousel-navigation > .flex a:nth-child(3),
   .carousel-navigation > .flex a:nth-child(4),
-  .carousel-navigation > .flex a:nth-child(5),
+  .carousel-navigation > .flex a:nth-child(6),
   .carousel-navigation > .flex a:nth-child(7),
   .carousel-navigation > .flex a:nth-child(8),
   .carousel-navigation > .flex a:nth-child(10),
   .carousel-navigation > .flex a:nth-child(11){
     display: none;
+  }
+}
+
+/* VIEW PORT = xl */
+@media screen and (min-width: 1280px) {
+  /* Hide all <a> tags between first and last by default */
+  .carousel-navigation > .flex a:not(:first-child):not(:last-child):not(.active-item) {
+    display: none;
+  }
+
+  /* Always show first and last <a> tags */
+  .carousel-navigation > .flex a:first-child,
+  .carousel-navigation > .flex a:last-child {
+    display: block;
+  }
+
+  /* Always show <a> tags with active-item class */
+  .carousel-navigation > .flex a.active-item {
+    display: block;
+  }
+
+  /* If active-item is on first or last, show the first middle <a> tag (if it exists) */
+  .carousel-navigation > .flex a.active-item:first-child ~ a:not(:last-child):not(.active-item):first-of-type,
+  .carousel-navigation > .flex a.active-item:last-child ~ a:not(:first-child):not(.active-item):first-of-type {
+    display: block;
   }
 }
 
