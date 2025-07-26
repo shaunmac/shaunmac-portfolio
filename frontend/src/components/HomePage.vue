@@ -77,6 +77,7 @@ const maskPercentage = computed(() => {
   return 100 - progress * 100;
 });
 
+
 // Dynamic style for the ImageLoader
 const imageStyle = computed(() => ({
   clipPath: `inset(0 ${100 - maskPercentage.value}% 0 0)`,
@@ -244,42 +245,42 @@ const imageStyle = computed(() => ({
 	/* animation: color-anim 20s linear infinite; */
 }
 
-.circuit-svgs #cont-1 {
+.banner-content .circuit-svgs .cont-1,
+.banner-content .circuit-svgs .cont-2,
+.banner-content .circuit-svgs .cont-3,
+.banner-content .circuit-svgs .cont-4 {
   width: 100%;
-  height: 45%;
   position: absolute;
+}
+
+.banner-content .circuit-svgs .cont-1 {
+  height: 45%;
   top: -2.5rem;
   left: -10.5rem;
 }
 
-.circuit-svgs #cont-2 {
-  width: 100%;
+.banner-content .circuit-svgs .cont-2 {
   height: 100%;
-  position: absolute;
   top: 211px;
   right: -147px;
   transform: scale(2);
 }
 
-.circuit-svgs #cont-3 {
-  width: 100%;
+.banner-content .circuit-svgs .cont-3 {
   height: 100%;
-  position: absolute;
-  bottom: -153px;
-  left: -200px;
+  bottom: -133px;
+  left: -94px;
   transform: scale(2) rotateZ(45deg);
 }
 
-.circuit-svgs #cont-4 {
-  width: 100%;
+.banner-content .circuit-svgs .cont-4 {
   height: 100%;
-  position: absolute;
   bottom: -23px;
   left: -330px;
   transform: scale(1.25) rotateZ(45deg);
 }
 
-.circuit-svgs .circuit-svg {
+.banner-content .circuit-svgs .circuit-svg {
   fill: #0f172a;
   width: 100%;
 }
