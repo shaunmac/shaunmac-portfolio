@@ -223,27 +223,23 @@ watch(viewport, (newViewport) => {
   
   <section id="case-studies" class="">
 
-    <div class="rounded-xl px-6 md:px-12 pt-[1px] pb-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
+    <div class="rounded-xl px-6 md:px-12 py-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
       
       <div class="overflow-hidden w-full h-full absolute top-0 left-0">
         <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
-        <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw] lg:hidden" alt="">
       </div>
 
       <div class="w-full">
             
-        <div class="case-studies__title-container mx-auto -mb-[6.4em] max-w-[360px] sm:max-w-[410px] text-center z-10 relative pt-6">
-          <span class="block text-lg sm:text-xl font-normal text-slate-200 leading-[0.8em] sm:leading-[0.8em]">
+        <div class="case-studies__title-container ml-6 -mb-[7.5em] max-w-[190px] sm:max-w-[360px] z-10 relative pt-5">
+          <h3 class="text-lg sm:text-xl font-normal text-slate-200 leading-[0.8em] inline-block">
             Work
-          </span>
+          </h3><br />
           <h2
-            class="font-bold text-xl sm:text-2xl bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
+            class="font-bold text-xl sm:text-3xl bg-gradient-to-br from-cyan-400 to-indigo-600 bg-clip-text text-transparent text-shadow-lg/30"
           >
             CASE STUDIES
           </h2>
-          <!-- <p class="font-normal text-sm sm:text-lg text-slate-300">
-            Built with care and pixel perfection
-          </p> -->
         </div>
 
         <div class="case-studies__carousel-bg p-6 relative z-0">
@@ -342,9 +338,9 @@ watch(viewport, (newViewport) => {
 
           </div>
       
-          <div class="carousel-navigation relative w-full flex justify-around align-middle items-center bg-slate-800 pt-2 pb-0" aria-label="Carousel Pagination">
+          <div class="carousel-navigation relative bg-slate-800 pt-2 pb-0" aria-label="Carousel Pagination">
             
-            <div class="flex justify-center align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 joi bg-slate-900 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
+            <div class="left-1/2 -translate-x-1/2 w-full relative flex justify-around align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join bg-slate-900 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
 
               <a 
                 v-for="(caseStudy, index) in caseStudies" 
@@ -397,18 +393,18 @@ watch(viewport, (newViewport) => {
 }
 
 .case-studies__title-container:before {
-  --p: 10%; /* control the shape (can be percentage) */
   width: 100%;
-  height: calc(100% + 3em);
+  height: calc(100% + 0.3em);
   aspect-ratio: 3/2;
-  clip-path: polygon(var(--p) 0,calc(100% - var(--p)) 0,100% 100%,0 100%);
+  clip-path: polygon(0 0,calc(100% - 25%) 0,100% 100%,0 100%);
   content: "";
   display: block;
   position: absolute;
   z-index: -1;
-  top: 0px;
+  top: 0;
+  left: -1.5em;
 
-  @apply bg-slate-800;
+  @apply bg-slate-800 rounded-t-lg;
 }
 
 .carousel-navigation > .flex.align-middle a:last-child {
