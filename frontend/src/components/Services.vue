@@ -162,6 +162,8 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
                 <div class="rounded-full border border-slate-400 block p-1">
                   <div class="w-6 h-6 flex items-center justify-center">
                     <font-awesome-icon :icon=servi[index] size="lg" />
+
+                   <!-- <p class="bold block"> {{servi[index]}}</p> -->
                   </div>
                 </div>
 

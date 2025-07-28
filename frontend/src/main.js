@@ -9,8 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import { faLifeRing, faHandshake, faRuler, faCodeBranch, faMicrochip, faCalculator, faPeoplePulling, faRoad } from "@fortawesome/free-solid-svg-icons";
 
-import { faGithub, faCodepen, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faCodepen, faXTwitter, faSquareJs, faCss3, faReact } from "@fortawesome/free-brands-svg-icons";
 
-library.add( faLifeRing, faHandshake, faRuler, faCodeBranch, faMicrochip, faCalculator, faPeoplePulling, faRoad, faGithub, faCodepen, faXTwitter );
+library.add( faLifeRing, faHandshake, faRuler, faCodeBranch, faMicrochip, faCalculator, faPeoplePulling, faRoad, faGithub, faCodepen, faXTwitter, faSquareJs, faCss3, faReact);
 
 createApp(App).component('font-awesome-icon', FontAwesomeIcon).mount('#app');

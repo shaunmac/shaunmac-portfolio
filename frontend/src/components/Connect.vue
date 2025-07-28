@@ -112,26 +112,48 @@ apolloClient.query({ query: connectQuery }).then((result) => {
                         <p class=" text-slate-200 font-normal text">{{ card.content }}</p>
                     </div>
 
-                    <h4 v-if="card.title === 'Github'" class=" font-normal text-slate-300 mb-2">Contributions</h4>
+                    <h4 v-if="card.title === 'Github'" class=" font-bold text-slate-200 mb-4">Contributions</h4>
 
                     <div 
                       v-if="card.title === 'Github'"
-                      class="github-contributions flex justify-center mb-6 w-full relative bg-slate-900 rounded-md border-t border-t-slate-950 border-b border-b-slate-600 overflow-hidden"  
+                      class="github-contributions"  
                       ref="contributions"
                       role="img"
-                      aria-label="GitHub contributions graph for username"
+                      aria-label="GitHub contributions graph for shaunmac"
                     >
-                      <img
-                        :src="contributionUrl"
-                        alt="GitHub Contributions Graph"
-                      />
+                      <div class="github-contributions__img">
+                        <img
+                          :src="contributionUrl"
+                          alt="GitHub Contributions Graph"
+                        />
+                      </div>
+                    </div>
+                    <h4 v-if="card.title === 'Codepen'" class=" font-bold text-slate-200 mb-4">Code Examples</h4>
+                    <div v-if="card.title === 'Codepen'" id="codepen">
+                      <div class="example">
+                        <a href="https://codepen.io/shaunmac/pen/BvMmgg"></a>
+                        <div class="icon">
+                          <font-awesome-icon :icon="['fab', 'square-js']" />
+                        </div>
+                        <p>jQuery accordion</p>
+                      </div>
+                      <div class="example">
+                        <a href="https://codepen.io/shaunmac/pen/wvvaGjM"></a>
+                        <div class="icon">
+                          <font-awesome-icon :icon="['fab', 'css3']" />
+                        </div>
+                        <p>Tailwindcss layout</p>
+                      </div>
+                      <div class="example">
+                        <a href="https://codepen.io/shaunmac/pen/mvMPgr"></a>
+                        <div class="icon">
+                          <font-awesome-icon :icon="['fab', 'react']" />
+                        </div>
+                        <p>React accordion</p>
+                      </div>
                     </div>
 
-                    <div v-if="card.title ==='Codepen'">
-                      
-                    </div>
-
-                    <div class="w-full flex flex-col justify-end">
+                    <div v-else class="w-full flex flex-col justify-end">
                         <BtnPrime :link=card.url linkLabel="Connect"></BtnPrime>
                     </div>
 
@@ -199,14 +221,25 @@ apolloClient.query({ query: connectQuery }).then((result) => {
     top: 1200px;
   }
 
-  .github-contributions img {
-    width: 131.1vw;
-    top: -1.5vw;
-    left: -1.5vw;
-    height: 11.6vw;
+  .github-contributions {
+    @apply p-6 flex justify-center mb-6 w-full relative bg-slate-900 rounded-md border-t border-t-slate-950 border-b border-b-slate-600 overflow-hidden;
+  }
+
+  .github-contributions__img {
+    width: 100%;
+    height: 11vw;
     max-width: unset;
     position: relative;
     z-index: 0;
+    overflow: hidden;
+  }
+
+  .github-contributions__img img {
+    position: absolute;
+    top: -12px;
+    left: -16px;
+    max-width: unset;
+    width: calc(100% + 16px);
     filter: hue-rotate(110deg);
   }
 
@@ -216,6 +249,56 @@ apolloClient.query({ query: connectQuery }).then((result) => {
         top: -0.6vw;
         left: -0.6vw;
         height: 6.2vw;
+    }
+  }
+
+  #codepen {
+    @apply flex flex-col gap-6;
+  }
+
+  #codepen .example {
+    @apply w-full relative;
+  }
+
+  #codepen .example a {
+    @apply rounded-md absolute w-full h-[16.3rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block hover:border-2 hover:border-cyan-400 hover:scale-105 transition-transform;
+  }
+
+  #codepen .example a:hover + .icon .svg-inline--fa path{
+    @apply fill-cyan-400;
+  }
+
+  #codepen .example a:hover + .icon + p {
+    @apply text-cyan-400;
+  }
+
+  #codepen .icon {
+    @apply w-full flex justify-center items-center h-56 rounded bg-slate-950;
+  }
+
+  #codepen .icon .svg-inline--fa {
+    @apply w-1/3 h-auto;
+  }
+
+  #codepen p {
+    @apply text-slate-400 mt-3 truncate text-ellipsis font-normal;
+  }
+
+  @media (min-width:1280px) {
+    #codepen {
+      @apply flex-row;
+    }
+
+    #codepen .example {
+      @apply w-1/3;
+    }
+
+    #codepen .example a {
+      @apply h-[14.75rem];
+    }
+
+    #codepen .icon {
+      @apply h-44;
     }
   }
 
