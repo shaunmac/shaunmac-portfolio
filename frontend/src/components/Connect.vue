@@ -105,30 +105,45 @@ apolloClient.query({ query: connectQuery }).then((result) => {
             <div class="w-full flex-col md:w-1/2">
                 
               <div v-for="(card, index) in cardsData" 
-                class="w-full mb-6 rounded-xl p-6 pt-4 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10 box-border" >
-                  <div class="relative z-10 bg-slate-800 p-6 rounded-md">
-                    <div class="w-full pb-6">
+                class="w-full mb-6 rounded-xl p-6 pt-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 bg-slate-900/70 border-t-2 border-slate-200/10 box-border" >
+                  <div class="relative z-10 bg-slate-800 p-6 rounded-md overflow-hidden">
+
+                    <div class="absolute w-[calc(100%+150px)] h-full block card-icon z-0 -left-1/4 -top-1/4">
+                      <div v-if="card.title === 'Github'" class="w-full h-full">
+                        <font-awesome-icon :icon="['fab', 'fa-github']" />
+                      </div>
+                      <div v-else-if="card.title === 'Codepen'" class="w-full h-full">
+                        <font-awesome-icon :icon="['fab', 'fa-codepen']" />
+                      </div>
+                      <div v-else-if="card.title === 'Formally twitter'" class="w-full h-full">
+                        <font-awesome-icon :icon="['fab', 'fa-x-twitter']" />
+                      </div>
+                    </div>
+
+                    <div class="w-full pb-6 z-20 relative">
                         <h3 class="text-white text-2xl mb-4">{{ card.title }}</h3>
                         <p class=" text-slate-200 font-normal text">{{ card.content }}</p>
                     </div>
 
-                    <h4 v-if="card.title === 'Github'" class=" font-bold text-slate-200 mb-4">Contributions</h4>
+                    <h4 v-if="card.title === 'Github'" class=" font-bold text-slate-200 mb-4 z-20 relative">Contributions</h4>
 
                     <div 
                       v-if="card.title === 'Github'"
-                      class="github-contributions"  
+                      class="github-contributions relative z-20"  
                       ref="contributions"
                       role="img"
                       aria-label="GitHub contributions graph for shaunmac"
                     >
-                      <div class="github-contributions__img">
+                      <div class="github-contributions__img relative z-20">
                         <img
                           :src="contributionUrl"
                           alt="GitHub Contributions Graph"
+                          width="413px"
+                          height="65px"
                         />
                       </div>
                     </div>
-                    <h4 v-if="card.title === 'Codepen'" class=" font-bold text-slate-200 mb-4">Code Examples</h4>
+                    <h4 v-if="card.title === 'Codepen'" class="font-bold text-slate-200 mb-4 z-10 relative">Code Examples</h4>
                     <div v-if="card.title === 'Codepen'" id="codepen">
                       <div class="example">
                         <a href="https://codepen.io/shaunmac/pen/BvMmgg"></a>
@@ -153,7 +168,7 @@ apolloClient.query({ query: connectQuery }).then((result) => {
                       </div>
                     </div>
 
-                    <div v-else class="w-full flex flex-col justify-end">
+                    <div v-else class="w-full flex flex-col justify-end z-20 relative">
                         <BtnPrime :link=card.url linkLabel="Connect"></BtnPrime>
                     </div>
 
@@ -165,10 +180,12 @@ apolloClient.query({ query: connectQuery }).then((result) => {
 
             <div class="w-full md:w-1/2">
 
-                <div class="backdrop-blur supports-backdrop-blur:bg-white/95 w-full mb-6 border border-slate-700 px-6 py-6 rounded-md">
+                <div class="backdrop-blur backdrop-brightness-100 supports-backdrop-blur:bg-white bg-slate-700/50 w-full mb-6 px-6 py-6 rounded-lg">
+                  <div class=" bg-slate-800 p-6 rounded-md">
 
                   <QuoteCalculator />
 
+                  </div>
                 </div>
 
             </div>
@@ -221,13 +238,23 @@ apolloClient.query({ query: connectQuery }).then((result) => {
     top: 1200px;
   }
 
+  .card-icon > div > svg {
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  .card-icon > div > svg > path {
+    @apply fill-neutral-700;
+  }
+
   .github-contributions {
     @apply p-6 flex justify-center mb-6 w-full relative bg-slate-900 rounded-md border-t border-t-slate-950 border-b border-b-slate-600 overflow-hidden;
   }
 
   .github-contributions__img {
     width: 100%;
-    height: 11vw;
+    height: 10vw;
     max-width: unset;
     position: relative;
     z-index: 0;
@@ -236,19 +263,23 @@ apolloClient.query({ query: connectQuery }).then((result) => {
 
   .github-contributions__img img {
     position: absolute;
-    top: -12px;
-    left: -16px;
+    top: -2.3vw;
+    left: -3.1vw;
     max-width: unset;
-    width: calc(100% + 16px);
+    width: calc(100% + 3.3vw);
     filter: hue-rotate(110deg);
   }
 
   @media (min-width:768px) {
+    .github-contributions__img {
+      height: 5.5vw;
+    }
+
     .github-contributions img {
         width: 103.1%;
-        top: -0.6vw;
-        left: -0.6vw;
-        height: 6.2vw;
+        top: -1.2vw;
+        left: -01.3vw;
+        height: 6.9vw;
     }
   }
 
@@ -261,7 +292,7 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #codepen .example a {
-    @apply rounded-md absolute w-full h-[16.3rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 block hover:border-2 hover:border-cyan-400 hover:scale-105 transition-transform;
+    @apply rounded-md absolute w-full h-[16.3rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block border-2 border-cyan-400 opacity-0 hover:opacity-100 hover:scale-105 transition-all;
   }
 
   #codepen .example a:hover + .icon .svg-inline--fa path{
@@ -273,7 +304,7 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #codepen .icon {
-    @apply w-full flex justify-center items-center h-56 rounded bg-slate-950;
+    @apply w-full flex justify-center items-center h-56 rounded bg-slate-900;
   }
 
   #codepen .icon .svg-inline--fa {
