@@ -178,7 +178,12 @@ const imageStyle = computed(() => ({
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="profile-img z-50 w-[38vw] min-w-[240px] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-[700px] lg:ml-[8vw] xl:ml-0 min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 xl:left-0 fixed transition-all"
+                    class="
+                    profile-img z-50 w-[38vw] min-w-[240px] min-h-full h-auto fixed transition-all
+                    max-w-[300px] bottom-0 left-0 translate-x-1
+                    md:max-w-[400px] md:bottom-1/2 md:translate-y-1/2 
+                    lg:max-w-[690px] lg:ml-[17.2vw]
+                    xl:max-w-[700px] xl:ml-36 xl:left-0"
                     :imageUrl="imgSrc"
                     :style="imageStyle"
                 />
@@ -321,12 +326,15 @@ const imageStyle = computed(() => ({
 
 @media (min-height: 700px) and (max-width: 640px ) {
   .image-container.profile-img {
-    max-width: 609px;
-    width: 100vw;
+    /* max-width: 609px; */
+    width: 58vw;
   }
 }
 
 @media (min-width: 1024px) {
+  .image-container.profile-img {
+    
+  }
 }
 
 </style>
