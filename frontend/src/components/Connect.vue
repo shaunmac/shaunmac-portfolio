@@ -270,6 +270,8 @@ apolloClient.query({ query: connectQuery }).then((result) => {
     filter: hue-rotate(110deg);
   }
 
+
+
   @media (min-width:768px) {
     .github-contributions__img {
       height: 5.5vw;
@@ -284,15 +286,15 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #codepen {
-    @apply flex flex-col gap-6;
+    @apply flex gap-1;
   }
 
   #codepen .example {
-    @apply w-full relative;
+    @apply w-1/3 relative;
   }
 
   #codepen .example a {
-    @apply rounded-md absolute w-full h-[16.3rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block border-2 border-cyan-400 opacity-0 hover:opacity-100 hover:scale-105 transition-all;
+    @apply rounded-md absolute w-full h-[6.5rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block border-2 border-cyan-400 opacity-0 hover:opacity-100 hover:scale-105 transition-all;
   }
 
   #codepen .example a:hover + .icon .svg-inline--fa path{
@@ -304,7 +306,7 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #codepen .icon {
-    @apply w-full flex justify-center items-center h-56 rounded bg-slate-900;
+    @apply w-full flex justify-center items-center h-24 rounded bg-slate-900;
   }
 
   #codepen .icon .svg-inline--fa {
@@ -315,13 +317,24 @@ apolloClient.query({ query: connectQuery }).then((result) => {
     @apply text-slate-400 mt-3 truncate text-ellipsis font-normal;
   }
 
+  @media (min-width:640px) {
+     #codepen {
+      @apply gap-4;
+     }
+  }
+
+  @media (min-width:768px) {
+     #codepen {
+      @apply gap-6;
+     }
+  }
+
   @media (min-width:1280px) {
     #codepen {
       @apply flex-row;
     }
 
     #codepen .example {
-      @apply w-1/3;
     }
 
     #codepen .example a {

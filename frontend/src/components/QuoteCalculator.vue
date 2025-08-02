@@ -73,7 +73,7 @@ const exportQuote = () => {
 
 <template>
 
-        <h2 class="card-title text-2xl mb-6 text-white">Initial Quote Calculator</h2>
+        <h2 class="card-title text-2xl mb-2 text-white">Initial Quote Calculator</h2>
         
         <div class="space-y-6">
           <!-- Page Templates -->
@@ -89,11 +89,7 @@ const exportQuote = () => {
               step="1"
               class="range range-primary"
             />
-            <div class="w-full flex justify-between text-xs font-normal pl-2 text-slate-400">
-              <span>1</span>
-              <span>5</span>
-              <span>10</span>
-            </div>
+            
           </div>
 
           <!-- Content Pages -->
@@ -109,11 +105,7 @@ const exportQuote = () => {
               step="1"
               class="range range-primary"
             />
-            <div class="w-full flex justify-between text-xs font-normal pl-2 text-slate-200">
-              <span>1</span>
-              <span>10</span>
-              <span>20</span>
-            </div>
+            
           </div>
 
           <!-- Global Elements -->
@@ -129,11 +121,7 @@ const exportQuote = () => {
               step="1"
               class="range range-primary"
             />
-            <div class="w-full flex justify-between text-xs font-normal pl-2 text-slate-400">
-              <span>1</span>
-              <span>3</span>
-              <span>5</span>
-            </div>
+            
           </div>
 
           <!-- Custom Functionality -->
@@ -149,11 +137,7 @@ const exportQuote = () => {
               step="1"
               class="range range-primary"
             />
-            <div class="w-full flex justify-between text-xs font-normal pl-2 text-slate-400">
-              <span>0</span>
-              <span>3</span>
-              <span>5</span>
-            </div>
+            
           </div>
 
           <!-- Design Complexity -->
@@ -169,11 +153,7 @@ const exportQuote = () => {
               step="1"
               class="range range-primary"
             />
-            <div class="w-full flex justify-between text-xs font-normal pl-2 text-slate-400">
-              <span>Basic</span>
-              <span>Medium</span>
-              <span>Complex</span>
-            </div>
+            
           </div>
 
           <!-- Responsive Breakpoints -->
@@ -189,14 +169,6 @@ const exportQuote = () => {
               step="1"
               class="range range-primary"
             />
-            <div class="w-full flex justify-between text-xs font-normal pl-2 text-slate-400">
-              <span>1</span>
-              <span>2</span>
-              <span>3</span>
-              <span>4</span>
-              <span>5</span>
-              <span>6</span>
-            </div>
           </div>
 
           <div class="divider"></div>
@@ -261,7 +233,27 @@ const exportQuote = () => {
     top: 0;
 }
 
+.range::-webkit-slider-thumb {
+  color: rgb(6,182,212) !important;
+  box-shadow: 0 0 0 3px rgb(6 182 212) inset, var(--focus-shadow, 0 0), calc(var(--filler-size) * -1 - var(--filler-offset)) 0 0 var(--filler-size) !important;
+}
+
 span.label-text {
     color: #fff;
+}
+
+.space-y-6 div.form-control {
+  @apply pb-6 relative;
+}
+
+.space-y-6 div.form-control::before {
+  height: 1px;
+  width: calc(100% + 3em);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  content: '';
+  @apply bg-slate-700 block;
 }
 </style>
