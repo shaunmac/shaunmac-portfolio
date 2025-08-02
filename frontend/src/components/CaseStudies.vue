@@ -340,7 +340,7 @@ watch(viewport, (newViewport) => {
       
           <div class="carousel-navigation relative bg-slate-800 pt-2 pb-0" aria-label="Carousel Pagination">
             
-            <div class="left-1/2 -translate-x-1/2 w-full relative flex justify-around align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join bg-slate-900 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
+            <div class="left-1/2 -translate-x-1/2 w-full sm:max-w-64 md:max-w-44 xl:max-w-16 relative flex justify-around align-middle space-x-2 md:space-x-4 lg:space-x-3 xl:space-x-2 2xl:space-x-1 join bg-slate-900 p-2 rounded-full border-t border-t-black border-b border-slate-500 border-b-slate-500">
 
               <a 
                 v-for="(caseStudy, index) in caseStudies" 
