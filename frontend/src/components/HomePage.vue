@@ -182,8 +182,8 @@ const imageStyle = computed(() => ({
                     profile-img z-50 w-[38vw] min-w-[240px] min-h-full h-auto fixed transition-all
                     max-w-[300px] bottom-0 left-0 translate-x-1
                     md:max-w-[400px] md:bottom-1/2 md:translate-y-1/2 
-                    lg:max-w-[690px] lg:ml-[17.2vw]
-                    xl:max-w-[700px] xl:ml-36 xl:left-0"
+                    lg:max-w-[690px] lg:ml-[7.2vw]
+                    xl:max-w-[700px] xl:ml-[15vw]"
                     :imageUrl="imgSrc"
                     :style="imageStyle"
                 />

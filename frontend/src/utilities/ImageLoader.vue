@@ -1,7 +1,7 @@
 <template>
   <div class="image-container">
     
-    <div v-if="loading" class="w-8 h-8 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div v-if="loading" class="w-8 h-8 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       
       <div role="status">
           <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,7 +38,7 @@ const props = defineProps({
 const loading = ref(true);
 
 const onImageLoad = () => {
-  loading.value = false;  // Hide the loading indicator after 5 minutes
+  //loading.value = false;  // Hide the loading indicator after 5 minutes
 }
 
 const onImageError = (event) => {
