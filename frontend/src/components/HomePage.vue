@@ -142,7 +142,7 @@ const imageStyle = computed(() => ({
                 </div>
               </div> <!--rail -->
 
-              <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-50 relative">
+              <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-40 relative">
                 
                 <div class="banner-content w-full flex flex-col justify-end z-40 sm:absolute md:right-0 sm:bottom-12 mt-24">
 
@@ -178,14 +178,8 @@ const imageStyle = computed(() => ({
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="
-                    profile-img z-50 w-[38vw] min-w-[240px] min-h-full h-auto fixed transition-all
-                    max-w-[300px] bottom-0 left-0 translate-x-1
-                    md:max-w-[400px] md:bottom-1/2 md:translate-y-1/2 
-                    lg:max-w-[690px] lg:ml-[7.2vw]
-                    xl:max-w-[700px] xl:ml-[15vw]"
                     :imageUrl="imgSrc"
-                    :style="imageStyle"
+                    :imageStyles="imageStyle"
                 />
 
               </div> <!--banner-wrap-->
@@ -324,17 +318,5 @@ const imageStyle = computed(() => ({
    }
 }
 
-@media (min-height: 700px) and (max-width: 640px ) {
-  .image-container.profile-img {
-    /* max-width: 609px; */
-    width: 58vw;
-  }
-}
-
-@media (min-width: 1024px) {
-  .image-container.profile-img {
-    
-  }
-}
 
 </style>

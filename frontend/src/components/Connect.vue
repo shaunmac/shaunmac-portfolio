@@ -17,17 +17,6 @@ const contributionUrl = ref(
   'https://ghchart.rshah.org/shaunmac'
 );
 
-const contributions = ref(null);
-
-onMounted(() => {
-  useGsapAnimation(contributions, {
-    opacity: 0,
-    y: 50,
-    duration: 1,
-    ease: 'power2.out',
-  });
-});
-
 const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
 
 // HTTP connection to the API
