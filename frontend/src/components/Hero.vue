@@ -120,35 +120,35 @@ const maskPercentage = computed(() => {
 </template>
 
 <style>
-.banner-content .circuit-svgs .cont-1,
-.banner-content .circuit-svgs .cont-2,
-.banner-content .circuit-svgs .cont-3,
-.banner-content .circuit-svgs .cont-4 {
+.banner-content .circuit-svgs #cont-1,
+.banner-content .circuit-svgs #cont-2,
+.banner-content .circuit-svgs #cont-3,
+.banner-content .circuit-svgs #cont-4 {
   width: 100%;
   position: absolute;
 }
 
-.banner-content .circuit-svgs .cont-1 {
+.banner-content .circuit-svgs #cont-1 {
   height: 45%;
   top: -2.5rem;
   left: -10.5rem;
 }
 
-.banner-content .circuit-svgs .cont-2 {
+.banner-content .circuit-svgs #cont-2 {
   height: 100%;
   top: 211px;
   right: -147px;
   transform: scale(2);
 }
 
-.banner-content .circuit-svgs .cont-3 {
+.banner-content .circuit-svgs #cont-3 {
   height: 100%;
   bottom: -133px;
   left: -94px;
   transform: scale(2) rotateZ(45deg);
 }
 
-.banner-content .circuit-svgs .cont-4 {
+.banner-content .circuit-svgs #cont-4 {
   height: 100%;
   bottom: -23px;
   left: -330px;

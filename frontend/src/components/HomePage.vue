@@ -11,7 +11,6 @@ import CircuitSvgs from "./CircuitSvgs.vue";
 const { y } = useWindowScroll();
 const homeBanner = ref({});
 const content = ref("");
-const imgDim = ref({});
 const imgSrc = ref("");
 
 const liveBannerQuery = gql`
@@ -44,9 +43,9 @@ const testBannerQuery = gql`
         title(format: RENDERED)
         id
         content(format: RENDERED)
-        imageFeatured {
-          featuredImage {
-            sourceUrl
+        featuredImage {
+          node {
+            sourceUrl(size: LARGE)
             mediaDetails {
               width
               height
@@ -63,8 +62,7 @@ const testBannerQuery = gql`
 apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then((result) => {
   homeBanner.value = result.data.pages.nodes[0];
   content.value = homeBanner.value.content;
-  imgSrc.value = isLocal ? homeBanner.value.imageFeatured.featuredImage.sourceUrl : homeBanner.value.featuredImage.node.sourceUrl;
-  imgDim.value = isLocal ? homeBanner.value.imageFeatured.featuredImage.mediaDetails : homeBanner.value.featuredImage.node.mediaDetails;
+  imgSrc.value = isLocal ? homeBanner.value.featuredImage.node.sourceUrl : homeBanner.value.featuredImage.node.sourceUrl;
 });
 
 // Define the scroll thresholds
@@ -78,6 +76,7 @@ const maskPercentage = computed(() => {
   // Convert progress to a percentage for clip-path (100% = fully visible, 0% = fully masked)
   return 100 - progress * 100;
 });
+
 
 // Dynamic style for the ImageLoader
 const imageStyle = computed(() => ({
@@ -143,9 +142,9 @@ const imageStyle = computed(() => ({
                 </div>
               </div> <!--rail -->
 
-              <div class="banner-wrap w-full h-screen flex flex-col md:flex-row z-50 relative">
+              <div class="banner-wrap w-full h-[100vh + 374px] flex flex-col-reverse z-40 relative">
                 
-                <div class="banner-content w-full flex flex-col justify-end z-40 sm:absolute md:right-0 sm:bottom-12 mt-24">
+                <div class="banner-content w-full flex flex-col justify-end z-40 mt-24">
 
                   <div class="mx-6 mt-5 sm:mt-0 max-w-[952px] lg:mx-auto p-6 rounded-xl backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
                     
@@ -179,9 +178,8 @@ const imageStyle = computed(() => ({
                 </div> <!--banner-content-->
 
                 <ImageLoader 
-                    class="profile-img z-50 w-[38vw] min-w-[240px] max-w-[300px] md:max-w-[400px] lg:max-w-[550px] xl:max-w-[700px] lg:ml-[8vw] xl:ml-0 min-h-full h-auto bottom-0 md:bottom-1/2 md:translate-y-1/2 -left-12 md:-left-16 xl:left-0 fixed transition-all"
                     :imageUrl="imgSrc"
-                    :style="imageStyle"
+                    :imageStyles="imageStyle"
                 />
 
               </div> <!--banner-wrap-->
@@ -246,42 +244,42 @@ const imageStyle = computed(() => ({
 	/* animation: color-anim 20s linear infinite; */
 }
 
-.circuit-svgs #cont-1 {
+.banner-content .circuit-svgs .cont-1,
+.banner-content .circuit-svgs .cont-2,
+.banner-content .circuit-svgs .cont-3,
+.banner-content .circuit-svgs .cont-4 {
   width: 100%;
-  height: 45%;
   position: absolute;
+}
+
+.banner-content .circuit-svgs .cont-1 {
+  height: 45%;
   top: -2.5rem;
   left: -10.5rem;
 }
 
-.circuit-svgs #cont-2 {
-  width: 100%;
+.banner-content .circuit-svgs .cont-2 {
   height: 100%;
-  position: absolute;
   top: 211px;
   right: -147px;
   transform: scale(2);
 }
 
-.circuit-svgs #cont-3 {
-  width: 100%;
+.banner-content .circuit-svgs .cont-3 {
   height: 100%;
-  position: absolute;
-  bottom: -153px;
-  left: -200px;
+  bottom: -133px;
+  left: -94px;
   transform: scale(2) rotateZ(45deg);
 }
 
-.circuit-svgs #cont-4 {
-  width: 100%;
+.banner-content .circuit-svgs .cont-4 {
   height: 100%;
-  position: absolute;
   bottom: -23px;
   left: -330px;
   transform: scale(1.25) rotateZ(45deg);
 }
 
-.circuit-svgs .circuit-svg {
+.banner-content .circuit-svgs .circuit-svg {
   fill: #0f172a;
   width: 100%;
 }
@@ -320,14 +318,5 @@ const imageStyle = computed(() => ({
    }
 }
 
-@media (min-height: 700px) and (max-width: 640px ) {
-  .image-container.profile-img {
-    max-width: 609px;
-    width: 100vw;
-  }
-}
-
-@media (min-width: 1024px) {
-}
 
 </style>
