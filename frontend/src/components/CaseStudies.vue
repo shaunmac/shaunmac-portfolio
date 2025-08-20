@@ -45,7 +45,6 @@ const liveCaseStudiesQuery = gql`
     }
   }
 `;
-
 const testCaseStudiesQuery = gql`
   query testCaseStudiesQuery {
     caseStudies {
@@ -65,10 +64,14 @@ const testCaseStudiesQuery = gql`
         caseStudyImages {
           externalUrl
           mobileImage {
-            sourceUrl
+            node {
+              sourceUrl
+            }
           }
           tabletImage {
-            sourceUrl
+            node {
+              sourceUrl
+            }
           }
         }
         content
