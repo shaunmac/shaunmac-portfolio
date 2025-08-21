@@ -10,3 +10,7 @@ const { link, linkLabel } = defineProps({
 <template>
 <a class="primary-btn" :href="link">{{ linkLabel }}</a>
 </template>
+
+<style>
+    /* styles for this button are in src/index.css */
+</style>

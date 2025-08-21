@@ -7,6 +7,11 @@ import {
   gql,
 } from "@apollo/client/core";
 
+import { isLocal } from '../utilities/apolloClient';
+
+
+const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
+
 const sourceURL = "https://shaunmacdougall.com/graphql";
 
 // HTTP connection to the API
@@ -71,9 +76,9 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
 
 <section id="services" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative title-bg z-20 mt-[150vw] w-full ">
     
-    <img src="https://shaunmacdougall.com/wp-content/uploads/2024/07/circuit-2.png" class="w-[130vw] -top-[35vw] max-w-[130vw] block absolute left-1/2  -translate-x-1/2 z-0" alt="">
+    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] max-w-[130vw] block absolute left-1/2  -translate-x-1/2 z-0" alt="">
 
-    <img src="https://shaunmacdougall.com/wp-content/uploads/2024/07/circuit-2.png" class="w-[130vw] -bottom-[35vw] max-w-[130vw] block absolute left-1/2 -translate-x-1/2 lg:hidden z-0" alt="">
+    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] max-w-[130vw] block absolute left-1/2 -translate-x-1/2 lg:hidden z-0" alt="">
 
     <div class="mx-auto max-w-7xl relative z-10">
       
@@ -157,6 +162,8 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
                 <div class="rounded-full border border-slate-400 block p-1">
                   <div class="w-6 h-6 flex items-center justify-center">
                     <font-awesome-icon :icon=servi[index] size="lg" />
+
+                   <!-- <p class="bold block"> {{servi[index]}}</p> -->
                   </div>
                 </div>
 

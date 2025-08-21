@@ -86,14 +86,14 @@ const cache = new InMemoryCache();
           <a href="#services" class="hover:text-indigo-500 mx-4 min-h-full cursor-pointer py-4 text-base font-medium text-gray-100">Services</a>
           <a href="#connect" class="hover:text-purple-500 mx-4 min-h-full cursor-pointer py-4 text-base font-medium text-gray-100">Contact</a>
 
-          <a href="https://github.com/shaunmac" class="w-16 text-center p-2 border hover:border-cyan-400 rounded-md border-zinc-900 text-slate-500 hover:text-cyan-400">
+          <a href="https://github.com/shaunmac" class="w-16 text-center p-2 text-slate-200 hover:text-cyan-400">
             <font-awesome-icon :icon="['fab', 'github']" /> <span class=" sr-only ">Github</span>
           </a>
-          <a href="https://codepen.io/shaunmac" class="w-16 text-center p-2 border hover:border-cyan-400 rounded-md border-zinc-900 text-slate-500 hover:text-cyan-400">
+          <a href="https://codepen.io/shaunmac" class="w-16 text-center p-2 text-slate-200 hover:text-cyan-400">
             <font-awesome-icon :icon="['fab', 'codepen']" /> <span class=" sr-only ">Codepen</span>
           </a>
 
-          <a href="https://twitter.com/shaunaust" class="w-16 text-center p-2 border hover:border-cyan-400 rounded-md border-zinc-900 text-slate-500 hover:text-cyan-400">
+          <a href="https://twitter.com/shaunaust" class="w-16 text-center p-2 text-slate-200 hover:text-cyan-400">
             <font-awesome-icon :icon="['fab', 'x-twitter']" /> <span class=" sr-only ">Twitter</span>
           </a>
         </nav>
