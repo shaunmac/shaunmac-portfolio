@@ -5,10 +5,10 @@ import { gql } from "@apollo/client/core";
 import { BriefcaseIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import ImageLoader from "../utilities/ImageLoader.vue";
 import CircuitSvgs from "./CircuitSvgs.vue";
-
 const homeBanner = ref({});
 const content = ref("");
 const imgSrc = ref("");
+import { useWindowScroll } from '@vueuse/core';
 
 const liveBannerQuery = gql`
  query liveBannerQuery {
@@ -69,6 +69,8 @@ apolloClient
 const startMaskY = 329; // Y position where masking starts
 const endMaskY = 379;   // Y position where image is fully masked
 
+const { y } = useWindowScroll();
+
 // Reactive variable for clip-path percentage
 const maskPercentage = computed(() => {
   // Calculate how far the user has scrolled within the mask range
@@ -76,47 +78,54 @@ const maskPercentage = computed(() => {
   // Convert progress to a percentage for clip-path (100% = fully visible, 0% = fully masked)
   return 100 - progress * 100;
 });
+
+// Dynamic style for the ImageLoader
+const imageStyle = computed(() => ({
+  clipPath: `inset(0 ${100 - maskPercentage.value}% 0 0)`,
+}));
+
 </script>
 
 <template>
- <div class="banner-content z-40 mt-24 flex w-full flex-col justify-end">
-  <div
-   class="mx-6 mt-5 max-w-[952px] rounded-xl border-t-2 border-slate-200/10 p-6 backdrop-blur backdrop-brightness-200 sm:mt-0 lg:mx-auto dark:bg-slate-900/70"
-  >
-   <CircuitSvgs />
 
-   <div class="rounded-md bg-[#111729] p-6 sm:ml-[15vw] md:ml-[20vw] xl:ml-28">
-    <div
-     class="relative text-gray-200 lg:min-h-44 lg:max-w-full"
-     v-html="content"
-    ></div>
+<div id="hero" class="flex-col-reverse flex w-full h-[cacl(100vh + 250px)]">
+  <div class="banner-content z-40 flex w-full flex-col justify-end">
+    
+    <div class="mx-6 mt-5 max-w-[952px] rounded-xl border-t-2 border-slate-200/10 p-6 backdrop-blur backdrop-brightness-200 sm:mt-0 lg:mx-auto dark:bg-slate-900/70">
 
-    <div
-     class="relative mt-6 flex flex-wrap items-center justify-end sm:gap-x-2 md:gap-x-4"
-    >
-     <a href="/#case-studies" class="secondary-btn">
-      <span class="px-1">Learn more</span
-      ><ChevronRightIcon
-       class="hidden h-2 w-2 md:block md:h-4 md:w-4"
-       aria-hidden="true"
-      />
-     </a>
+      <CircuitSvgs />
 
-     <a href="/#connect" class="primary-btn sm:mr-2 md:mr-4 md:px-6 lg:mr-6">
-      <BriefcaseIcon
-       class="hidden h-2 w-2 md:block md:h-4 md:w-4"
-       aria-hidden="true"
-      />
-      <span class="md:pl-2">Hire me</span>
-     </a>
+      <div class="rounded-md bg-[#111729] p-6 sm:ml-[15vw] md:ml-[20vw] xl:ml-28">
+
+        <div class="relative text-gray-200 lg:min-h-44 lg:max-w-full" v-html="content"></div>
+
+        <div class="relative mt-6 flex flex-wrap items-center justify-end sm:gap-x-2 md:gap-x-4">
+          <a href="/#case-studies" class="secondary-btn">
+            <span class="px-1">Learn more</span>
+            <ChevronRightIcon
+              class="hidden h-2 w-2 md:block md:h-4 md:w-4"
+              aria-hidden="true"
+            />
+          </a>
+
+          <a href="/#connect" class="primary-btn sm:mr-2 md:mr-4 md:px-6 lg:mr-6">
+            <BriefcaseIcon
+              class="hidden h-2 w-2 md:block md:h-4 md:w-4"
+              aria-hidden="true"
+            />
+            <span class="md:pl-2">Hire me</span>
+          </a>
+
+        </div>
+
+      </div>
     </div>
-   </div>
-  </div>
- </div>
- <!--banner-content-->
 
- <ImageLoader :imageUrl="imgSrc" :imageStyles="imageStyle" />
- 
+  </div>
+  <!--banner-content-->
+
+  <ImageLoader :imageUrl="imgSrc" :imageStyles="imageStyle" />
+</div>
 </template>
 
 <style>

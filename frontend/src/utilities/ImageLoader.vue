@@ -2,6 +2,9 @@
 import { ref } from 'vue';
 import { gsap } from 'gsap';
 import LoaderAnimation from './loaderAnimation.vue';
+import { CSSPlugin } from 'gsap/CSSPlugin';
+
+gsap.registerPlugin(CSSPlugin);
 
 // Define the imageUrl prop from the parent
 const props = defineProps({
@@ -16,15 +19,15 @@ const props = defineProps({
 
 // Use the prop value directly for the img src
 const loading = ref(true);
-let loaderTL;
+const loaderContainer = ref(null);
 
 const onImageLoad = () => {
   //loading.value = false;  // Hide the loading indicator after 5 minutes
 
-  // loaderTL = gsap.timeline();
-
-  // loaderTL.to({
-    
+  // gsap.to( loaderContainer.value, {
+  //   height: '70vh',
+  //   duration: 0.7,
+  //   ease: 'elastic.out'
   // });
 }
 
@@ -34,9 +37,11 @@ const onImageError = (event) => {
 
 </script>
 <template>
-  <div class="w-full z-30 h-screen block">
+  <div class="w-full z-30 block">
 
-    <loader-animation v-if="loading" ></loader-animation>
+    <div ref="loaderContainer" class="h-screen relative" style="height: 100vh;">
+      <loader-animation v-if="loading" ></loader-animation>
+    </div>
 
     <img 
       :src="imageUrl" 

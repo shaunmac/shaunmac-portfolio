@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useWindowScroll } from '@vueuse/core';
-import apolloClient, { isLocal } from '../utilities/apolloClient';
+//import apolloClient, { isLocal } from '../utilities/apolloClient';
 import { gql } from "@apollo/client/core";
 import { BriefcaseIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import ImageLoader from "../utilities/ImageLoader.vue";
@@ -13,57 +13,57 @@ const homeBanner = ref({});
 const content = ref("");
 const imgSrc = ref("");
 
-const liveBannerQuery = gql`
-  query liveBannerQuery {
-    pages(where: { id: 487 }) {
-      nodes {
-        title(format: RENDERED)
-        id
-        content(format: RENDERED)
-        featuredImage {
-          node {
-            title(format: RAW)
-            description(format: RAW)
-            sourceUrl(size: LARGE)
-            mediaDetails {
-              height
-              width
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+// const liveBannerQuery = gql`
+//   query liveBannerQuery {
+//     pages(where: { id: 487 }) {
+//       nodes {
+//         title(format: RENDERED)
+//         id
+//         content(format: RENDERED)
+//         featuredImage {
+//           node {
+//             title(format: RAW)
+//             description(format: RAW)
+//             sourceUrl(size: LARGE)
+//             mediaDetails {
+//               height
+//               width
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
-const testBannerQuery = gql`
-  query testBannerQuery {
-    pages(where: {id: 457}) {
-      nodes {
-        title(format: RENDERED)
-        id
-        content(format: RENDERED)
-        featuredImage {
-          node {
-            sourceUrl(size: LARGE)
-            mediaDetails {
-              width
-              height
-            }
-            title
-            description
-          }
-        }
-      }
-    }
-  }
-`;
+// const testBannerQuery = gql`
+//   query testBannerQuery {
+//     pages(where: {id: 457}) {
+//       nodes {
+//         title(format: RENDERED)
+//         id
+//         content(format: RENDERED)
+//         featuredImage {
+//           node {
+//             sourceUrl(size: LARGE)
+//             mediaDetails {
+//               width
+//               height
+//             }
+//             title
+//             description
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
-apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then((result) => {
-  homeBanner.value = result.data.pages.nodes[0];
-  content.value = homeBanner.value.content;
-  imgSrc.value = isLocal ? homeBanner.value.featuredImage.node.sourceUrl : homeBanner.value.featuredImage.node.sourceUrl;
-});
+// //apolloClient.query({ query: isLocal ? testBannerQuery : liveBannerQuery }).then((result) => {
+//   homeBanner.value = result.data.pages.nodes[0];
+//   content.value = homeBanner.value.content;
+//   imgSrc.value = isLocal ? homeBanner.value.featuredImage.node.sourceUrl : homeBanner.value.featuredImage.node.sourceUrl;
+// });
 
 // Define the scroll thresholds
 const startMaskY = 329; // Y position where masking starts
