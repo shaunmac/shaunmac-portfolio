@@ -91,6 +91,7 @@ const { y } = useWindowScroll();
 
 html {
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #181d2e;
 }
 
 #app {

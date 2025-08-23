@@ -88,7 +88,7 @@ const imageStyle = computed(() => ({
 
 <template>
 
-<div id="hero" class="flex-col-reverse flex w-full h-[cacl(100vh + 250px)]">
+<div id="hero" class="flex-col-reverse flex w-full h-[cacl(100vh+315px)]">
   <div class="banner-content z-40 flex w-full flex-col justify-end">
     
     <div class="mx-6 mt-5 max-w-[952px] rounded-xl border-t-2 border-slate-200/10 p-6 backdrop-blur backdrop-brightness-200 sm:mt-0 lg:mx-auto dark:bg-slate-900/70">
