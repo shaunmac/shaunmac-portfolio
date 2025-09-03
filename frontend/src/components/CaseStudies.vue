@@ -381,7 +381,7 @@ watch(viewport, (newViewport) => {
 }
 
 #case-studies {
-  @apply w-screen;
+  @apply w-screen z-50;
 }
 
 .case-studies__carousel-bg::before {

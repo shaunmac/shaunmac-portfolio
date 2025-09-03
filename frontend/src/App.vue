@@ -144,6 +144,15 @@ html {
   transform: translate(-50%, -50%) scale(9);
 }
 
+@media screen and (min-width: 1024px) {
+  .rail_gradient.-core {
+    transform: translate(-50%, -50%) scale(14);
+  }
+  .rail_gradient.-pro {
+    transform: translate(-50%, -50%) scale(14);
+  }
+}
+
 .main .container {
   min-height: 690px;
 }

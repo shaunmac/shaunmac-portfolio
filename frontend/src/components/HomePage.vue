@@ -292,13 +292,6 @@ const imageStyle = computed(() => ({
   @apply text-sm mt-4 md:text-base lg:text-lg xl:text-xl;
 }
 
-.image-container-image {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  max-height: calc(100vh - (72px + 1.5rem));
-}
-
 @keyframes clip-anim {
 	from {
 		transform: translateX(0%);

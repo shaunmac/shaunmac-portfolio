@@ -4,11 +4,12 @@ import apolloClient, { isLocal } from "../utilities/apolloClient";
 import { gql } from "@apollo/client/core";
 import { BriefcaseIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import ImageLoader from "../utilities/ImageLoader.vue";
-import CircuitSvgs from "./CircuitSvgs.vue";
 const homeBanner = ref({});
 const content = ref("");
 const imgSrc = ref("");
 import { useWindowScroll } from '@vueuse/core';
+                                                            
+const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
 
 const liveBannerQuery = gql`
  query liveBannerQuery {
@@ -35,23 +36,25 @@ const liveBannerQuery = gql`
 
 const testBannerQuery = gql`
  query testBannerQuery {
-  pages(where: { id: 457 }) {
-   nodes {
-    title(format: RENDERED)
-    id
-    content(format: RENDERED)
-    featuredImage {
-     node {
-      sourceUrl(size: LARGE)
-      mediaDetails {
-       width
-       height
+  pages(where: {id: 852}) {
+    nodes {
+      title(format: RENDERED)
+      id
+      content(format: RENDERED)
+      imageFeatured {
+        featuredImage {
+          node {
+            sourceUrl(size: LARGE)
+            title
+            mediaDetails {
+              width
+              height
+            }
+            description
+          }
+        }
       }
-      title
-      description
-     }
     }
-   }
   }
  }
 `;
@@ -62,7 +65,7 @@ apolloClient
   homeBanner.value = result.data.pages.nodes[0];
   content.value = homeBanner.value.content;
   imgSrc.value = isLocal
-   ? homeBanner.value.featuredImage.node.sourceUrl
+   ? homeBanner.value.imageFeatured.featuredImage.node.sourceUrl
    : homeBanner.value.featuredImage.node.sourceUrl;
  });
 
@@ -81,50 +84,58 @@ const maskPercentage = computed(() => {
 
 // Dynamic style for the ImageLoader
 const imageStyle = computed(() => ({
-  clipPath: `inset(0 ${100 - maskPercentage.value}% 0 0)`,
+  clipPath: `inset(0 ${100 - maskPercentage.value}% 0 0)`
 }));
+
 
 </script>
 
 <template>
 
-<div id="hero" class="flex-col-reverse flex w-full h-[cacl(100vh+315px)]">
-  <div class="banner-content z-40 flex w-full flex-col justify-end">
+<div id="hero" class="flex-col-reverse flex w-full h-[cacl(100vh+315px)] relative z-0">
+
+  <div class="banner-content z-40 flex w-full flex-col justify-end items-center">
     
-    <div class="mx-6 mt-5 max-w-[952px] rounded-xl border-t-2 border-slate-200/10 p-6 backdrop-blur backdrop-brightness-200 sm:mt-0 lg:mx-auto dark:bg-slate-900/70">
+    <div class="mx-6 mt-5 max-w-[639px] rounded-xl border-t-2 border-slate-200/10 p-6 backdrop-blur backdrop-brightness-200 sm:mt-0 lg:mx-auto dark:bg-slate-900/70 relative">
 
-      <CircuitSvgs />
-
-      <div class="rounded-md bg-[#111729] p-6 sm:ml-[15vw] md:ml-[20vw] xl:ml-28">
+      <div class="rounded-md bg-[#111729] p-6 z-10 relative">
 
         <div class="relative text-gray-200 lg:min-h-44 lg:max-w-full" v-html="content"></div>
 
-        <div class="relative mt-6 flex flex-wrap items-center justify-end sm:gap-x-2 md:gap-x-4">
-          <a href="/#case-studies" class="secondary-btn">
+        <div class="relative mt-6 flex flex-wrap items-center justify-end gap-x-2 md:gap-x-4">
+
+          <a href="/#case-studies" class="secondary-btn w-full md:w-auto mb-4 md:mb-0">
             <span class="px-1">Learn more</span>
             <ChevronRightIcon
-              class="hidden h-2 w-2 md:block md:h-4 md:w-4"
+              class="w-4 h-4"
               aria-hidden="true"
             />
           </a>
 
-          <a href="/#connect" class="primary-btn sm:mr-2 md:mr-4 md:px-6 lg:mr-6">
+          <a href="/#connect" class="primary-btn w-full md:w-auto md:px-6">
             <BriefcaseIcon
-              class="hidden h-2 w-2 md:block md:h-4 md:w-4"
+              class="h-4 w-4"
               aria-hidden="true"
             />
-            <span class="md:pl-2">Hire me</span>
+            <span class="pl-2">Free Quote</span>
           </a>
 
         </div>
 
       </div>
+
+      <div class="overflow-hidden w-full h-full absolute top-0 left-0 z-0">
+        <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
+      </div>
+
+
     </div>
 
   </div>
   <!--banner-content-->
 
   <ImageLoader :imageUrl="imgSrc" :imageStyles="imageStyle" />
+
 </div>
 </template>
 
@@ -175,13 +186,6 @@ const imageStyle = computed(() => ({
 
 .banner-content h1.title + h2 {
   @apply text-sm mt-4 md:text-base lg:text-lg xl:text-xl;
-}
-
-.image-container-image {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  max-height: calc(100vh - (72px + 1.5rem));
 }
 
 @keyframes clip-anim {

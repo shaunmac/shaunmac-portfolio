@@ -64,7 +64,7 @@ apolloClient.query({ query: connectQuery }).then((result) => {
 
 <template>
 
-    <section id="connect" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative mt-[100vh]">
+    <section id="connect" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative mt-[100vh] relative z-40">
 
       <CircuitSvgs />
 
