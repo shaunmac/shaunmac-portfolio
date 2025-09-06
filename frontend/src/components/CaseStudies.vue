@@ -231,7 +231,7 @@ watch(viewport, (newViewport) => {
 
       <div class="w-full">
             
-        <div class="case-studies__title-container ml-6 -mb-[7.5em] max-w-[190px] sm:max-w-[360px] relative pt-5">
+        <div class="case-studies__title-container ml-6 mb-6 max-w-[190px] sm:max-w-[360px] relative pt-5">
           <h3 class="text-lg sm:text-xl font-normal text-slate-200 leading-[0.8em] inline-block">
             Work
           </h3><br />

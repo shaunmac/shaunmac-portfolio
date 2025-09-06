@@ -81,25 +81,22 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
       <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
     </div>
     
-    <div class="w-full relative z-10">
+    <div class="w-full z-10">
+        
+      <div class="w-full ml-6 mt-[7.5em] max-w-[190px] sm:max-w-[360px] relative pt-5">
       
-      <div class="flex flex-wrap justify-center">
-        <div class="w-full px-4">
-          <div class="mx-auto mb-[60px] max-w-[510px] text-center lg:mb-20 z-10 relative">
-
-            <span class="block text-lg font-normal text-slate-200 ">
-              Professional 
-            </span>
-            <h2
-              class="text-3xl font-bold sm:text-4xl md:text-[40px] bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
-            >
-              SERVICES
-            </h2>
-            <p class="font-normal text-slate-300">
-              Full Stack Development
-            </p>
-          </div>
-        </div>
+          <span class="block text-lg font-normal text-slate-200 ">
+            Professional 
+          </span>
+          <h2
+            class="text-3xl font-bold sm:text-4xl md:text-[40px] bg-gradient-to-br from-cyan-400 to-indigo-700 bg-clip-text text-transparent"
+          >
+            SERVICES
+          </h2>
+          <p class="font-normal text-slate-300">
+            Full Stack Development
+          </p>
+        
       </div>
 
       <div class="lg:flex lg:flex-row-reverse w-full bg-slate-800">
