@@ -74,12 +74,14 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
 <template>
 
 <section id="services" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative title-bg z-20 mt-[150vw] w-full ">
+
+  <div class="rounded-xl px-6 md:px-12 py-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
+
+    <div class="overflow-hidden w-full h-full absolute top-0 left-0">
+      <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
+    </div>
     
-    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] max-w-[130vw] block absolute left-1/2  -translate-x-1/2 z-0" alt="">
-
-    <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -bottom-[35vw] max-w-[130vw] block absolute left-1/2 -translate-x-1/2 lg:hidden z-0" alt="">
-
-    <div class="mx-auto max-w-7xl relative z-10">
+    <div class="w-full relative z-10">
       
       <div class="flex flex-wrap justify-center">
         <div class="w-full px-4">
@@ -179,7 +181,7 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
         </div>
 
       </div>
-      
+    </div>
   </div>
 </section>
 
