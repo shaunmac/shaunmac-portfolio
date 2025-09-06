@@ -125,9 +125,8 @@ const imageStyle = computed(() => ({
       </div>
 
       <div class="overflow-hidden w-full h-full absolute top-0 left-0 z-0">
-        <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
+        <img :src="envUrl + 'circuit-2.png'" class="w-[130%] top-1/2 -translate-y-1/2 block absolute left-1/2 -translate-x-1/2 z-0 max-w-[1819px]" alt="">
       </div>
-
 
     </div>
 
