@@ -167,10 +167,10 @@ apolloClient.query({ query: connectQuery }).then((result) => {
 
             </div>
 
-            <div class="w-full md:w-1/2">
+            <div class="w-full md:w-1/2" id="quote-calculator">
 
                 <div class="backdrop-blur backdrop-brightness-100 supports-backdrop-blur:bg-white bg-slate-700/50 w-full mb-6 px-6 py-6 rounded-lg">
-                  <div class=" bg-slate-800 p-6 rounded-md">
+                  <div class=" bg-slate-800 px-6 pt-6 rounded-md">
 
                   <QuoteCalculator />
 

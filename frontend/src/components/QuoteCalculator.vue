@@ -72,165 +72,211 @@ const exportQuote = () => {
 </script>
 
 <template>
+  <div class="space-y-6 mt-3">
+    <!-- Page Templates -->
+    <div class="form-control">
+      <h2 class="card-title text-2xl text-white ">Initial Quote Calculator</h2>
+      <h3 class="font-normal text-cyan-50 pb-3">Let's get an overview of your project.</h3>
+    </div>
 
-        <h2 class="card-title text-2xl mb-2 text-white">Initial Quote Calculator</h2>
-        
-        <div class="space-y-6">
-          <!-- Page Templates -->
-          <div class="form-control">
-            <label class="label flex justify-between">
-              <span class="label-text">Unique Page Templates</span> <span class="label-text">{{ quotes.pageTemplates }}</span>
-            </label>
-            <input
-              type="range"
-              v-model="quotes.pageTemplates"
-              min="1"
-              max="10"
-              step="1"
-              class="range range-primary"
-            />
-            
-          </div>
+    <div class="form-control">
 
-          <!-- Content Pages -->
-          <div class="form-control">
-            <label class="label flex justify-between">
-              <span class="label-text">Content Pages</span> <span class="label-text">{{ quotes.contentPages }}</span>
-            </label>
-            <input
-              type="range"
-              v-model="quotes.contentPages"
-              min="1"
-              max="20"
-              step="1"
-              class="range range-primary"
-            />
-            
-          </div>
-
-          <!-- Global Elements -->
-          <div class="form-control">
-            <label class="label flex justify-between">
-              <span class="label-text">Global Elements</span> <span class="label-text">{{ quotes.globalElements }}</span>
-            </label>
-            <input
-              type="range"
-              v-model="quotes.globalElements"
-              min="1"
-              max="5"
-              step="1"
-              class="range range-primary"
-            />
-            
-          </div>
-
-          <!-- Custom Functionality -->
-          <div class="form-control">
-            <label class="label flex justify-between">
-              <span class="label-text">Custom Functionality Features</span> <span class="label-text">{{ quotes.customFunctionality }}</span>
-            </label>
-            <input
-              type="range"
-              v-model="quotes.customFunctionality"
-              min="0"
-              max="5"
-              step="1"
-              class="range range-primary"
-            />
-            
-          </div>
-
-          <!-- Design Complexity -->
-          <div class="form-control">
-            <label class="label flex justify-between">
-              <span class="label-text">Design Complexity</span> <span class="label-text">{{ quotes.designComplexity }}</span>
-            </label>
-            <input
-              type="range"
-              v-model="quotes.designComplexity"
-              min="1"
-              max="5"
-              step="1"
-              class="range range-primary"
-            />
-            
-          </div>
-
-          <!-- Responsive Breakpoints -->
-          <div class="form-control">
-            <label class="label flex justify-between">
-              <span class="label-text ">Responsive Breakpoints</span> <span class="label-text">{{ quotes.responsiveBreakpoints }}</span>
-            </label>
-            <input
-              type="range"
-              v-model="quotes.responsiveBreakpoints"
-              min="1"
-              max="6"
-              step="1"
-              class="range range-primary"
-            />
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Cost Breakdown -->
-          <div class="space-y-4 ">
-            <h3 class="text-lg font-semibold text-slate-200">Cost Breakdown</h3>
-            <div class="space-y-2 text-cyan-100 font-normal">
-              <div class="flex justify-between items-center">
-                <span>Unique Templates</span>
-                <span class="badge badge-primary">{{ formatCurrency(templateCost) }}</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span>Content Pages</span>
-                <span class="badge badge-primary">{{ formatCurrency(contentCost) }}</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span>Global Elements</span>
-                <span class="badge badge-primary">{{ formatCurrency(globalCost) }}</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span>Custom Functionality</span>
-                <span class="badge badge-primary">{{ formatCurrency(functionalityCost) }}</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span>Responsive Design</span>
-                <span class="badge badge-primary">{{ formatCurrency(responsiveCost) }}</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- Total -->
-          <div class="alert bg-slate-800">
-            <span class="text-xl font-bold text-cyan-100">Estimated Total</span>
-            <span class="text-2xl font-bold  text-cyan-50">{{ formatCurrency(total) }}</span>
-          </div>
-
-          <!-- Optional: Export Quote Button -->
-          <button class="btn primary-btn w-full" @click="exportQuote">
-            Send
-          </button>
+      <label class="label">
+        <div class="label__left">
+          <span class="label-text block">Unique Page Templates</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">This could be a custom landing or a single page,<br /> products plural, etc. </span>
         </div>
+        <div class="label__right">
+          <span class="label-text">{{ quotes.pageTemplates }}</span>
+        </div>
+      </label>
+
+      <input
+        type="range"
+        v-model="quotes.pageTemplates"
+        min="1"
+        max="10"
+        step="1"
+        class="range range-primary"
+      />
+      
+    </div>
+
+    <div class="form-control">
+
+      <label class="label flex justify-between">
+        <div class="label__left">
+          <span class="label-text block">Content Pages</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Content like blog posts and articles.</span>
+        </div> 
+        <div class="label__right">
+          <span class="label-text">{{ quotes.contentPages }}</span>
+        </div>
+      </label>
+
+      <input
+        type="range"
+        v-model="quotes.contentPages"
+        min="1"
+        max="20"
+        step="1"
+        class="range range-primary"
+      />
+      
+    </div>
+
+    <!-- Global Elements -->
+    <div class="form-control">
+      
+      <label class="label flex justify-between">
+
+        <div class="label__left">
+          <span class="label-text block">Global Elements</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Header, footer, sidebar, navigation, galleries etc.</span>
+        </div> 
+        <div class="label__right">
+          <span class="label-text">{{ quotes.globalElements }}</span>
+        </div>
+
+      </label>
+
+      <input
+        type="range"
+        v-model="quotes.globalElements"
+        min="1"
+        max="5"
+        step="1"
+        class="range range-primary"
+      />
+      
+    </div>
+
+    <!-- Custom Functionality -->
+    <div class="form-control">
+      <label class="label flex justify-between">
+        <div class="label__left">
+          <span class="label-text block">Custom Functionality Features</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Calculators, shopping carts, customer relationship managment.</span>
+        </div>
+        <div class="label__right">
+          <span class="label-text">{{ quotes.customFunctionality }}</span>
+        </div>
+      </label>
+      <input
+        type="range"
+        v-model="quotes.customFunctionality"
+        min="0"
+        max="5"
+        step="1"
+        class="range range-primary"
+      />
+      
+    </div>
+
+    <!-- Design Complexity -->
+    <div class="form-control">
+      <label class="label flex justify-between">
+        <div class="label__left">
+          <span class="label-text block">Design Complexity</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Graphical elements, videos, animation.</span>
+        </div> 
+        <div class="label__right">
+          <span class="label-text">{{ quotes.designComplexity }}</span>
+        </div>
+      </label>
+      <input
+        type="range"
+        v-model="quotes.designComplexity"
+        min="1"
+        max="5"
+        step="1"
+        class="range range-primary"
+      />
+      
+    </div>
+
+    <!-- Responsive Breakpoints -->
+    <div class="form-control">
+      <label class="label flex justify-between">
+        <div class="label__left">
+          <span class="label-text block">Responsive Breakpoints</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Mobile first screen sizes including tablet, desktop, extra large or small.</span>
+        </div>
+        <div class="label__right">
+          <span class="label-text">{{ quotes.responsiveBreakpoints }}</span>
+        </div>
+      </label>
+      <input
+        type="range"
+        v-model="quotes.responsiveBreakpoints"
+        min="1"
+        max="6"
+        step="1"
+        class="range range-primary"
+      />
+    </div>
+    
+    <!-- Cost Breakdown -->
+    <div class="bg-stone-900 -ml-6 -mr-6 p-6 -mt-24">
+
+   
+
+      <div class="space-y-4">
+
+      <div class="flex justify-between">
+        <span class="text-xl font-bold text-cyan-100">Estimated Total</span>
+        <span class="text-2xl font-bold  text-cyan-50">{{ formatCurrency(total) }}</span>
+      </div>
+
+        <div class="space-y-2 text-cyan-100 font-normal">
+          <h3 class="text-lg font-semibold text-slate-200">Cost Breakdown</h3>
+          <div class="flex justify-between items-center">
+            <span>Unique Templates</span>
+            <span class="badge badge-primary">{{ formatCurrency(templateCost) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span>Content Pages</span>
+            <span class="badge badge-primary">{{ formatCurrency(contentCost) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span>Global Elements</span>
+            <span class="badge badge-primary">{{ formatCurrency(globalCost) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span>Custom Functionality</span>
+            <span class="badge badge-primary">{{ formatCurrency(functionalityCost) }}</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span>Responsive Design</span>
+            <span class="badge badge-primary">{{ formatCurrency(responsiveCost) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional: Export Quote Button -->
+    <!-- <button class="btn primary-btn w-full" @click="exportQuote">
+      Send
+    </button> -->
+</div>
 
 </template>
 
 <style>
 .range-primary {
-    position: relative;
-    margin-bottom: 0.5rem;
+  position: relative;
+  margin-bottom: 0.5rem;
 }
 
 .range-primary::before {
-    width: 100%;
-    height: 24px;
-    display: block;
-    content: "";
-    background-color: black;
-    position: absolute;
-    left: 0;
-    top: 0;
+  width: 100%;
+  height: 24px;
+  display: block;
+  content: "";
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .range::-webkit-slider-thumb {
@@ -239,7 +285,7 @@ const exportQuote = () => {
 }
 
 span.label-text {
-    color: #fff;
+  color: #fff;
 }
 
 .space-y-6 div.form-control {
@@ -256,4 +302,26 @@ span.label-text {
   content: '';
   @apply bg-slate-700 block;
 }
+
+.space-y-6.mt-3 div.form-control:nth-child(7) {
+  margin-bottom: -1.5em !important;
+}
+
+.form-control .label {
+  @apply flex justify-between relative items-start;
+}
+
+.form-control .label .label__left {
+  @apply w-11/12 mb-3;
+}
+
+.form-control .label .label__left .label-text {
+  @apply mb-3;
+}
+
+.form-control .label .label__right {
+  @apply w-1/12 justify-end flex;
+}
+
+
 </style>

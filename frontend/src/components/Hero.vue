@@ -112,7 +112,7 @@ const imageStyle = computed(() => ({
             />
           </a>
 
-          <a href="/#connect" class="primary-btn w-full md:w-auto md:px-6">
+          <a href="/#quote-calculator" class="primary-btn w-full md:w-auto md:px-6">
             <BriefcaseIcon
               class="h-4 w-4"
               aria-hidden="true"

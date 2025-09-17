@@ -122,6 +122,21 @@ html {
   transform: rotateZ(40deg);
 }
 
+.title-container-bg:before {
+  width: 100%;
+  height: calc(100% + 0.3em);
+  aspect-ratio: 3/2;
+  clip-path: polygon(0 0,calc(100% - 25%) 0,100% 100%,0 100%);
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -1.5em;
+
+  @apply bg-slate-800 rounded-t-lg;
+}
+
 .title-bg {
   background-color: transparent;
 }

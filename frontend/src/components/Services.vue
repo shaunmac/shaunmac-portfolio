@@ -75,15 +75,15 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
 
 <section id="services" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative title-bg z-20 mt-[150vw] w-full ">
 
-  <div class="rounded-xl px-6 md:px-12 py-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
+  <div class="rounded-xl px-6 py-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
 
-    <div class="overflow-hidden w-full h-full absolute top-0 left-0">
+    <div class="overflow-hidden w-full h-full absolute top-0 left-1/2 -translate-x-1/2" >
       <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
     </div>
     
     <div class="w-full z-10">
         
-      <div class="w-full ml-6 mt-[7.5em] max-w-[190px] sm:max-w-[360px] relative pt-5">
+      <div class="w-full ml-6 max-w-[247px] sm:max-w-[360px] relative title-container-bg py-6">
       
           <span class="block text-lg font-normal text-slate-200 ">
             Professional 
@@ -99,22 +99,13 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
         
       </div>
 
-      <div class="lg:flex lg:flex-row-reverse w-full bg-slate-800">
+      <div class="lg:flex lg:flex-row-reverse w-full bg-slate-800 py-6">
 
-        <div class="w-full lg:w-1/3 md:flex md:flex-wrap relative z-10 py-12 lg:pt-[4.8rem]">
+        <div class="w-full lg:w-1/3 md:flex md:flex-wrap relative z-10 mb-6 pb-4">
 
           <h2 class="text-xl font-normal text-slate-200 ml-6 block w-full">Experience</h2>
 
-          <div class="w-full  md:w-1/2 lg:w-full flex px-6 mt-4 lg:mt-0 h-4">
-            <div class="w-1/12  block"></div>
-            <div class="w-11/12 ml-6 flex justify-between border-b-slate-500/50 border-b rounded-sm">
-
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>0</sup></p>
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>number of years</sup></p> 
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>25</sup></p>
-
-            </div>
-          </div>
+          
 
           <div class="w-1/2 hidden md:flex lg:hidden  px-6 mt-4 h-4 ">
             <div class="w-1/12 block"></div>
@@ -146,14 +137,23 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
             
           </div>
 
-          
+          <div class="w-full  md:w-1/2 lg:w-full flex px-6 mt-4 lg:mt-0 h-4">
+            <div class="w-1/12  block"></div>
+            <div class="w-11/12 ml-6 flex justify-between border-b-slate-500/50 border-b rounded-sm">
+
+              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>0</sup></p>
+              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>number of years</sup></p> 
+              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>25</sup></p>
+
+            </div>
+          </div>
         
         </div>
 
-        <div class="w-full lg:w-2/3 lg:flex lg:flex-wrap lg:pr-3 lg:-ml-6 relative z-10 pb-12 pt-12 lg:pt-6 mt-6 lg:mt-0 bg-indigo-950">
+        <div class="w-full lg:w-2/3 flex flex-wrap gap-6 relative z-10 px-6 lg:pr-0">
 
-          <div v-for="(service, index) in services" class="w-full lg:w-1/2 lg:px-3 lg:pt-6">
-            <div class="rounded-md bg-indigo-950 p-6 text-slate-400">
+          <div v-for="(service, index) in services" class="w-full md:w-[calc(50%-0.8em)] lg:w-">
+            <div class="rounded-lg bg-indigo-950 p-6 text-slate-400">
 
               <div class="flex align-middle items-center">
                
