@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite & open -a 'Google Chrome' 'http://localhost:3000'",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview & open -a 'Google Chrome' 'http://localhost:4173'"
   },
   "dependencies": {
     "@apollo/client": "^3.7.7",
