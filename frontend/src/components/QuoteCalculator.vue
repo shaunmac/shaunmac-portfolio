@@ -215,51 +215,51 @@ const exportQuote = () => {
         class="range range-primary"
       />
     </div>
-    
+  </div>
     <!-- Cost Breakdown -->
-    <div class="bg-stone-900 -ml-6 -mr-6 p-6 -mt-24">
+  <div class="bg-stone-900 -ml-6 -mr-6 p-6 mt-6">
 
-   
-
-      <div class="space-y-4">
+    <div class="space-y-4">
 
       <div class="flex justify-between">
-        <span class="text-xl font-bold text-cyan-100">Estimated Total</span>
-        <span class="text-2xl font-bold  text-cyan-50">{{ formatCurrency(total) }}</span>
+        <span class="text-xl font-bold text-white">Estimated Total</span>
+        <span class="text-2xl font-bold  text-white">{{ formatCurrency(total) }}</span>
       </div>
 
-        <div class="space-y-2 text-cyan-100 font-normal">
-          <h3 class="text-lg font-semibold text-slate-200">Cost Breakdown</h3>
-          <div class="flex justify-between items-center">
-            <span>Unique Templates</span>
-            <span class="badge badge-primary">{{ formatCurrency(templateCost) }}</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span>Content Pages</span>
-            <span class="badge badge-primary">{{ formatCurrency(contentCost) }}</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span>Global Elements</span>
-            <span class="badge badge-primary">{{ formatCurrency(globalCost) }}</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span>Custom Functionality</span>
-            <span class="badge badge-primary">{{ formatCurrency(functionalityCost) }}</span>
-          </div>
-          <div class="flex justify-between items-center">
-            <span>Responsive Design</span>
-            <span class="badge badge-primary">{{ formatCurrency(responsiveCost) }}</span>
-          </div>
+      <div class="space-y-2 text-cyan-300 font-normal text-sm">
+        <h3 class="text-lg font-semibold text-slate-200">Cost Breakdown</h3>
+        <div class="flex justify-between items-center">
+          <span>Unique Templates</span>
+          <span class="badge badge-primary">{{ formatCurrency(templateCost) }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Content Pages</span>
+          <span class="badge badge-primary">{{ formatCurrency(contentCost) }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Global Elements</span>
+          <span class="badge badge-primary">{{ formatCurrency(globalCost) }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Custom Functionality</span>
+          <span class="badge badge-primary">{{ formatCurrency(functionalityCost) }}</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span>Responsive Design</span>
+          <span class="badge badge-primary">{{ formatCurrency(responsiveCost) }}</span>
         </div>
       </div>
-    </div>
 
+    </div>  
+  </div>
+
+  <div class="bg-stone-900 -ml-6 -mr-6 p-6 -mt-3">
     <!-- Optional: Export Quote Button -->
-    <!-- <button class="btn primary-btn w-full" @click="exportQuote">
+    <button class="btn primary-btn w-full" @click="exportQuote">
       Send
-    </button> -->
-</div>
+    </button>
 
+  </div>
 </template>
 
 <style>
