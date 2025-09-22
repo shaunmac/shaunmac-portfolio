@@ -7,8 +7,11 @@ import Services from "./components/Services.vue";
 import Connect from "./components/Connect.vue";
 import Footer from "./components/Footer.vue";
 import ShadowEl from "./utilities/ShadowEl.vue";
+import { isLocal } from "./utilities/apolloClient";
 
 const { y } = useWindowScroll();
+
+const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2025/08/' : 'http://shaunmacdougall.com/wp-content/uploads/2025/09/';
 
 </script>
 
@@ -22,7 +25,7 @@ const { y } = useWindowScroll();
 
           <!-- /* Blurred images go here */ -->
           <img
-            src="http://shaunmac.local/wp-content/uploads/2025/08/gradient-core.png"
+            :src="envUrl + 'gradient-core.png'"
             width="50"
             height="50"
             alt="Core Gradirepnt"
@@ -30,7 +33,7 @@ const { y } = useWindowScroll();
           />
 
           <img
-            src="http://shaunmac.local/wp-content/uploads/2025/08/gradient-pro.png"
+            :src="envUrl + 'gradient-pro.png'"
             width="50"
             height="50"
             alt="Pro Grradient"

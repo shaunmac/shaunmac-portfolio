@@ -224,7 +224,8 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #connect .cont-4 {
-    top: 1200px;
+    top: 1570px;
+    width: 150%;
   }
 
   .card-icon > div > svg {

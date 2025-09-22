@@ -128,12 +128,12 @@ const onImageError = (event) => {
   height: 659px;
   display: block;
   position: fixed;
-  background-image: url(http://shaunmac.local/wp-content/uploads/2025/08/shaun_highlight.png);
+  background-image: url(http://shaunmacdougall.com/wp-content/uploads/2025/09/shaun_highlight.png);
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom center;
-  left: calc(50% + 3px);
-  bottom: -50px;
+  left: calc(50% - 13px);
+  bottom: -92px;
   transform: translateX(-50%);
   filter: blur(14px);
 }
