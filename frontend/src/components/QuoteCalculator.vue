@@ -1,5 +1,15 @@
 <script setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue';
+import Xapi from '../utilities/Xapi.vue';
+
+var showDM = ref(false);
+var quoteData = ref(Object);
+// Load the user ID from env
+const recipientUserId = import.meta.env.VITE_X_USER_ID;
+
+if (!recipientUserId) {
+  console.error('VITE_X_USER_ID is not set in .env file');
+}
 
 const baseRates = {
   pageTemplateRate: 400,
@@ -46,7 +56,7 @@ const formatCurrency = (amount) => {
 }
 
 const exportQuote = () => {
-  const quoteData = {
+  quoteData.value = {
     components: {
       'Template Development': templateCost.value,
       'Content Pages': contentCost.value,
@@ -65,6 +75,8 @@ const exportQuote = () => {
     total: total.value,
     date: new Date().toLocaleDateString()
   }
+
+  showDM.value = true;
   
   // You can customize this to save to a file, send to an API, etc.
   console.log('Quote Data:', quoteData)
@@ -259,6 +271,9 @@ const exportQuote = () => {
       Send
     </button>
 
+  </div>
+  <div :class="[showDM ? 'block' : 'hidden']" class="absolute w-full h-full backdrop-blur-sm bg-slate-950/80 top-0 left-1/2 -translate-x-1/2">
+    <xapi :recipientUserId="recipientUserId" :quote="{quoteData}"></xapi>
   </div>
 </template>
 
