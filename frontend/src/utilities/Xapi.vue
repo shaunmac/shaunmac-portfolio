@@ -72,12 +72,9 @@ const sendDM = () => {
 </template>
 <style scoped>
 .quote-dm-component {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  /* border: 1px solid #ccc; */
+  
+  @apply w-full max-w-[400px] mx-auto p-5 border-gray-100 border rounded-lg bg-slate-500 absolute bottom-6 left-1/2 -translate-x-1/2 text-cyan-50;
 }
 
 h3, h4 {
