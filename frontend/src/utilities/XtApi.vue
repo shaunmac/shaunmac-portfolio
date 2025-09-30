@@ -11,18 +11,10 @@ const props = defineProps({
       total: 0,
       date: ''
     })
-  },
-  recipientUserId: {
-    type: String,
-    required: true 
-  },
-  quoteCloser: {
-    type: Boolean,
-    required: true
   }
 });
 
-var closeQuote = ref(true);
+var quoteCloser = defineModel({ default: false })
 
 // Function to format the message
 const formatMessage = () => {
@@ -48,9 +40,6 @@ const sendDM = () => {
   window.open(dmUrl, '_blank');
 };
 
-const closeQuoteNow = () => {
-  closeQuote.value = false;
-}
 
 </script>
 <template>
@@ -66,7 +55,7 @@ const closeQuoteNow = () => {
               <p class="pb-6 text-cyan-200">{{ quote.date }}</p>
             </div>
 
-            <button @click="closeQuoteNow">x</button>
+            <button @click="quoteCloser = false">x</button>
 
           </div>
         </div>

@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, computed, ref } from 'vue';
-import Xapi from '../utilities/Xapi.vue';
+import XtApi from '../utilities/XtApi.vue';
 
 var showDM = ref(false);
 var quoteData = ref(Object);
@@ -79,7 +79,7 @@ const exportQuote = () => {
   showDM.value = true;
   
   // You can customize this to save to a file, send to an API, etc.
-  console.log('Quote Data:', quoteData)
+  // console.log('Quote Data:', quoteData)
 }
 </script>
 
@@ -168,7 +168,7 @@ const exportQuote = () => {
       <label class="label flex justify-between">
         <div class="label__left">
           <span class="label-text block">Custom Functionality Features</span>
-          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Calculators, shopping carts, customer relationship managment.</span>
+          <span class="label-text-alt text-cyan-50 font-normal leading-tight">Calculators, shopping carts, customer relationship management.</span>
         </div>
         <div class="label__right">
           <span class="label-text">{{ quotes.customFunctionality }}</span>
@@ -265,15 +265,15 @@ const exportQuote = () => {
     </div>  
   </div>
 
-  <div class="bg-stone-900 -ml-6 -mr-6 p-6 -mt-3">
+  <div id="#quote" class="bg-stone-900 -ml-6 -mr-6 p-6 -mt-3">
     <!-- Optional: Export Quote Button -->
-    <button class="btn primary-btn w-full" @click="exportQuote">
+    <button class="btn primary-btn w-full bg-stone-900" @click="exportQuote">
       Send
     </button>
 
   </div>
-  <div :class="[showDM ? 'block' : 'hidden']" class="absolute w-full h-full backdrop-blur-sm bg-slate-950/80 top-0 left-1/2 -translate-x-1/2">
-    <xapi :recipientUserId="recipientUserId" :quote="{quoteData}"></xapi>
+  <div :class="[showDM ? 'block' : 'hidden']" >
+    <XtApi :recipientUserId="recipientUserId" :quote="quoteData" v-model="showDM"></XtApi>
   </div>
 </template>
 
