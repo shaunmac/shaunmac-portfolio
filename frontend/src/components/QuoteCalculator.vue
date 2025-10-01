@@ -268,7 +268,7 @@ const exportQuote = () => {
   <div id="#quote" class="bg-stone-900 -ml-6 -mr-6 p-6 -mt-3">
     <!-- Optional: Export Quote Button -->
     <button class="btn primary-btn w-full bg-stone-900" @click="exportQuote">
-      Send
+      Next
     </button>
 
   </div>

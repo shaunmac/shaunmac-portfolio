@@ -11,10 +11,14 @@ const props = defineProps({
       total: 0,
       date: ''
     })
+  },
+  recipientUserId: {
+    type: String,
+    required: true,
   }
 });
 
-var quoteCloser = defineModel({ default: false })
+var quoteCloser = defineModel({ default: false });
 
 // Function to format the message
 const formatMessage = () => {
@@ -32,8 +36,12 @@ const formatMessage = () => {
   return message;
 };
 
+const sendEmail = () => {
+
+}
+
 // Function to open DM intent
-const sendDM = () => {
+const sendXDM = () => {
   const message = formatMessage();
   const encodedMessage = encodeURIComponent(message);
   const dmUrl = `https://x.com/messages/compose?recipient_id=${props.recipientUserId}&text=${encodedMessage}`;
@@ -48,23 +56,23 @@ const sendDM = () => {
       <div class="space-y-6">
         <div class="bg-slate-800 p-6">
 
-          <div class="flex justify-between w-full">
+          <div class="flex justify-between w-full items-start">
 
             <div>
               <h3 class="h-1 pb-4 text-xl text-cyan-100">Quote Summary</h3>
               <p class="pb-6 text-cyan-200">{{ quote.date }}</p>
             </div>
 
-            <button @click="quoteCloser = false">x</button>
+            <button class=" text-white font-bold" @click="quoteCloser = false">x</button>
 
           </div>
         </div>
 
-        <div>
+        <div class="px-6">
           <p>Hi Shaun, I got this quote on your website. When can we discuss your schedule?</p>
         </div>
 
-        <div>
+        <div class="px-6">
           <h4 class="h-2 pb-6">Components</h4>
           <ul>
             <li v-for="(value, key) in quote.components" :key="key">
@@ -72,7 +80,7 @@ const sendDM = () => {
             </li>
           </ul>
         </div>
-        <div>
+        <div class="px-6">
           <h4 class="h-2 pb-6">Specifications</h4>
           <ul>
             <li v-for="(value, key) in quote.specifications" :key="key">
@@ -80,12 +88,20 @@ const sendDM = () => {
             </li>
           </ul>
         </div>
-      <div class="w-full flex justify-between">
-        <p class="h-1"><strong>Total:</strong></p> <p>${{ quote.total }}</p>
+      <div class="w-full flex justify-between px-6">
+        <p class="h-1"><strong>Total</strong></p> <p>${{ quote.total }}</p>
       </div>
-      <button @click="sendDM" class="dm-btn">
-        Send Quote via X DM
-      </button>
+      <div class="w-full flex justify-between px-6">
+        <h4>Send Via</h4>
+      </div>
+      <div class="w-full flex justify-between px-6 gap-6">
+        <button @click="sendXDM" class="dm-btn">
+          x
+        </button>
+        <button @click="sendEmail" class="dm-btn">
+          email
+        </button>
+      </div>
       </div>
     </div>
   </div>
