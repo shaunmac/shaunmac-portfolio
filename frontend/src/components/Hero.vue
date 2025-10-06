@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from "vue";
-import apolloClient, { isLocal } from "../utilities/apolloClient";
+import ApolloClient, { isLocal } from "../utilities/ApolloClient";
 import { gql } from "@apollo/client/core";
 import { BriefcaseIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import ImageLoader from "../utilities/ImageLoader.vue";
@@ -59,7 +59,7 @@ const testBannerQuery = gql`
  }
 `;
 
-apolloClient
+ApolloClient
  .query({ query: isLocal ? testBannerQuery : liveBannerQuery })
  .then((result) => {
   homeBanner.value = result.data.pages.nodes[0];
@@ -171,7 +171,9 @@ const imageStyle = computed(() => ({
 }
 
 .banner-content h1.title {
-  @apply text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  font-size: 6rem;
+  min-height: 3.5rem;
+  line-height: 1;
 }
 
 .banner-content h1.title + h2 {

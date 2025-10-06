@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useWindowScroll } from '@vueuse/core';
-//import apolloClient, { isLocal } from '../utilities/apolloClient';
+//import apolloClient, { isLocal } from '../utilities/ApolloClient';
 import { gql } from "@apollo/client/core";
 import { BriefcaseIcon, ChevronRightIcon } from "@heroicons/vue/24/outline";
 import ImageLoader from "../utilities/ImageLoader.vue";

@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 
-import apolloClient, { isLocal } from '../utilities/apolloClient';
+import apolloClient, { isLocal } from '../utilities/ApolloClient';
 
 import {
   gql

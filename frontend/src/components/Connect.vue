@@ -10,7 +10,7 @@ import {
 
 import BtnPrime from "./BtnPrime.vue";
 import QuoteCalculator from "./QuoteCalculator.vue";
-import { isLocal } from '../utilities/apolloClient';
+import { isLocal } from '../utilities/ApolloClient';
 import CircuitSvgs from "./CircuitSvgs.vue";
 
 const contributionUrl = ref(

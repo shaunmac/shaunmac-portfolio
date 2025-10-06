@@ -7,7 +7,7 @@ import {
   gql,
 } from "@apollo/client/core";
 
-import { isLocal } from '../utilities/apolloClient';
+import { isLocal } from '../utilities/ApolloClient';
 
 
 const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
