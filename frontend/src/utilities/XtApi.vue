@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+
 // Define props for the quote data
 const props = defineProps({
   quote: {
@@ -37,7 +37,10 @@ const formatMessage = () => {
 };
 
 const sendEmail = () => {
-
+  const message = formatMessage();
+  const encodedMessage = encodeURIComponent(message);
+  const mailToContent = "mailto:quotes@shaunmacdougall.com?&subject=Quote%20For%20" + props.quote.total + "&body=" + encodedMessage;
+  window.open(mailToContent, '_blank');
 }
 
 // Function to open DM intent
@@ -88,18 +91,18 @@ const sendXDM = () => {
             </li>
           </ul>
         </div>
-      <div class="w-full flex justify-between px-6">
+      <div class="w-full flex justify-between p-6 border-b border-t border-slate-700">
         <p class="h-1"><strong>Total</strong></p> <p>${{ quote.total }}</p>
       </div>
-      <div class="w-full flex justify-between px-6">
-        <h4>Send Via</h4>
+      <div class="w-full flex justify-center px-6 text-center ">
+        <h4 class="text-center h-4">Send to me via</h4>
       </div>
       <div class="w-full flex justify-between px-6 gap-6">
         <button @click="sendXDM" class="dm-btn">
-          x
+          <font-awesome-icon :icon="['fab', 'x-twitter']" /> <span class="sr-only">Twitter</span>
         </button>
         <button @click="sendEmail" class="dm-btn">
-          email
+          <font-awesome-icon :icon="['fas', 'fa-envelope']" /> <span class="sr-only">email</span>
         </button>
       </div>
       </div>
