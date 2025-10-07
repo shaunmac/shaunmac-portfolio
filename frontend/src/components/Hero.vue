@@ -170,10 +170,16 @@ const imageStyle = computed(() => ({
   width: 100%;
 }
 
-.banner-content h1.title {
+h1.title {
   font-size: 6rem;
   min-height: 3.5rem;
   line-height: 1;
+}
+
+@media screen and (min-width: 480px){
+  .banner-content h1.title {
+    font-size: 2.8rem;
+  }
 }
 
 .banner-content h1.title + h2 {
