@@ -68,12 +68,13 @@ const cache = new InMemoryCache();
               alt="Shaun MacDougall Web Developer"
             />
             <div class="flex flex-col justify-center">
-              <span class="block text-xl text-slate-100">Shaun MacDougall</span>
-
-              <span
+              <h1 class="site-title">
+                Shaun MacDougall
+              </h1>
+              <h2
                 style="margin-top: -6px"
-                class="block text-sm font-normal text-cyan-300"
-                >Web Developer</span>
+                class="site-sub-title"
+                >Web Developer</h2>
             </div>
           </a>
         </div>
@@ -166,3 +167,23 @@ const cache = new InMemoryCache();
     </transition>
   </Popover>
 </template>
+
+<style>
+.site-title {
+  @apply hidden;
+}
+
+.site-sub-title {
+   @apply hidden ;
+}
+
+@media screen and (min-width: 480px) {
+  .site-title {
+    @apply text-base block text-slate-100;
+  }
+
+  .site-sub-title {
+    @apply block text-sm font-normal text-cyan-300;
+  }
+}
+</style>
