@@ -171,7 +171,7 @@ const imageStyle = computed(() => ({
 }
 
 .banner-content h1.title {
-  font-size: 6rem;
+  font-size: 3rem;
   min-height: 3.5rem;
   line-height: 1;
 }
