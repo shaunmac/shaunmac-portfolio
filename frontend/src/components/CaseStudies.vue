@@ -255,7 +255,7 @@ watch(viewport, (newViewport) => {
           <div class="carousel sm:space-x-6 relative md:scroll-pl-6 snap-x mt-6 pt-6">
                   <!-- // v-if="isLoading" -->
             <div v-if="isLoading" v-for="(caseStudy, index) in caseStudies" class="py-3 w-2/3 md:w-2/5 lg:w-1/5 carousel-item relative box-border max-w-[338px]flex justify-center items-center h-80 ml-6">
-              <div class="mx-auto rounded-md bg-slate-800 p-6 relative w-full block flex justify-center">
+              <div class="mx-auto rounded-md bg-slate-800 p-6 relative w-full flex justify-center">
                 <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
                     role="status">
                     <span
@@ -307,14 +307,16 @@ watch(viewport, (newViewport) => {
 
                   <div v-if="!isVisible[index]" class="pt-6">
 
-                    <h3 class="text-xl text-white">{{ caseStudy.title }}</h3>
-
+                    <h3 class="text-xl text-white pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
+                    <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center align-middle justify-start pt-4 -mx-1 pb-4">
+                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.name }}</div>
+                    </div>
                   </div>
                   <div v-else class="">
                     <h3 class="text-xl text-white pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     <div class="font-normal text-slate-300 mt-4 mb-4 pb-4 border-b border-slate-700"  v-html="caseStudy.content"></div>
-                    <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center align-middle justify-start pt-2 -mt-1 -mx-1 pb-4">
-                      <div v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.node.name }}</div>
+                    <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center align-middle justify-start pt-2 -mt-2 -mx-1 pb-4">
+                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.name }}</div>
                     </div>
                   </div>
 

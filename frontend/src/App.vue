@@ -7,9 +7,7 @@ import Services from "./components/Services.vue";
 import Connect from "./components/Connect.vue";
 import Footer from "./components/Footer.vue";
 import ShadowEl from "./utilities/ShadowEl.vue";
-
 const { y } = useWindowScroll();
-
 </script>
 
 <template>
