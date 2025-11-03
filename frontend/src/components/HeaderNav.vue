@@ -120,7 +120,7 @@ const cache = new InMemoryCache();
     >
       <PopoverPanel
         focus
-        class="absolute inset-x-0 top-[51px] origin-top-right transform py-2 m-0 transition "
+        class="absolute inset-x-0 top-[48px] origin-top-right transform py-2 m-0 transition "
       >
         <div
           class="w-full shadow-l absolute backdrop-blur bg-zinc-900 supports-backdrop-blur:bg-zinc-900 lg:invisible"
@@ -179,7 +179,7 @@ const cache = new InMemoryCache();
 
 @media screen and (min-width: 480px) {
   .site-title {
-    @apply text-base block text-slate-100;
+    @apply text-base block text-slate-100; 
   }
 
   .site-sub-title {
