@@ -107,113 +107,99 @@ const fetchCaseStudies = async () => {
 };
 
 // Tailwind breakpoints
-const breakpoints = {
-  xs: 360,
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  xxl: 1536
-};
+// const breakpoints = {
+//   xs: 360,
+//   sm: 640,
+//   md: 768,
+//   lg: 1024,
+//   xl: 1280,
+//   xxl: 1536
+// };
 
-// Reactive viewport size
-const viewport = ref(getViewportSize());
+// // Reactive viewport size
+// const viewport = ref(getViewportSize());
 
-// Function to get current viewport size
-function getViewportSize() {
+// // Function to get current viewport size
+// function getViewportSize() {
 
-  const width = window.innerWidth;
-  if (width < breakpoints.sm) return 'xs';
-  else if (width < breakpoints.md) return 'sm';
-  else if (width < breakpoints.lg) return 'md';
-  else if (width < breakpoints.xl) return 'lg';
-  else if (width < breakpoints.xxl) return 'xl';
-  else return 'xxl';
-}
+//   const width = window.innerWidth;
+//   if (width < breakpoints.sm) return 'xs';
+//   else if (width < breakpoints.md) return 'sm';
+//   else if (width < breakpoints.lg) return 'md';
+//   else if (width < breakpoints.xl) return 'lg';
+//   else if (width < breakpoints.xxl) return 'xl';
+//   else return 'xxl';
+// }
 
 const toggleVisibility = (index) => {
   isVisible.value[index] = !isVisible.value[index];
 };
 
 // Define a ref for the active slide index
-const activeSlideIndex = ref(1);
+// const activeSlideIndex = ref(1);
 
 // Define a computed property for the active slide ID
-const activeSlideId = computed( () => `caseStudySlide+${activeSlideIndex.value}` );
+// const activeSlideId = computed( () => `caseStudySlide+${activeSlideIndex.value}` );
 
 // Define card count based on viewport
-const cardCount = ref(getCardSlideCount());
+// const cardCount = ref(getCardSlideCount());
 
-function getCardSlideCount() {
-  switch (viewport.value) {
-    case 'xs':
-      return [1];
-    case 'sm':
-      return [1,2];
-    case 'md':
-      return [1,2,3];
-    case 'lg':
-      return [1,2,3,4];
-    case 'xl':
-      return [1,2,3,4,5];
-    case 'xxl':
-      return [1,2,3,4,5];
-    default:
-      return [1];// default to medium size
-  }
-}
+// function getCardSlideCount() {
+//   switch (viewport.value) {
+//     case 'xs':
+//       return [1];
+//     case 'sm':
+//       return [1,2];
+//     case 'md':
+//       return [1,2,3];
+//     case 'lg':
+//       return [1,2,3,4];
+//     case 'xl':
+//       return [1,2,3,4,5];
+//     case 'xxl':
+//       return [1,2,3,4,5];
+//     default:
+//       return [1];// default to medium size
+//   }
+// }
 
-// Define a function to set the active slide index
-const setActiveSlide = (index) => {
-  activeSlideIndex.value = index ;
-};
+// // Define a function to set the active slide index
+// const setActiveSlide = (index) => {
+//   activeSlideIndex.value = index ;
+// };
 
 // Define functions to go to the previous and next slides
-const goToPrevSlide = () => {
+// const goToPrevSlide = () => {
   
-  if(activeSlideIndex.value <= 1) {
-    activeSlideIndex.value = caseStudies.value.length ;
-  }else {
-    activeSlideIndex.value = (activeSlideIndex.value - cardCount.value.length) <= 1 ? 1 : activeSlideIndex.value - cardCount.value.length ;
-  }
+//   if(activeSlideIndex.value <= 1) {
+//     activeSlideIndex.value = caseStudies.value.length ;
+//   }else {
+//     activeSlideIndex.value = (activeSlideIndex.value - cardCount.value.length) <= 1 ? 1 : activeSlideIndex.value - cardCount.value.length ;
+//   }
 
-  console.log('card count: ' + cardCount.value.length);
+//   console.log('card count: ' + cardCount.value.length);
 
-};
+// };
 
-const goToNextSlide = () => {
+// const goToNextSlide = () => {
 
-  const caseStudiesCounter = caseStudies.value.length,
-        cardCounter = cardCount.value.length;
+//   const caseStudiesCounter = caseStudies.value.length,
+//         cardCounter = cardCount.value.length;
 
 
-  if (activeSlideIndex.value >= caseStudiesCounter) {
-    activeSlideIndex.value = 1;
-  }else {
-    activeSlideIndex.value = (activeSlideIndex.value + cardCounter) >= caseStudiesCounter ? caseStudiesCounter : activeSlideIndex.value + cardCounter;
-  }
+//   if (activeSlideIndex.value >= caseStudiesCounter) {
+//     activeSlideIndex.value = 1;
+//   }else {
+//     activeSlideIndex.value = (activeSlideIndex.value + cardCounter) >= caseStudiesCounter ? caseStudiesCounter : activeSlideIndex.value + cardCounter;
+//   }
 
-  console.log('card count: ' + cardCounter);
+//   console.log('card count: ' + cardCounter);
 
-};
+// };
 
 onMounted(() => {
   fetchCaseStudies();
   // Watcher to update viewport on resize
-  window.addEventListener('resize', updateViewport);
-});
-
-onUnmounted(() => {
-  window.removeEventListener('resize', updateViewport);
-});
-
-function updateViewport() {
-  viewport.value = getViewportSize();
-}
-
-// Watch viewport changes and update card count
-watch(viewport, (newViewport) => {
-  cardCount.value = getCardSlideCount();
 });
 
 
@@ -223,11 +209,11 @@ watch(viewport, (newViewport) => {
   
   <section id="case-studies" class="">
 
-    <div class="rounded-xl md:px-12 py-6 mx-2 relative z-10">
+    <div class="p-6 relative z-10 w-full max-w-7xl lg:mx-auto">
 
       <div class="w-full">
             
-        <div class="case-studies__title-container ml-6 -mb-12 sm:max-w-[360px] relative pt-5">
+        <div class="case-studies__title-container -mb-8 sm:max-w-[360px] relative pt-5">
           <h3 class="text-lg sm:text-xl font-normal text-slate-200 leading-[0.8em] inline-block">
             Work Experience
           </h3><br />
@@ -238,7 +224,7 @@ watch(viewport, (newViewport) => {
           </h2>
         </div>
 
-        <div class="case-studies__carousel-bg p-6 relative z-0">
+        <div class="case-studies__carousel-bg relative z-0">
           
           <div class="relative mt-6 pt-6">
                   <!-- // v-if="isLoading" -->
@@ -255,7 +241,7 @@ watch(viewport, (newViewport) => {
 
             </div>
 
-            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="snap-start pt-6 pb-3 w-full box-border" :id="'caseStudySlide'+(index+1)" >
+            <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="pt-6 px-6 pb-3 mb-8 w-full box-border border border-slate-700/50 bg-slate-700/20 rounded-3xl backdrop-blur-sm" :id="'caseStudySlide'+(index+1)" >
 
               <div class="mx-auto sm:flex sm:space-x-6 pb-0">
                 
@@ -293,20 +279,21 @@ watch(viewport, (newViewport) => {
 
                   <div v-if="!isVisible[index]" class="pt-6 sm:pt-0">
 
-                    <h3 class="text-xl text-white pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
-                    <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center justify-start pt-4 -mx-1 pb-4">
-                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.name }}</div>
+                    <h3 class="text-xl text-white  pb-4">{{ caseStudy.title }}</h3>
+                    <div class="case-study__tags flex flex-wrap items-center justify-start py-4 pr-2">
+                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
                     </div>
 
                   </div>
                   <div v-else class="w-full">
                     
-                    <h3 class="text-xl text-white pt-6 sm:pt-0 pb-4 border-b border-slate-700">{{ caseStudy.title }}</h3>
+                    <h3 class="text-xl text-white pt-6 sm:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     
-                    <div class="font-normal text-slate-300 mt-4 mb-4 pb-4 border-b border-slate-700"  v-html="caseStudy.content"></div>
+                    <div class="font-normal text-slate-300 mt-6 mb-6"  v-html="caseStudy.content"></div>
                     
-                    <div class="border-b border-slate-700 case-study__tags flex flex-wrap items-center justify-start pt-2 -mt-2 -mx-1 pb-4">
-                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-2 text-xs bg-zinc-600 font-normal my-1 mx-1 h-6" >{{ tag.name }}</div>
+                    <h4 class=" text-white pb-4">Technologies</h4>
+                    <div class="case-study__tags flex flex-wrap items-center justify-start py-4 sm:pr-4 pb-6">
+                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
                     </div>
                   </div>
 
