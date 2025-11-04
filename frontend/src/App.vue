@@ -14,8 +14,8 @@ const { y } = useWindowScroll();
   
   <div class="rail fixed w-full h-screen top-0 left-0 z-0">
     <div class="rail_container ">
-      <div class="rail_clip" :style="{ transform: `translate(${y * 3 * -1}px)` }">
-        <div class="rail_color" :style="{ transform: `translate(${y * 3}px)` }">
+      <div class="rail_clip" :style="{ transform: `translate(${y * 0.95 * -1}px)` }">
+        <div class="rail_color" :style="{ transform: `translate(${y * 0.95}px)` }">
           <div class="rail_gradients">
 
           <!-- /* Blurred images go here */ -->
