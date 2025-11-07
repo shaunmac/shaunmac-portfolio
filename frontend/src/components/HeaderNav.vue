@@ -1,9 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import { isLocal } from '../utilities/ApolloClient';
 
 import {
-  // ApolloClient,
-  // createHttpLink,
   InMemoryCache,
   gql,
 } from "@apollo/client/core";
@@ -64,7 +62,7 @@ const cache = new InMemoryCache();
           <a href="#" class="flex items-center justify-center">
             <img
               class="mr-4 h-8 w-auto sm:h-10"
-              src="https://shaunmacdougall.com/wp-content/uploads/2024/07/logo.png"
+              :src="isLocal === 'live' ? 'https://shaunmacdougall.com/wp-content/uploads/2024/07/logo.png' : 'http://shaunmac.local/wp-content/uploads/2024/07/logo.png'"
               alt="Shaun MacDougall Web Developer"
             />
             <div class="flex flex-col justify-center">

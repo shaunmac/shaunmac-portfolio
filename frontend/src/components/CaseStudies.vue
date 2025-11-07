@@ -281,7 +281,8 @@ onMounted(() => {
 
                     <h3 class="text-xl text-white  pb-4">{{ caseStudy.title }}</h3>
                     <div class="case-study__tags flex flex-wrap items-center justify-start py-4 pr-2">
-                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
+                      <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
+                      <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
                     </div>
 
                   </div>
@@ -293,19 +294,21 @@ onMounted(() => {
                     
                     <h4 class=" text-white pb-4">Technologies</h4>
                     <div class="case-study__tags flex flex-wrap items-center justify-start py-4 sm:pr-4 pb-6">
-                      <div v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
+                      <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
+
+                      <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
                     </div>
                   </div>
 
-                  <div class="mt-6 flex flex-col md:text-xs md:tracking-tighter">
+                  <div class="mt-6 flex flex-col md:flex-row md:text-xs md:tracking-tighter md:space-x-6">
                     <button 
-                      class="primary-btn w-full lg:text-base mb-6"
+                      class="primary-btn w-full md:w-1/2 lg:text-base mb-6"
                       @click="toggleVisibility(index)"
                       >
                       Read {{ isVisible[index] ? "Less" : "More" }}
                     </button>
 
-                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-full lg:text-base">View Site</a>
+                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-full md:w-1/2 lg:text-base">View Site</a>
                   </div>
 
                 </div>
