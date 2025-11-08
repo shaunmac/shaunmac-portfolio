@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 
 import apolloClient, { isLocal } from '../utilities/ApolloClient';
 
@@ -60,6 +60,7 @@ const testCaseStudiesQuery = gql`
         }
         caseStudyImages {
           externalUrl
+          shortDiscription
           mobileImage {
             node {
               sourceUrl
@@ -275,11 +276,14 @@ onMounted(() => {
 
                 </div>
 
-                <div class="case-study__contentw-full sm:w-1/2 pb-6">
+                <div class="case-study__content w-full sm:w-1/2 pb-6">
 
                   <div v-if="!isVisible[index]" class="pt-6 sm:pt-0">
 
-                    <h3 class="text-xl text-white  pb-4">{{ caseStudy.title }}</h3>
+                    <h3>{{ caseStudy.title }}</h3>
+
+                    <div v-html="caseStudy.caseStudyImages.shortDiscription" class="font-normal text-slate-300 mt-6 mb-6"></div>
+
                     <div class="case-study__tags flex flex-wrap items-center justify-start py-4 pr-2">
                       <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
                       <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
@@ -288,7 +292,7 @@ onMounted(() => {
                   </div>
                   <div v-else class="w-full">
                     
-                    <h3 class="text-xl text-white pt-6 sm:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
+                    <h3 class="text-xl text-white py-6 sm:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     
                     <div class="font-normal text-slate-300 mt-6 mb-6"  v-html="caseStudy.content"></div>
                     
@@ -337,6 +341,7 @@ onMounted(() => {
   border-top-color: #3490dc;
   animation: spin 1s ease-in-out infinite;
 }
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -355,6 +360,23 @@ onMounted(() => {
   .carousel-navigation > .flex a:nth-child(2n) {
     display: none;
   }
+}
+
+.case-study__content h2 {
+  @apply font-bold text-3xl mb-6;
+}
+
+.case-study__content h3 {
+  @apply font-bold text-2xl text-white;
+}
+
+.case-study__content p,
+.case-study__content li {
+  @apply mb-4;
+}
+
+.case-study__content li {
+
 }
 
 /* VIEW PORT = md */
