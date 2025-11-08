@@ -56,7 +56,7 @@ const cache = new InMemoryCache();
   <Popover
     class="fixed top-0 z-50 w-full backdrop-blur backdrop-brightness-200 bg-slate-950/70"
   >
-    <div class="mx-auto max-w-7xl px-6 py-2 drop-shadow-2xl">
+    <div class="mx-auto max-w-7xl px-6 py-2 drop-shadow-2xl h-14">
       <div class="flex items-center justify-between md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <a href="#" class="flex items-center justify-center">
