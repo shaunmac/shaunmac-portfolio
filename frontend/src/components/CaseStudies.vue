@@ -244,47 +244,49 @@ onMounted(() => {
 
             <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="pt-6 px-6 pb-3 mb-8 w-full box-border border border-slate-700/50 bg-slate-700/20 rounded-3xl backdrop-blur-sm" :id="'caseStudySlide'+(index+1)" >
 
-              <div class="mx-auto sm:flex sm:space-x-6 pb-0">
+              <div class="mx-auto md:flex md:space-x-6 pb-0 relative items-stretch">
                 
-                <div class="case-study__images w-full sm:w-1/2 overflow-hidden relative bg-slate-200 h-fit rounded-3xl">
-                  <div class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
-                    <img
-                      class="case-study__image case-study__image--lg"
-                      v-if="caseStudy.featuredImage"
-                      :src="caseStudy.featuredImage.node.sourceUrl"
-                      :alt="caseStudy.title"
-                    />
-                  </div>
+                <div class="w-full md:w-1/2 relative h-full ">
+                  <div class="case-study__images w-full overflow-hidden bg-slate-200 h-fit rounded-3xl scroll-mt-2">
+                    <div class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
+                      <img
+                        class="case-study__image case-study__image--lg"
+                        v-if="caseStudy.featuredImage"
+                        :src="caseStudy.featuredImage.node.sourceUrl"
+                        :alt="caseStudy.title"
+                      />
+                    </div>
 
-                  <div class="case-study__tablet rounded-3xl overflow-hidden absolute bottom-0 right-0 z-10 w-4/5 shadow-2xl shadow-black border-4 border-white">
-                    <img
-                      class="overflow-hidden"
-                      v-if="caseStudy.caseStudyImages.tabletImage"
-                      :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
-                      :alt="`${caseStudy.title} Tablet Image`"
-                    />
-                  </div>
+                    <div class="case-study__tablet rounded-3xl overflow-hidden absolute bottom-0 right-0 z-10 w-4/5 shadow-2xl shadow-black border-4 border-white">
+                      <img
+                        class="overflow-hidden"
+                        v-if="caseStudy.caseStudyImages.tabletImage"
+                        :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
+                        :alt="`${caseStudy.title} Tablet Image`"
+                      />
+                    </div>
 
-                  <div class="case-study__mobile rounded-3xl absolute overflow-hidden bottom-0 right-0 w-2/5 z-20 shadow-2xl shadow-black border-4 border-white"> 
-                    <img
-                      class="overflow-hidden rounded"
-                      v-if="caseStudy.caseStudyImages.mobileImage"
-                      :src="isLocal ? caseStudy.caseStudyImages.mobileImage.node.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
-                      :alt="`${caseStudy.title} Mobile Image`"
-                    />
-                  </div>
+                    <div class="case-study__mobile rounded-3xl absolute overflow-hidden bottom-0 right-0 w-2/5 z-20 shadow-2xl shadow-black border-4 border-white"> 
+                      <img
+                        class="overflow-hidden rounded"
+                        v-if="caseStudy.caseStudyImages.mobileImage"
+                        :src="isLocal ? caseStudy.caseStudyImages.mobileImage.node.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
+                        :alt="`${caseStudy.title} Mobile Image`"
+                      />
+                    </div>
 
+                  </div>
                 </div>
 
-                <div class="case-study__content w-full sm:w-1/2 pb-6">
+                <div class="case-study__content w-full md:w-1/2 pb-6">
 
-                  <div v-if="!isVisible[index]" class="pt-6 sm:pt-0">
+                  <div v-if="!isVisible[index]" class="pt-6 md:pt-0">
 
-                    <h3>{{ caseStudy.title }}</h3>
+                    <h3 class="text-white text-4xl">{{ caseStudy.title }}</h3>
 
-                    <div v-html="caseStudy.caseStudyImages.shortDiscription" class="font-normal text-slate-300 mt-6 mb-6"></div>
+                    <div v-html="caseStudy.caseStudyImages.shortDiscription" class="font-normal text-slate-300 mt-6 mb-0"></div>
 
-                    <div class="case-study__tags flex flex-wrap items-center justify-start py-4 pr-2">
+                    <div class="case-study__tags flex flex-wrap items-center justify-start pr-2 mb-10">
                       <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
                       <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
                     </div>
@@ -292,27 +294,27 @@ onMounted(() => {
                   </div>
                   <div v-else class="w-full">
                     
-                    <h3 class="text-xl text-white py-6 sm:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
+                    <h3 class="text-4xl text-white py-6 sm:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     
                     <div class="font-normal text-slate-300 mt-6 mb-6"  v-html="caseStudy.content"></div>
                     
                     <h4 class=" text-white pb-4">Technologies</h4>
-                    <div class="case-study__tags flex flex-wrap items-center justify-start py-4 sm:pr-4 pb-6">
+                    <div class="case-study__tags flex flex-wrap items-center justify-start md:pr-4 ">
                       <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
 
                       <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
                     </div>
                   </div>
 
-                  <div class="mt-6 flex flex-col md:flex-row md:text-xs md:tracking-tighter md:space-x-6">
+                  <div class="mt-6 flex flex-row md:text-xs md:tracking-tighter space-x-6">
                     <button 
-                      class="primary-btn w-full md:w-1/2 lg:text-base mb-6"
+                      class="primary-btn w-1/2 lg:text-base mb-6"
                       @click="toggleVisibility(index)"
                       >
                       Read {{ isVisible[index] ? "Less" : "More" }}
                     </button>
 
-                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-full md:w-1/2 lg:text-base">View Site</a>
+                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 lg:text-base">View Site</a>
                   </div>
 
                 </div>
@@ -362,74 +364,53 @@ onMounted(() => {
   }
 }
 
-.case-study__content h2 {
-  @apply font-bold text-3xl mb-6;
+.case-study__content h2.wp-block-heading {
+  @apply font-bold text-3xl mb-6 text-white;
 }
 
-.case-study__content h3 {
-  @apply font-bold text-2xl text-white;
+.case-study__content h3.wp-block-heading {
+  @apply font-bold text-2xl mt-4 mb-4;
 }
 
-.case-study__content p,
-.case-study__content li {
-  @apply mb-4;
+.case-study__content p {
+  @apply mb-8;
 }
 
-.case-study__content li {
+.case-study__content .wp-block-list {
+  @apply pl-6;
+}
 
+.case-study__content .wp-block-list li {
+  @apply list-none pl-2 mb-4 relative;
+}
+
+.case-study__content .wp-block-list li:before {
+  width: 0.75em;
+  height: 0.75em;
+  left: -1.25em;
+  top: 0.5em;
+  content: " ";
+  @apply bg-cyan-400 block rounded-full absolute;
+}
+
+/* .case-study__content .wp-block-list li:not(:first-child) {
+  @apply pt-0;
+} */
+
+.case-study__content .wp-block-list li strong {
+  @apply block mt-8 mb-4 text-slate-100 text-lg;
 }
 
 /* VIEW PORT = md */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .carousel-navigation > .flex a:nth-child(2),
-  .carousel-navigation > .flex a:nth-child(3),
-  .carousel-navigation > .flex a:nth-child(5),
-  .carousel-navigation > .flex a:nth-child(6),
-  .carousel-navigation > .flex a:nth-child(8),
-  .carousel-navigation > .flex a:nth-child(10),
-  .carousel-navigation > .flex a:nth-child(11){
-    display: none;
-  }
 }
 
 /* VIEW PORT = lg */
 @media screen and (min-width: 1024px) and (max-width: 1279px) {
-  .carousel-navigation > .flex a:nth-child(2),
-  .carousel-navigation > .flex a:nth-child(3),
-  .carousel-navigation > .flex a:nth-child(4),
-  .carousel-navigation > .flex a:nth-child(6),
-  .carousel-navigation > .flex a:nth-child(7),
-  .carousel-navigation > .flex a:nth-child(8),
-  .carousel-navigation > .flex a:nth-child(10),
-  .carousel-navigation > .flex a:nth-child(11){
-    display: none;
-  }
 }
 
 /* VIEW PORT = xl */
 @media screen and (min-width: 1280px) {
-  /* Hide all <a> tags between first and last by default */
-  .carousel-navigation > .flex a:not(:first-child):not(:last-child):not(.active-item) {
-    display: none;
-  }
 
-  /* Always show first and last <a> tags */
-  .carousel-navigation > .flex a:first-child,
-  .carousel-navigation > .flex a:last-child {
-    display: block;
-  }
-
-  /* Always show <a> tags with active-item class */
-  .carousel-navigation > .flex a.active-item {
-    display: block;
-  }
-
-  /* If active-item is on first or last, show the first middle <a> tag (if it exists) */
-  .carousel-navigation > .flex a.active-item:first-child ~ a:not(:last-child):not(.active-item):first-of-type,
-  .carousel-navigation > .flex a.active-item:last-child ~ a:not(:first-child):not(.active-item):first-of-type {
-    display: block;
-  }
 }
-
-
 </style>
