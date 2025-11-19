@@ -1,9 +1,7 @@
 <script setup>
-import { ref } from "vue";
+import { isLocal } from '../utilities/ApolloClient';
 
 import {
-  // ApolloClient,
-  // createHttpLink,
   InMemoryCache,
   gql,
 } from "@apollo/client/core";
@@ -58,22 +56,23 @@ const cache = new InMemoryCache();
   <Popover
     class="fixed top-0 z-50 w-full backdrop-blur backdrop-brightness-200 bg-slate-950/70"
   >
-    <div class="mx-auto max-w-7xl px-6 py-2 drop-shadow-2xl">
+    <div class="mx-auto max-w-7xl px-6 flex flex-col justify-center drop-shadow-2xl h-14 lg:h-16">
       <div class="flex items-center justify-between md:space-x-10">
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <a href="#" class="flex items-center justify-center">
             <img
               class="mr-4 h-8 w-auto sm:h-10"
-              src="https://shaunmacdougall.com/wp-content/uploads/2024/07/logo.png"
+              :src="isLocal === 'live' ? 'https://shaunmacdougall.com/wp-content/uploads/2024/07/logo.png' : 'http://shaunmac.local/wp-content/uploads/2024/07/logo.png'"
               alt="Shaun MacDougall Web Developer"
             />
             <div class="flex flex-col justify-center">
-              <span class="block text-xl text-slate-100">Shaun MacDougall</span>
-
-              <span
+              <h1 class="site-title">
+                Shaun MacDougall
+              </h1>
+              <h2
                 style="margin-top: -6px"
-                class="block text-sm font-normal text-cyan-300"
-                >Web Developer</span>
+                class="site-sub-title"
+                >Web Developer</h2>
             </div>
           </a>
         </div>
@@ -119,7 +118,7 @@ const cache = new InMemoryCache();
     >
       <PopoverPanel
         focus
-        class="absolute inset-x-0 top-[51px] origin-top-right transform py-2 m-0 transition "
+        class="absolute inset-x-0 top-[48px] origin-top-right transform py-2 m-0 transition "
       >
         <div
           class="w-full shadow-l absolute backdrop-blur bg-zinc-900 supports-backdrop-blur:bg-zinc-900 lg:invisible"
@@ -166,3 +165,23 @@ const cache = new InMemoryCache();
     </transition>
   </Popover>
 </template>
+
+<style>
+.site-title {
+  @apply hidden;
+}
+
+.site-sub-title {
+   @apply hidden ;
+}
+
+@media screen and (min-width: 480px) {
+  .site-title {
+    @apply text-base block text-slate-100; 
+  }
+
+  .site-sub-title {
+    @apply block text-sm font-normal text-cyan-300;
+  }
+}
+</style>
