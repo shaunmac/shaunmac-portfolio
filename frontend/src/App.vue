@@ -140,7 +140,7 @@ html {
 }
 
 .full-page-height-gap {
-  @apply mt-[150vh];
+  @apply mt-[80vh];
 }
 
 .rail_gradient.-pro {
