@@ -369,7 +369,7 @@ onMounted(() => {
 }
 
 .case-study__content h3.wp-block-heading {
-  @apply font-bold text-2xl mt-4 mb-4;
+  @apply font-bold text-2xl mt-4 mb-4 text-white;
 }
 
 .case-study__content p {
