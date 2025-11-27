@@ -73,6 +73,10 @@ const testCaseStudiesQuery = gql`
               sourceUrl(size: MEDIUM)
             }
           }
+          technical {
+            category
+            tools
+          }
         }
         content
         caseId
@@ -247,6 +251,7 @@ onMounted(() => {
               <div class="mx-auto md:flex md:space-x-6 pb-0 relative items-stretch">
                 
                 <div class="w-full md:w-1/2 relative h-full ">
+                  
                   <div class="case-study__images w-full overflow-hidden bg-slate-200 h-fit rounded-3xl scroll-mt-2">
                     <div class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
                       <img
@@ -274,8 +279,16 @@ onMounted(() => {
                         :alt="`${caseStudy.title} Mobile Image`"
                       />
                     </div>
+                  </div><!-- ///.case-study__images -->
 
+                  <h4>Technologies &amp; Tools</h4>
+
+                  <div v-for="tech in caseStudy.caseStudyImages.technical">
+                    <p>{{ tech.category }}</p>
+                    
+                    <p>{{ tech.tools }}</p>
                   </div>
+
                 </div>
 
                 <div class="case-study__content w-full md:w-1/2 pb-6">
@@ -294,7 +307,7 @@ onMounted(() => {
                   </div>
                   <div v-else class="w-full">
                     
-                    <h3 class="text-4xl text-white py-6 sm:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
+                    <h3 class="text-4xl text-white py-6 md:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     
                     <div class="font-normal text-slate-300 mt-6 mb-6"  v-html="caseStudy.content"></div>
                     
