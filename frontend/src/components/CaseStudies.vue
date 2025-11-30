@@ -248,11 +248,11 @@ onMounted(() => {
 
             <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="pt-6 px-6 pb-3 mb-8 w-full box-border border border-slate-700/50 bg-slate-700/20 rounded-3xl backdrop-blur-sm" :id="'caseStudySlide'+(index+1)" >
 
-              <div class="mx-auto md:flex md:space-x-6 pb-0 relative items-stretch">
+              <div class="mx-auto md:flex md:space-x-6 pb-0">
                 
-                <div class="w-full md:w-1/2 relative h-full ">
+                <div class="w-full md:w-1/2">
                   
-                  <div class="case-study__images w-full overflow-hidden bg-slate-200 h-fit rounded-3xl scroll-mt-2">
+                  <div class="case-study__images w-full overflow-hidden bg-slate-200 h-fit rounded-3xl relative">
                     <div class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
                       <img
                         class="case-study__image case-study__image--lg"
@@ -281,14 +281,26 @@ onMounted(() => {
                     </div>
                   </div><!-- ///.case-study__images -->
 
-                  <h4>Technologies &amp; Tools</h4>
-
-                  <div v-for="tech in caseStudy.caseStudyImages.technical">
-                    <p>{{ tech.category }}</p>
+                  <div class="font-normal mt-6 overflow-x-auto bg-transparent">
                     
-                    <p>{{ tech.tools }}</p>
-                  </div>
+                    <h4 class="text-lg font-bold text-white">Technologies &amp; Tools</h4>
+                    <table class="mt-6 table table-zebra table-xs">
+                      <thead>
+                        <tr>
+                          <th><h5 class="font-bold">Category</h5></th>
+                          <th><h5 class="font-bold">Tool</h5></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="tech in caseStudy.caseStudyImages.technical">
+                          <td><p>{{ tech.category }}</p></td>
+                          <td><p>{{ tech.tools }}</p></td>
+                        </tr>
+                      </tbody>
 
+                    </table>
+                    
+                  </div>    
                 </div>
 
                 <div class="case-study__content w-full md:w-1/2 pb-6">
