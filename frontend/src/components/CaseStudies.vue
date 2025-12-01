@@ -111,6 +111,8 @@ const fetchCaseStudies = async () => {
   }
 };
 
+import CaseStudyTable from './CaseStudyTable.vue';
+
 // Tailwind breakpoints
 // const breakpoints = {
 //   xs: 360,
@@ -281,26 +283,7 @@ onMounted(() => {
                     </div>
                   </div><!-- ///.case-study__images -->
 
-                  <div class="font-normal mt-6 overflow-x-auto bg-transparent">
-                    
-                    <h4 class="text-lg font-bold text-white">Technologies &amp; Tools</h4>
-                    <table class="mt-6 table table-zebra table-xs">
-                      <thead>
-                        <tr>
-                          <th><h5 class="font-bold">Category</h5></th>
-                          <th><h5 class="font-bold">Tool</h5></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr v-for="tech in caseStudy.caseStudyImages.technical">
-                          <td><p>{{ tech.category }}</p></td>
-                          <td><p>{{ tech.tools }}</p></td>
-                        </tr>
-                      </tbody>
-
-                    </table>
-                    
-                  </div>    
+                   
                 </div>
 
                 <div class="case-study__content w-full md:w-1/2 pb-6">
@@ -311,17 +294,14 @@ onMounted(() => {
 
                     <div v-html="caseStudy.caseStudyImages.shortDiscription" class="font-normal text-slate-300 mt-6 mb-0"></div>
 
-                    <div class="case-study__tags flex flex-wrap items-center justify-start pr-2 mb-10">
-                      <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
-                      <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
-                    </div>
+                    <CaseStudyTable :catsntools=caseStudy.caseStudyImages.technical ></CaseStudyTable>
 
                   </div>
+
                   <div v-else class="w-full">
-                    
                     <h3 class="text-4xl text-white py-6 md:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
                     
-                    <div class="font-normal text-slate-300 mt-6 mb-6"  v-html="caseStudy.content"></div>
+                    <div class="font-normal text-slate-300 mt-6 mb-6" v-html="caseStudy.content"></div>
                     
                     <h4 class=" text-white pb-4">Technologies</h4>
                     <div class="case-study__tags flex flex-wrap items-center justify-start md:pr-4 ">
@@ -397,7 +377,7 @@ onMounted(() => {
   @apply font-bold text-2xl mt-4 mb-4 text-white;
 }
 
-.case-study__content p {
+.case-study__content > p {
   @apply mb-8;
 }
 
