@@ -286,30 +286,24 @@ onMounted(() => {
                    
                 </div>
 
-                <div class="case-study__content w-full md:w-1/2 pb-6">
+                <div class="case-study__content w-full md:w-1/2">
 
-                  <div v-if="!isVisible[index]" class="pt-6 md:pt-0">
+                  <div class="pt-6 md:pt-0">
 
                     <h3 class="text-white text-4xl">{{ caseStudy.title }}</h3>
 
-                    <div v-html="caseStudy.caseStudyImages.shortDiscription" class="font-normal text-slate-300 mt-6 mb-0"></div>
+                    <div v-html="caseStudy.caseStudyImages.shortDiscription" class="font-normal text-slate-300 mt-6 mb-6"></div>
 
-                    <CaseStudyTable :catsntools=caseStudy.caseStudyImages.technical ></CaseStudyTable>
-
-                  </div>
-
-                  <div v-else class="w-full">
-                    <h3 class="text-4xl text-white py-6 md:pt-0 pb-6 border-b border-slate-700">{{ caseStudy.title }}</h3>
-                    
-                    <div class="font-normal text-slate-300 mt-6 mb-6" v-html="caseStudy.content"></div>
-                    
                     <h4 class=" text-white pb-4">Technologies</h4>
                     <div class="case-study__tags flex flex-wrap items-center justify-start md:pr-4 ">
                       <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
 
                       <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
                     </div>
+
                   </div>
+
+                  
 
                   <div class="mt-6 flex flex-row md:text-xs md:tracking-tighter space-x-6">
                     <button 
@@ -324,8 +318,30 @@ onMounted(() => {
 
                 </div>
                 <!-- Content -->
+                 </div>
+                 
+                  <div v-if="isVisible[index]" class="case-study__content w-full">
+                    
+                    <div class="font-normal text-slate-300 mb-6" v-html="caseStudy.content"></div>
 
-              </div>
+                    <CaseStudyTable :catsntools=caseStudy.caseStudyImages.technical ></CaseStudyTable>
+
+                    <div class="mt-6 flex flex-row md:text-xs md:tracking-tighter space-x-6">
+                    <button 
+                      class="primary-btn w-1/2 lg:text-base mb-6"
+                      @click="toggleVisibility(index)"
+                      >
+                      Read {{ isVisible[index] ? "Less" : "More" }}
+                    </button>
+
+                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 lg:text-base">View Site</a>
+                  </div>
+                    
+                  </div>
+
+                
+
+              
 
             </div>
 
@@ -370,11 +386,11 @@ onMounted(() => {
 }
 
 .case-study__content h2.wp-block-heading {
-  @apply font-bold text-3xl mb-6 text-white;
+  @apply font-bold text-3xl mb-8 text-white;
 }
 
 .case-study__content h3.wp-block-heading {
-  @apply font-bold text-2xl mt-4 mb-4 text-white;
+  @apply font-bold text-2xl mt-8 pb-4 mb-4 border-slate-300 border-b text-white;
 }
 
 .case-study__content > p {
