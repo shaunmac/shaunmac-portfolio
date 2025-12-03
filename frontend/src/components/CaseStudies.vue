@@ -431,6 +431,12 @@ onMounted(() => {
 @media screen and (min-width: 768px) and (max-width: 1023px) {
 }
 
+@media screen and (min-width: 1024px) {
+  .case-study__content > .font-normal p {
+    column-count: 2;
+  }
+}
+
 /* VIEW PORT = lg */
 @media screen and (min-width: 1024px) and (max-width: 1279px) {
 }
