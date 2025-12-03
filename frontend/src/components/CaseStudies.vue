@@ -247,14 +247,14 @@ onMounted(() => {
               </div>
 
             </div>
-
+            
             <div v-else v-for="(caseStudy, index) in caseStudies" :key="caseStudy.caseId" class="pt-6 px-6 pb-3 mb-8 w-full box-border border border-slate-700/50 bg-slate-700/20 rounded-3xl backdrop-blur-sm" :id="'caseStudySlide'+(index+1)" >
 
               <div class="mx-auto md:flex md:space-x-6 pb-0">
                 
                 <div class="w-full md:w-1/2">
                   
-                  <div class="case-study__images w-full overflow-hidden bg-slate-200 h-fit rounded-3xl relative">
+                  <div class="case-study__images w-full overflow-hidden bg-slate-200 rounded-3xl relative">
                     <div class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
                       <img
                         class="case-study__image case-study__image--lg"
@@ -337,11 +337,7 @@ onMounted(() => {
                     <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 lg:text-base">View Site</a>
                   </div>
                     
-                  </div>
-
-                
-
-              
+                </div>
 
             </div>
 
@@ -420,6 +416,15 @@ onMounted(() => {
 
 .case-study__content .wp-block-list li strong {
   @apply block mt-8 mb-4 text-slate-100 text-lg;
+}
+
+@media screen and (min-width: 768px) {
+  .case-study__content h2.wp-block-heading {
+    margin-top: 1.5em;
+  }
+  .case-study__images {
+    max-height: 456px
+  }
 }
 
 /* VIEW PORT = md */

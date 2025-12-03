@@ -26,7 +26,7 @@ export default {
                     </thead>
                     <tbody class="w-full">
                         <tr v-for="tech in catsntools">
-                            <th class="w-1/3 bg-transparent border-b border-slate-50/15 relative z-10"><p class="">{{ tech.category }}</p></th>
+                            <th class="w-1/3 bg-transparent border-b border-slate-50/15 relative z-10 pl-6"><p class="">{{ tech.category }}</p></th>
                             <td class="w-2/3 bg-transparent border-b border-slate-50/15 relative z-0"><p>{{ tech.tools }}</p></td>
                         </tr>
                     </tbody>
