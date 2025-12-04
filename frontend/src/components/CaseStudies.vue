@@ -255,28 +255,25 @@ onMounted(() => {
                 <div class="w-full md:w-1/2">
                   
                   <div class="case-study__images w-full overflow-hidden bg-slate-200 rounded-3xl relative">
-                    <div class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
+                    <div v-if="caseStudy.featuredImage" class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
                       <img
                         class="case-study__image case-study__image--lg"
-                        v-if="caseStudy.featuredImage"
                         :src="caseStudy.featuredImage.node.sourceUrl"
                         :alt="caseStudy.title"
                       />
                     </div>
 
-                    <div class="case-study__tablet rounded-3xl overflow-hidden absolute bottom-0 right-0 z-10 w-4/5 shadow-2xl shadow-black border-4 border-white">
+                    <div v-if="caseStudy.caseStudyImages.tabletImage" class="case-study__tablet rounded-3xl overflow-hidden absolute bottom-0 right-0 z-10 shadow-2xl shadow-black border-4 border-white" :class="caseStudy.caseStudyImages.mobileImage ? 'mr-6' : 'mr-0'">
                       <img
                         class="overflow-hidden"
-                        v-if="caseStudy.caseStudyImages.tabletImage"
                         :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
                         :alt="`${caseStudy.title} Tablet Image`"
                       />
                     </div>
 
-                    <div class="case-study__mobile rounded-3xl absolute overflow-hidden bottom-0 right-0 w-2/5 z-20 shadow-2xl shadow-black border-4 border-white"> 
+                    <div v-if="caseStudy.caseStudyImages.mobileImage" class="case-study__mobile rounded-3xl absolute overflow-hidden bottom-0 right-0 w-2/5 z-20 shadow-2xl shadow-black border-4 border-white"> 
                       <img
                         class="overflow-hidden rounded"
-                        v-if="caseStudy.caseStudyImages.mobileImage"
                         :src="isLocal ? caseStudy.caseStudyImages.mobileImage.node.sourceUrl : caseStudy.caseStudyImages.mobileImage.node.sourceUrl"
                         :alt="`${caseStudy.title} Mobile Image`"
                       />

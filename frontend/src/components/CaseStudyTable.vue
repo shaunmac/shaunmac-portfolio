@@ -15,7 +15,7 @@ export default {
                         
         <h4 class="text-2xl font-bold text-white mb-4">Technologies &amp; Tools</h4>
 
-        <div class="overflow-hidden w-[calc(100% + 6em)] -mx-6">
+        <div class="overflow-hidden w-[calc(100% + 6em)] -mx-6 lg:w-full lg:mx-0">
             <div class="w-full overflow-x-auto pb-4">
                 <table class="table table-xs w-full bg-transparent text-slate-50 ">
                     <thead class="w-full bg-transparent">
