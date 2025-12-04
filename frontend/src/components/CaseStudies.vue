@@ -310,7 +310,7 @@ onMounted(() => {
                       Read {{ isVisible[index] ? "Less" : "More" }}
                     </button>
 
-                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 lg:text-base">View Site</a>
+                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn py-6 w-1/2 lg:text-base">View Site</a>
                   </div>
 
                 </div>
@@ -331,7 +331,7 @@ onMounted(() => {
                       Read {{ isVisible[index] ? "Less" : "More" }}
                     </button>
 
-                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 lg:text-base">View Site</a>
+                    <a :href="caseStudy.caseStudyImages.externalUrl" target="_blank" class="secondary-btn w-1/2 py-6 lg:text-base">View Site</a>
                   </div>
                     
                 </div>

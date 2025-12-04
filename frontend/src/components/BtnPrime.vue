@@ -8,7 +8,7 @@ const { link, linkLabel } = defineProps({
 
 </script>
 <template>
-<a class="primary-btn" :href="link">{{ linkLabel }}</a>
+    <a class="primary-btn" :href="link">{{ linkLabel }}</a>
 </template>
 
 <style>
