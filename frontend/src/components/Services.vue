@@ -28,6 +28,40 @@ const apolloClient = new ApolloClient({
   cache,
 });
 
+const testServicesQuery = gql`
+  query services {
+    pages(where: {id: 438}) {
+      nodes {
+        services {
+          service {
+            name
+            knowlegePercentage
+            icon {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+    services {
+      nodes {
+        title
+        content
+        serveIcon {
+          icon
+        }
+          featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
+  }
+`;
+
 const servicesQuery = gql`
   query services {
     pages(where: {id: 484}) {
