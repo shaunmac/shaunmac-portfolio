@@ -28,41 +28,8 @@ const apolloClient = new ApolloClient({
   cache,
 });
 
-const testServicesQuery = gql`
-  query services {
-    pages(where: {id: 438}) {
-      nodes {
-        services {
-          service {
-            name
-            knowlegePercentage
-            icon {
-              node {
-                sourceUrl
-              }
-            }
-          }
-        }
-      }
-    }
-    services {
-      nodes {
-        title
-        content
-        serveIcon {
-          icon
-        }
-          featuredImage {
-          node {
-            sourceUrl
-          }
-        }
-      }
-    }
-  }
-`;
 
-const servicesQuery = gql`
+const liveServicesQuery = gql`
   query services {
     pages(where: {id: 484}) {
       nodes {
@@ -86,6 +53,11 @@ const servicesQuery = gql`
         serveIcon {
           icon
         }
+        featuredImage {
+          node {
+            sourceUrl(size: LARGE)
+          }
+        }
       }
     }
   }
@@ -96,7 +68,7 @@ const skills = ref([]);
 const services = ref({});
 const servi= ref([]);
 
-apolloClient.query({ query: servicesQuery }).then((result) => {
+apolloClient.query({ query: liveServicesQuery }).then( (result) => {
   servicesData.value = result.data;
   skills.value = servicesData.value.pages.nodes[0].services.service;
   services.value = servicesData.value.services.nodes;
@@ -138,8 +110,6 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
         <div class="w-full lg:w-1/3 md:flex md:flex-wrap relative z-10 mb-6 pb-4">
 
           <h2 class="text-xl font-normal text-slate-200 ml-6 block w-full">Experience</h2>
-
-          
 
           <div class="w-1/2 hidden md:flex lg:hidden  px-6 mt-4 h-4 ">
             <div class="w-1/12 block"></div>
@@ -186,16 +156,17 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
 
         <div class="w-full lg:w-2/3 flex flex-wrap gap-6 relative z-10 px-6 lg:pr-0">
 
-          <div v-for="(service, index) in services" class="w-full md:w-[calc(50%-0.8em)] lg:w-">
+          <div v-for="(service, index) in services" class="w-full md:w-[calc(50%-0.8em)]">
+
             <div class="rounded-lg bg-indigo-950 p-6 text-slate-400">
+
+              <img :src="service.featuredImage.node.sourceUrl" alt="" class="mb-6">
 
               <div class="flex align-middle items-center">
                
                 <div class="rounded-full border border-slate-400 block p-1">
                   <div class="w-6 h-6 flex items-center justify-center">
                     <font-awesome-icon :icon=servi[index] size="lg" />
-
-                   <!-- <p class="bold block"> {{servi[index]}}</p> -->
                   </div>
                 </div>
 
@@ -208,6 +179,8 @@ apolloClient.query({ query: servicesQuery }).then((result) => {
 
             </div>
           </div><!-- services  -->
+
+
 
         </div>
 
