@@ -79,17 +79,12 @@ apolloClient.query({ query: liveServicesQuery }).then( (result) => {
 
 <template>
 
-<section id="services" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative title-bg z-20 mt-[150vw] w-full ">
+<section id="services" class="pt-10 pb-10 lg:pt-[30px] lg:pb-20 relative z-20 mt-[150vw] w-full max-w-7xl lg:mx-auto">
 
-  <div class="rounded-xl px-6 py-6 mx-6 relative z-10 title-bg backdrop-blur backdrop-brightness-200 dark:bg-slate-900/70 border-t-2 border-slate-200/10">
-
-    <div class="overflow-hidden w-full h-full absolute top-0 left-1/2 -translate-x-1/2" >
-      <img :src="envUrl + 'circuit-2.png'" class="w-[130vw] -top-[35vw] block absolute left-1/2 -translate-x-1/2 z-0 max-w-[130vw]" alt="">
-    </div>
     
     <div class="w-full z-10">
         
-      <div class="w-full ml-6 max-w-[247px] sm:max-w-[360px] relative title-container-bg py-6">
+      <div class="w-full ml-6 max-w-[247px] sm:max-w-[360px] relative py-6">
       
           <span class="block text-lg font-normal text-slate-200 ">
             Professional 
@@ -105,56 +100,47 @@ apolloClient.query({ query: liveServicesQuery }).then( (result) => {
         
       </div>
 
-      <div class="lg:flex lg:flex-row-reverse w-full bg-slate-800 py-6">
+      <div class="lg:flex lg:flex-row-reverse w-full pl-6 pr-6 pb-6 lg:pl-0 lg:space-x-6">
 
-        <div class="w-full lg:w-1/3 md:flex md:flex-wrap relative z-10 mb-6 pb-4">
+        <div class="w-full lg:w-1/3 md:flex md:flex-col relative z-10 mb-6">
 
-          <h2 class="text-xl font-normal text-slate-200 ml-6 block w-full">Experience</h2>
-
-          <div class="w-1/2 hidden md:flex lg:hidden  px-6 mt-4 h-4 ">
-            <div class="w-1/12 block"></div>
-            <div class="w-11/12 ml-6 flex justify-between border-b-slate-500/50 border-b rounded-sm">
-
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>0</sup></p>
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>number of years</sup></p> 
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>25</sup></p>
-
-            </div>
-          </div>
-         
-          <div v-for="skill in skills" :key="skill.name" class="mt-2 md:w-1/2 lg:w-full md:px-1">
-            <div class="flex rounded-md px-6 bg-slate-800 justify-start items-center w-full">
-              <div class="w-1/12 max-w-[64px]">
-                <div class="rounded-full bg-orange-500 p-[2px] lg:p-[1px] flex justify-center items-center w-full">
-                  <img :src="skill.icon.node.sourceUrl" :alt="skill.name" />
-                </div>
-              </div>
-
-              <div class="w-11/12 pl-6">
-                <p class="w-full inline-block text-slate-50 font-normal">{{ skill.name }}</p>
-                <div class="w-full mt-2">
-                  <span class="block h-1 mt-2 -mb-3 rounded w-full bg-gray-900"></span>
-                  <span class="block h-1 bg-primary mt-2 rounded" :style="{ width: skill.knowlegePercentage + '%' }"></span>
-                </div>
-              </div>
-            </div>
+          <div class="bg-slate-800 py-6 rounded-lg">
+            <h2 class="text-xl font-normal text-slate-200 ml-6 block w-full mb-6">Experience</h2>
+          
+            <div v-for="skill in skills" :key="skill.name" class="mt-2 w-full md:px-1">
             
-          </div>
+              <div class="flex rounded-md px-6 bg-slate-800 justify-start items-center w-full">
+                <div class="w-1/12 max-w-[64px]">
+                  <div class="rounded-full bg-orange-500 p-[2px] lg:p-[1px] flex justify-center items-center w-full">
+                    <img :src="skill.icon.node.sourceUrl" :alt="skill.name" />
+                  </div>
+                </div>
 
-          <div class="w-full  md:w-1/2 lg:w-full flex px-6 mt-4 lg:mt-0 h-4">
-            <div class="w-1/12  block"></div>
-            <div class="w-11/12 ml-6 flex justify-between border-b-slate-500/50 border-b rounded-sm">
+                <div class="w-11/12 pl-6">
+                  <p class="w-full inline-block text-slate-50 font-normal">{{ skill.name }}</p>
+                  <div class="w-full mt-2">
+                    <span class="block h-1 mt-2 -mb-3 rounded w-full bg-gray-900"></span>
+                    <span class="block h-1 bg-primary mt-2 rounded" :style="{ width: skill.knowlegePercentage + '%' }"></span>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
 
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>0</sup></p>
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>number of years</sup></p> 
-              <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>25</sup></p>
+            <div class="w-full flex px-6 mt-6 h-4">
+              <div class="w-1/12 block"></div>
+              <div class="w-11/12 ml-6 flex justify-between border-b-slate-500/50 border-b rounded-sm">
 
+                <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>0</sup></p>
+                <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>number of years</sup></p> 
+                <p class="block text-center font-xs font-light text-slate-50 leading-none"><sup>25</sup></p>
+
+              </div>
             </div>
           </div>
-        
         </div>
 
-        <div class="w-full lg:w-2/3 flex flex-wrap gap-6 relative z-10 px-6 lg:pr-0">
+        <div class="w-full lg:w-2/3 flex flex-wrap gap-6 relative z-10 lg:pr-6">
 
           <div v-for="(service, index) in services" class="w-full md:w-[calc(50%-0.8em)]">
 
@@ -178,6 +164,7 @@ apolloClient.query({ query: liveServicesQuery }).then( (result) => {
               </div>
 
             </div>
+            
           </div><!-- services  -->
 
 
@@ -186,7 +173,7 @@ apolloClient.query({ query: liveServicesQuery }).then( (result) => {
 
       </div>
     </div>
-  </div>
+
 </section>
 
 </template>
