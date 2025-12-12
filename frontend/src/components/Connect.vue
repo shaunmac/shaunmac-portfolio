@@ -284,7 +284,7 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #codepen .example a {
-    @apply rounded-md absolute w-full h-[6.5rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block border-2 border-cyan-400 opacity-0 transition-all;
+    @apply rounded-md absolute w-full h-[6.5rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block opacity-0 transition-all;
   }
 
   #codepen .example a:hover {
