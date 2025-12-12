@@ -135,21 +135,21 @@ apolloClient.query({ query: connectQuery }).then((result) => {
                     <h4 v-if="card.title === 'Codepen'" class="font-bold text-slate-200 mb-4 z-10 relative">Code Examples</h4>
                     <div v-if="card.title === 'Codepen'" id="codepen">
                       <div class="example">
-                        <a href="https://codepen.io/shaunmac/pen/BvMmgg"></a>
+                        <a href="https://codepen.io/shaunmac/pen/BvMmgg" target="_blank"></a>
                         <div class="icon">
                           <font-awesome-icon :icon="['fab', 'square-js']" />
                         </div>
                         <p>jQuery accordion</p>
                       </div>
                       <div class="example">
-                        <a href="https://codepen.io/shaunmac/pen/wvvaGjM"></a>
+                        <a href="https://codepen.io/shaunmac/pen/wvvaGjM" target="_blank"></a>
                         <div class="icon">
                           <font-awesome-icon :icon="['fab', 'css3']" />
                         </div>
                         <p>Tailwindcss layout</p>
                       </div>
                       <div class="example">
-                        <a href="https://codepen.io/shaunmac/pen/mvMPgr"></a>
+                        <a href="https://codepen.io/shaunmac/pen/mvMPgr" target="_blank"></a>
                         <div class="icon">
                           <font-awesome-icon :icon="['fab', 'react']" />
                         </div>
@@ -284,7 +284,11 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #codepen .example a {
-    @apply rounded-md absolute w-full h-[6.5rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block border-2 border-cyan-400 opacity-0 hover:opacity-100 hover:scale-105 transition-all;
+    @apply rounded-md absolute w-full h-[6.5rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-100 block border-2 border-cyan-400 opacity-0 transition-all;
+  }
+
+  #codepen .example a:hover {
+    @apply opacity-100 scale-105;
   }
 
   #codepen .example a:hover + .icon .svg-inline--fa path{
