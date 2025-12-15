@@ -22,27 +22,30 @@ const loading = ref(true);
 const loaderContainer = ref(null);
 const imageContainer = ref(null);
 const highLight = ref(null);
+const lighting_1 = ref(null);
 
-const flicker = computed(() => {
-  gsap.to(highLight.value, {
-    opacity: Math.random() * 1 + 0.3, // Random opacity between 0 and 1
-    duration: 0.05, // Random duration between 0.05s and 0.35s for flicker speed
-    ease: "none", // No easing for abrupt changes
-  });
-  console.log('flicker')
-});
-
-flicker;
 
 const onImageLoad = () => {
+
   loading.value = false;  // Hide the loading indicator after 5 minutes
 
-  gsap.to( loaderContainer.value, 
+  gsap.fromTo(lighting_1.value,
+    {
+      opacity: 0
+    },
+    {
+      opacity: 0.8,
+      duration: 1,
+      delay: 0.5
+    }
+  );
+
+  gsap.to(loaderContainer.value, 
     {
       height: '70vh',
       duration: 0.7,
       ease: 'circ.out',
-      delay: 1
+      delay: 16
     }
   );
 
@@ -50,8 +53,10 @@ const onImageLoad = () => {
     duration:0.4,
     opacity: 1,
     bottom: 0,
-    ease: 'expo.out'
+    ease: 'expo.out',
   });
+
+
 
   gsap.fromTo(highLight.value, 
     {
@@ -86,7 +91,9 @@ const onImageError = (event) => {
       ref="imageContainer" class="image-container w-full h-full" 
       style="bottom: -3em; opacity: 0;">
     
-      <div ref="highLight" id="shaun-highlight" :style="imageStyles"></div>
+      <div ref="highLight" id="shaun-highlight"></div>
+
+      <div ref="lighting_1" id="lighting_1" ></div>
       
       <img 
         :src="imageUrl" 
@@ -94,7 +101,6 @@ const onImageError = (event) => {
         @error="onImageError" 
         alt="An image"
         class="image-container-image"
-        :style="imageStyles"
       />
       
     </div>
@@ -103,6 +109,16 @@ const onImageError = (event) => {
 </template>
 
 <style>
+#lighting_1 {
+  background-image: url("http://shaunmac.local/wp-content/uploads/2025/12/lighting_1.png");
+  width: calc(386px / 2);
+  height: calc(1004px / 2);
+  background-size: contain;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .image-container {
   position: fixed;
   left: 50%;
