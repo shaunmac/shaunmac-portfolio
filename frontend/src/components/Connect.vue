@@ -200,9 +200,9 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #connect .cont-1 {
-    right: -225px;
+    right: -65px;
     transform: rotateZ(270deg) rotateY(180deg) scale(1.2);
-    top: 228px;
+    top: 230px;
   }
 
   #connect .cont-1 svg, 
@@ -213,19 +213,21 @@ apolloClient.query({ query: connectQuery }).then((result) => {
   }
 
   #connect .cont-2 {
-    top: 200vh;
+    top: 118vh;
     transform: scale(2.3);
+    left: 250px;
   }
 
   #connect .cont-3 {
-    top: 800px;
-    transform: rotateY(90deg);
-    right: 0;
+    top: 850px;
+    right: 444px;
   }
 
   #connect .cont-4 {
-    top: 1570px;
-    width: 150%;
+    top: 1630px;
+    width: 141%;
+    right: -210px;
+    transform: rotateZ(246deg);
   }
 
   .card-icon > div > svg {
