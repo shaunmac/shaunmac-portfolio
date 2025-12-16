@@ -23,56 +23,53 @@ const loaderContainer = ref(null);
 const imageContainer = ref(null);
 const highLight = ref(null);
 const lighting_1 = ref(null);
+const shaunImage = ref(null);
 
 
 const onImageLoad = () => {
 
   loading.value = false;  // Hide the loading indicator after 5 minutes
+  gsap.set(loaderContainer.value, { height: '100vh' });
+  gsap.set(imageContainer.value, { opacity: 1 });
+  gsap.set(shaunImage.value, {opacity: 0 });
+  gsap.set(highLight.value, {opacity: 0 });
 
-  gsap.fromTo(lighting_1.value,
-    {
-      opacity: 0
-    },
-    {
-      opacity: 0.8,
-      duration: 1,
-      delay: 0.5
-    }
-  );
+  const tl = gsap.timeline();
 
-  gsap.to(loaderContainer.value, 
-    {
+  // Multiple quick lightning flashes using the lighting overlay
+  tl.to(lighting_1.value, { opacity: 1, duration: 0.07 })
+    .to(lighting_1.value, { opacity: 0, duration: 0.12 })
+    
+    .to(lighting_1.value, { opacity: 1, duration: 0.09 })
+    .to(lighting_1.value, { opacity: 0, duration: 0.15 })
+    
+    .to(lighting_1.value, { opacity: 0.8, duration: 0.06 })
+    .to(lighting_1.value, { opacity: 0, duration: 0.18 })
+    
+    .to(lighting_1.value, { opacity: 1, duration: 0.08 })
+    .to(lighting_1.value, { opacity: 0, duration: 0.25 })
+
+
+    .to(highLight.value, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "elastic",
+    }, "-=0.3")
+
+    // Finally reveal the image with impact
+    .to(shaunImage.value, {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      ease: "power3.out",
+    }, "-=0.3")
+
+    .to(loaderContainer.value, {
       height: '70vh',
       duration: 0.7,
       ease: 'circ.out',
-      delay: 16
-    }
-  );
-
-  gsap.to(imageContainer.value, {
-    duration:0.4,
-    opacity: 1,
-    bottom: 0,
-    ease: 'expo.out',
-  });
-
-
-
-  gsap.fromTo(highLight.value, 
-    {
-      y: '10px',
-      opacity: 0,
-      scale: 0.95
-    },
-    {
-      y: 0,
-      duration: 1,
-      opacity: 1,
-      scale: 1,
-      ease: 'sine.inOut',
-      delay: 0.4
-    }
-  );
+      delay: 5
+    })
 };
 
 const onImageError = (event) => {
@@ -83,7 +80,7 @@ const onImageError = (event) => {
 <template>
   <div class="w-full h-full z-30 block relative">
 
-    <div ref="loaderContainer" class="relative w-[calc(100vw-1.5em)] mx-6" style="height: 100vh;">
+    <div ref="loaderContainer" class="relative w-[calc(100vw-1.5em)] mx-6">
       <loader-animation v-if="loading" ></loader-animation>
     </div>
     
@@ -95,7 +92,8 @@ const onImageError = (event) => {
 
       <div ref="lighting_1" id="lighting_1" ></div>
       
-      <img 
+      <img
+        ref="shaunImage"
         :src="imageUrl" 
         @load="onImageLoad" 
         @error="onImageError" 
@@ -117,6 +115,16 @@ const onImageError = (event) => {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+}
+
+#splash {
+  background-image: url("http://shaunmac.local/wp-content/uploads/2025/12/splash.png");
+  width: 1346px;
+  height: 1025px;
+  display: block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 .image-container {
