@@ -3,6 +3,7 @@ import { ref, computed } from 'vue';
 import { gsap } from 'gsap';
 import LoaderAnimation from './loaderAnimation.vue';
 import { CSSPlugin } from 'gsap/CSSPlugin';
+import { isLocal } from './ApolloClient';
 
 gsap.registerPlugin(CSSPlugin);
 
@@ -24,15 +25,18 @@ const imageContainer = ref(null);
 const highLight = ref(null);
 const lighting_1 = ref(null);
 const shaunImage = ref(null);
-
+const splash = ref(null);
 
 const onImageLoad = () => {
 
   loading.value = false;  // Hide the loading indicator after 5 minutes
+
   gsap.set(loaderContainer.value, { height: '100vh' });
   gsap.set(imageContainer.value, { opacity: 1 });
-  gsap.set(shaunImage.value, {opacity: 0 });
-  gsap.set(highLight.value, {opacity: 0 });
+  gsap.set(shaunImage.value, { opacity: 0 });
+  gsap.set(highLight.value, { opacity: 0, y: '84px', x: '-50%', scale: 1.2, });
+  gsap.set(lighting_1.value, { opacity: 0 });
+  gsap.set(splash.value, { opacity: 0})
 
   const tl = gsap.timeline();
 
@@ -42,34 +46,38 @@ const onImageLoad = () => {
     
     .to(lighting_1.value, { opacity: 1, duration: 0.09 })
     .to(lighting_1.value, { opacity: 0, duration: 0.15 })
-    
-    .to(lighting_1.value, { opacity: 0.8, duration: 0.06 })
-    .to(lighting_1.value, { opacity: 0, duration: 0.18 })
-    
-    .to(lighting_1.value, { opacity: 1, duration: 0.08 })
-    .to(lighting_1.value, { opacity: 0, duration: 0.25 })
-
 
     .to(highLight.value, {
-      opacity: 1,
-      duration: 0.5,
-      ease: "elastic",
-    }, "-=0.3")
+      duration: 0.25,
+      ease:"expo.out",
+      y: "-93px",
+    }, "-=0.30")
 
-    // Finally reveal the image with impact
+    .to(highLight.value, {
+      duration: 0.25,
+      opacity: 1,
+      scale: 1,
+    }, "-=0.25")
+
     .to(shaunImage.value, {
       opacity: 1,
       y: 0,
       duration: 0.9,
       ease: "power3.out",
-    }, "-=0.3")
+    }, "-=0.1")
+
+    .to(splash.value, {
+      opacity: 1,    
+      duration: 0.01,
+      delay: 0.1,
+    }, "-=0.7")
 
     .to(loaderContainer.value, {
       height: '70vh',
       duration: 0.7,
-      ease: 'circ.out',
-      delay: 5
-    })
+      ease: 'circ.out'
+    }, "-=0.85")
+  ;
 };
 
 const onImageError = (event) => {
@@ -86,12 +94,14 @@ const onImageError = (event) => {
     
     <div 
       ref="imageContainer" class="image-container w-full h-full" 
-      style="bottom: -3em; opacity: 0;">
+      style="bottom: -3em;" :style="imageStyles">
     
-      <div ref="highLight" id="shaun-highlight"></div>
+      <div ref="highLight" id="shaun-highlight" style="opacity: 0;"></div>
 
       <div ref="lighting_1" id="lighting_1" ></div>
       
+      <div ref="splash" id="splash" style="opacity: 0;"></div>
+
       <img
         ref="shaunImage"
         :src="imageUrl" 
@@ -99,6 +109,7 @@ const onImageError = (event) => {
         @error="onImageError" 
         alt="An image"
         class="image-container-image"
+        style="opacity: 0;"
       />
       
     </div>
@@ -108,30 +119,40 @@ const onImageError = (event) => {
 
 <style>
 #lighting_1 {
-  background-image: url("http://shaunmac.local/wp-content/uploads/2025/12/lighting_1.png");
+  background-image: url("http://shaunmacdougall.com/wp-content/uploads/2025/12/lighting_1.png");
   width: calc(386px / 2);
   height: calc(1004px / 2);
   background-size: contain;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  opacity: 0;
+  top: 120px;
 }
 
 #splash {
-  background-image: url("http://shaunmac.local/wp-content/uploads/2025/12/splash.png");
-  width: 1346px;
-  height: 1025px;
+  background-image: url("http://shaunmacdougall.com/wp-content/uploads/2025/12/splash.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  width: 100%;
+  height: 100vh;
+  min-width: 690px;
+  min-height: 525px;
+  max-width: 1346px;
+  max-height: 1025px;
   display: block;
-  position: relative;
+  position: absolute;
   left: 50%;
-  transform: translate(-50%);
+  bottom: -375px;
+  transform: translateX(-50%) translateY(-60%);
 }
 
 .image-container {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  max-height: calc(100vh - (72px + 1.5rem));
+  /* max-height: calc(100vh - (72px + 1.5rem)); */
 }
 
 .image-container-image {
@@ -140,7 +161,7 @@ const onImageError = (event) => {
     width: 100%;
     height: auto;
     position: absolute;
-    bottom: -60px;
+    bottom: 9%;
     z-index: 100;
     left: 50%;
     transform: translateX(-50%);
@@ -156,10 +177,15 @@ const onImageError = (event) => {
   background-repeat: no-repeat;
   background-size: 100% auto;
   background-position: bottom center;
-  left: calc(50% - 13px);
-  bottom: -92px;
-  transform: translateX(-50%);
+  left: 50%;
+  bottom: -107px;
   filter: blur(14px);
+}
+
+@media screen and (min-width:460px) {
+   .image-container-image {
+    bottom: 0;
+  }
 }
 
 @media screen and (max-height:570px) {
@@ -172,7 +198,12 @@ const onImageError = (event) => {
   #shaun-highlight, 
   .image-container-image {
     bottom: unset;
-    top: 0;
+  }
+  .image-container-image {
+    top: 33px;
+  }
+  #shaun-highlight {
+    top: 70px;
   }
 }
 

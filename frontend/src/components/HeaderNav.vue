@@ -13,6 +13,8 @@ import {
   XMarkIcon,
 } from "@heroicons/vue/24/outline";
 
+console.log("is Local: "+isLocal);
+
 
 // HTTP connection to the API
 // const httpLink = createHttpLink({
@@ -62,7 +64,7 @@ const cache = new InMemoryCache();
           <a href="#" class="flex items-center justify-center">
             <img
               class="mr-4 h-8 w-auto sm:h-10"
-              :src="isLocal === 'live' ? 'https://shaunmacdougall.com/wp-content/uploads/2024/07/logo.png' : 'http://shaunmac.local/wp-content/uploads/2024/07/logo.png'"
+              :src="isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/07/logo.png':'https://shaunmacdougall.com/wp-content/uploads/2024/07/logo.png'"
               alt="Shaun MacDougall Web Developer"
             />
             <div class="flex flex-col justify-center">

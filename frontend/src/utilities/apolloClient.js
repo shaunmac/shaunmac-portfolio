@@ -5,7 +5,7 @@ import {
   } from "@apollo/client/core";
 
 // !important Set to true if you are running locally
-export const isLocal = true;
+export const isLocal = false;
 
 // Set the URL for the GraphQL endpoint
 const testing = "http://shaunmac.local/graphql";

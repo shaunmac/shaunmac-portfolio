@@ -7,7 +7,6 @@ import {
   gql
 } from "@apollo/client/core";
 
-const envUrl = isLocal ? 'http://shaunmac.local/wp-content/uploads/2024/01/' : 'https://shaunmacdougall.com/wp-content/uploads/2024/07/';
 
 const liveCaseStudiesQuery = gql`
   query liveCaseStudiesQuery {
@@ -254,7 +253,7 @@ onMounted(() => {
                 
                 <div class="w-full md:w-1/2">
                   
-                  <div class="case-study__images w-full overflow-hidden bg-slate-200 rounded-3xl relative">
+                  <div class="case-study__images w-full overflow-hidden bg-slate-200 rounded-3xl relative shadow-2xl shadow-black">
                     <div v-if="caseStudy.featuredImage" class="case-study__desktop rounded-3xl overflow-hidden relative z-0 border-4 border-white w-full">
                       <img
                         class="case-study__image case-study__image--lg"
@@ -263,7 +262,7 @@ onMounted(() => {
                       />
                     </div>
 
-                    <div v-if="caseStudy.caseStudyImages.tabletImage" class="case-study__tablet rounded-3xl overflow-hidden absolute bottom-0 right-0 z-10 shadow-2xl shadow-black border-4 border-white" :class="caseStudy.caseStudyImages.mobileImage ? 'mr-6' : 'mr-0'">
+                    <div v-if="caseStudy.caseStudyImages.tabletImage" class="case-study__tablet max-w-[480px] rounded-3xl  overflow-hidden absolute bottom-0 right-0 z-10 shadow-2xl shadow-black border-4 border-white" :class="caseStudy.caseStudyImages.mobileImage ? 'mr-0' : 'mr-6'">
                       <img
                         class="overflow-hidden"
                         :src="isLocal ? caseStudy.caseStudyImages.tabletImage.node.sourceUrl : caseStudy.caseStudyImages.tabletImage.node.sourceUrl"
