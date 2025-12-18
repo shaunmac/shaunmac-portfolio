@@ -9,6 +9,7 @@ export default {
     }
 }
 
+
 </script>
 <template>
     <div class="font-normal mt-10">

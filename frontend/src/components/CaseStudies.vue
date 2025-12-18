@@ -24,6 +24,7 @@ const liveCaseStudiesQuery = gql`
         }
         caseStudyImages {
           externalUrl
+          shortDiscription
           mobileImage {
             node {
               sourceUrl
@@ -33,6 +34,10 @@ const liveCaseStudiesQuery = gql`
             node {
               sourceUrl
             }
+          }
+          technologiesAndTools {
+            category
+            tools
           }
         }
         content
@@ -122,86 +127,9 @@ import CaseStudyTable from './CaseStudyTable.vue';
 //   xxl: 1536
 // };
 
-// // Reactive viewport size
-// const viewport = ref(getViewportSize());
-
-// // Function to get current viewport size
-// function getViewportSize() {
-
-//   const width = window.innerWidth;
-//   if (width < breakpoints.sm) return 'xs';
-//   else if (width < breakpoints.md) return 'sm';
-//   else if (width < breakpoints.lg) return 'md';
-//   else if (width < breakpoints.xl) return 'lg';
-//   else if (width < breakpoints.xxl) return 'xl';
-//   else return 'xxl';
-// }
-
 const toggleVisibility = (index) => {
   isVisible.value[index] = !isVisible.value[index];
 };
-
-// Define a ref for the active slide index
-// const activeSlideIndex = ref(1);
-
-// Define a computed property for the active slide ID
-// const activeSlideId = computed( () => `caseStudySlide+${activeSlideIndex.value}` );
-
-// Define card count based on viewport
-// const cardCount = ref(getCardSlideCount());
-
-// function getCardSlideCount() {
-//   switch (viewport.value) {
-//     case 'xs':
-//       return [1];
-//     case 'sm':
-//       return [1,2];
-//     case 'md':
-//       return [1,2,3];
-//     case 'lg':
-//       return [1,2,3,4];
-//     case 'xl':
-//       return [1,2,3,4,5];
-//     case 'xxl':
-//       return [1,2,3,4,5];
-//     default:
-//       return [1];// default to medium size
-//   }
-// }
-
-// // Define a function to set the active slide index
-// const setActiveSlide = (index) => {
-//   activeSlideIndex.value = index ;
-// };
-
-// Define functions to go to the previous and next slides
-// const goToPrevSlide = () => {
-  
-//   if(activeSlideIndex.value <= 1) {
-//     activeSlideIndex.value = caseStudies.value.length ;
-//   }else {
-//     activeSlideIndex.value = (activeSlideIndex.value - cardCount.value.length) <= 1 ? 1 : activeSlideIndex.value - cardCount.value.length ;
-//   }
-
-//   console.log('card count: ' + cardCount.value.length);
-
-// };
-
-// const goToNextSlide = () => {
-
-//   const caseStudiesCounter = caseStudies.value.length,
-//         cardCounter = cardCount.value.length;
-
-
-//   if (activeSlideIndex.value >= caseStudiesCounter) {
-//     activeSlideIndex.value = 1;
-//   }else {
-//     activeSlideIndex.value = (activeSlideIndex.value + cardCounter) >= caseStudiesCounter ? caseStudiesCounter : activeSlideIndex.value + cardCounter;
-//   }
-
-//   console.log('card count: ' + cardCounter);
-
-// };
 
 onMounted(() => {
   fetchCaseStudies();
@@ -292,7 +220,7 @@ onMounted(() => {
 
                     <h4 class=" text-white pb-4">Technologies</h4>
                     <div class="case-study__tags flex flex-wrap items-center justify-start md:pr-4 ">
-                      <div v-if="isLocal==='live'" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
+                      <div v-if="isLocal===false" v-for="tag in caseStudy.tags.nodes" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.name }}</div>
 
                       <div v-else v-for="tag in caseStudy.tags.edges" class="leading-6 text-slate-200 rounded-full px-4 text-xs bg-zinc-800 font-normal m-1" >{{ tag.node.name }}</div>
                     </div>
@@ -320,7 +248,7 @@ onMounted(() => {
                     
                     <div class="font-normal text-slate-300 mb-6" v-html="caseStudy.content"></div>
 
-                    <CaseStudyTable :catsntools=caseStudy.caseStudyImages.technical ></CaseStudyTable>
+                    <CaseStudyTable :catsntools= caseStudy.caseStudyImages.technologiesAndTools ></CaseStudyTable>
 
                     <div class="mt-6 flex flex-row md:text-xs md:tracking-tighter space-x-6">
                     <button 
